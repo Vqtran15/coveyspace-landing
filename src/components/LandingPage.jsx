@@ -37,6 +37,8 @@ export default function LandingPage() {
   function goToSignup() {
     if (leaving) return
     setLeaving(true)
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({ event: 'signup_intent' })
     setTimeout(() => { window.location.href = SIGNUP_URL }, 350)
   }
 
