@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, ArrowRight, DeviceMobile, EnvelopeSimple } from '@phosphor-icons/react'
 
-const APP_URL = 'https://app.coveyspace.com/login'
+const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
+const LOGIN_URL = 'https://app.coveyspace.com/login'
 
 const FEATURES = [
   {
@@ -33,10 +34,16 @@ const FEATURES = [
 export default function LandingPage() {
   const [leaving, setLeaving] = useState(false)
 
-  function goToApp() {
+  function goToSignup() {
     if (leaving) return
     setLeaving(true)
-    setTimeout(() => { window.location.href = APP_URL }, 350)
+    setTimeout(() => { window.location.href = SIGNUP_URL }, 350)
+  }
+
+  function goToLogin() {
+    if (leaving) return
+    setLeaving(true)
+    setTimeout(() => { window.location.href = LOGIN_URL }, 350)
   }
 
   return (
@@ -56,7 +63,7 @@ export default function LandingPage() {
             <span className="font-league-gothic text-2xl text-jade tracking-wide">Covey Space</span>
           </div>
           <button
-            onClick={goToApp}
+            onClick={goToLogin}
             disabled={leaving}
             className="px-4 py-2 bg-jade text-white text-sm font-semibold rounded-xl hover:bg-jade-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
@@ -81,7 +88,7 @@ export default function LandingPage() {
             </p>
             <div className="flex justify-center lg:justify-start">
               <button
-                onClick={goToApp}
+                onClick={goToSignup}
                 disabled={leaving}
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-jade text-white font-semibold rounded-2xl text-base hover:bg-jade-700 transition-colors shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
               >
@@ -156,7 +163,7 @@ export default function LandingPage() {
             Bring your whole group together.
           </h2>
           <button
-            onClick={goToApp}
+            onClick={goToSignup}
             disabled={leaving}
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-jade font-semibold rounded-2xl text-base hover:bg-jade-50 transition-colors shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
