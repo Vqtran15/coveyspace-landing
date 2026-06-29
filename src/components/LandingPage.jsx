@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, ArrowRight, EnvelopeSimple } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
@@ -28,7 +29,7 @@ const FEATURES = [
   {
     Icon: HandsPraying,
     title: 'Prayer Requests',
-    description: "Prayer requests get their own dedicated space — never buried in a chat thread, always easy to find and revisit.",
+    description: "Prayer requests get their own dedicated space — never buried in a chat thread. Perfect for Bible study groups and home churches who want to pray for one another consistently.",
     color: 'bg-sunrise/10 text-sunrise',
   },
   {
@@ -50,10 +51,30 @@ export default function LandingPage() {
     setTimeout(() => { window.location.href = SIGNUP_URL }, 350)
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Covey Space',
+    applicationCategory: 'LifestyleApplication',
+    operatingSystem: 'Web, iOS, Android',
+    url: 'https://www.coveyspace.com',
+    description: 'Community group app for meal signups, service schedules, group chat, prayer requests, and birthday reminders.',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  }
+
   return (
     <div
       className={`min-h-screen bg-white font-sans animate-page-enter transition-[opacity,transform] duration-300 ease-in-out ${leaving ? 'opacity-0 translate-y-3' : 'opacity-100'}`}
     >
+      <Helmet>
+        <title>Covey Space — Community Group App for Meals, Prayer & Chat</title>
+        <meta name="description" content="The all-in-one app for church small groups, home churches, house churches, Bible study groups, and Christian community groups. Meal signups, group chat, prayer requests, and more." />
+        <link rel="canonical" href="https://www.coveyspace.com" />
+        <meta property="og:url" content="https://www.coveyspace.com" />
+        <meta property="og:title" content="Covey Space — Community Group App for Meals, Prayer & Chat" />
+        <meta property="og:description" content="Automated meal signups, service schedules, group chat, prayer requests, and birthday reminders — all in one app for your small group or house church." />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      </Helmet>
 
       <Nav />
 
@@ -69,7 +90,7 @@ export default function LandingPage() {
               One place for your<br />whole community.
             </h1>
             <p className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
-              Covey Space brings automated meal signups, service schedules, group chats, and prayer requests into one place — built for those who share life together around a table and out in the community.
+              Covey Space brings automated meal signups, service schedules, group chat, and prayer requests into one place — built for church small groups, home churches, Bible study groups, and Christian community groups who share life together.
             </p>
             <div className="flex justify-center lg:justify-start">
               <button
@@ -86,7 +107,7 @@ export default function LandingPage() {
           <div className="hidden lg:flex shrink-0">
             <div className="w-64 p-2.5 bg-stone-800 rounded-[2rem] shadow-2xl">
               <div className="rounded-[1.5rem] overflow-hidden">
-                <img src="/screenshots/home-screen.PNG" alt="Covey Space home screen" className="w-full h-auto block" />
+                <img src="/screenshots/home-screen.PNG" alt="Covey Space home screen" fetchpriority="high" className="w-full h-auto block" />
               </div>
             </div>
           </div>
@@ -119,7 +140,7 @@ export default function LandingPage() {
           <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-3">
             Up and running in minutes.
           </h2>
-          <p className="text-stone-400 text-center text-sm mb-14">No app store. No IT setup. Just share a code.</p>
+          <p className="text-stone-400 text-center text-sm mb-14">No app store. No IT setup. Perfect for any church group, home church, or Bible study.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
@@ -166,7 +187,7 @@ export default function LandingPage() {
               <div key={label} className="shrink-0 snap-center flex flex-col items-center gap-3">
                 <div className="w-44 lg:w-48 p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
                   <div className="rounded-[1.25rem] overflow-hidden">
-                    <img src={src} alt={label} className="w-full h-auto block" />
+                    <img src={src} alt={label} loading="lazy" className="w-full h-auto block" />
                   </div>
                 </div>
                 <div className="text-center">

@@ -37,20 +37,20 @@ export default function Nav() {
               About
             </Link>
             <Link
-              to="/contact"
-              className={`px-3 py-2 text-sm font-semibold rounded-xl transition-colors ${
-                pathname === '/contact' ? 'text-jade bg-jade/10' : 'text-stone-500 hover:text-stone-800 hover:bg-stone-50'
-              }`}
-            >
-              Contact
-            </Link>
-            <Link
               to="/install"
               className={`px-3 py-2 text-sm font-semibold rounded-xl transition-colors ${
                 pathname === '/install' ? 'text-jade bg-jade/10' : 'text-stone-500 hover:text-stone-800 hover:bg-stone-50'
               }`}
             >
               Install App
+            </Link>
+            <Link
+              to="/contact"
+              className={`px-3 py-2 text-sm font-semibold rounded-xl transition-colors ${
+                pathname === '/contact' ? 'text-jade bg-jade/10' : 'text-stone-500 hover:text-stone-800 hover:bg-stone-50'
+              }`}
+            >
+              Contact
             </Link>
             <button
               onClick={() => { window.location.href = LOGIN_URL }}
@@ -91,20 +91,20 @@ export default function Nav() {
               About
             </Link>
             <Link
-              to="/contact"
-              className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
-                pathname === '/contact' ? 'text-jade bg-jade/10' : 'text-stone-700 hover:bg-stone-50'
-              }`}
-            >
-              Contact
-            </Link>
-            <Link
               to="/install"
               className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
                 pathname === '/install' ? 'text-jade bg-jade/10' : 'text-stone-700 hover:bg-stone-50'
               }`}
             >
               Install App
+            </Link>
+            <Link
+              to="/contact"
+              className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
+                pathname === '/contact' ? 'text-jade bg-jade/10' : 'text-stone-700 hover:bg-stone-50'
+              }`}
+            >
+              Contact
             </Link>
             <div className="border-t border-stone-100 mt-2 pt-3 flex flex-col gap-2">
               <button

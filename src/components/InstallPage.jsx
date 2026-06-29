@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { DeviceMobile, Browser, ArrowsOut, Lightning } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
@@ -28,6 +29,14 @@ const BENEFITS = [
 export default function InstallPage() {
   return (
     <div className="min-h-screen bg-white font-sans animate-page-enter">
+      <Helmet>
+        <title>Install Covey Space — Add to Your Home Screen</title>
+        <meta name="description" content="Add Covey Space to your home screen for a full-screen native app experience on iPhone, iPad, or Android. No app store needed — takes 30 seconds." />
+        <link rel="canonical" href="https://www.coveyspace.com/install" />
+        <meta property="og:url" content="https://www.coveyspace.com/install" />
+        <meta property="og:title" content="Install Covey Space — Add to Your Home Screen" />
+        <meta property="og:description" content="Add Covey Space to your home screen for a full-screen native app experience on iPhone, iPad, or Android. No app store needed — takes 30 seconds." />
+      </Helmet>
       <Nav />
 
       {/* Hero */}
@@ -70,11 +79,11 @@ export default function InstallPage() {
 
           <div className="flex-1 flex flex-col gap-6">
             {/* iOS warning */}
-            <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4">
-              <span className="text-amber-500 text-lg leading-none mt-0.5">⚠</span>
-              <div>
-                <p className="text-sm font-semibold text-amber-800 mb-0.5">iPhone & iPad: use Safari</p>
-                <p className="text-sm text-amber-700 leading-relaxed">
+            <div className="relative overflow-hidden flex items-start gap-3 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 shadow-sm">
+              <span className="absolute left-0 top-0 h-full w-1.5 bg-red-400 rounded-l-2xl" />
+              <div className="pl-3">
+                <p className="text-xs font-bold text-red-700 uppercase tracking-wider mb-1">iPhone & iPad: use Safari</p>
+                <p className="text-sm text-red-600 leading-relaxed">
                   The "Add to Home Screen" option only appears in Safari. If you're in Chrome, Firefox, or another browser on iOS, switch to Safari first.
                 </p>
               </div>
@@ -127,7 +136,7 @@ export default function InstallPage() {
           <div className="flex justify-center shrink-0">
             <div className="w-52 lg:w-60 p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
               <div className="rounded-[1.25rem] overflow-hidden">
-                <img src="/screenshots/add-to-home-2.PNG" alt="Add to Home Screen prompt in Safari" className="w-full h-auto block" />
+                <img src="/screenshots/add-to-home-2.PNG" alt="Add to Home Screen prompt in Safari" loading="lazy" className="w-full h-auto block" />
               </div>
             </div>
           </div>

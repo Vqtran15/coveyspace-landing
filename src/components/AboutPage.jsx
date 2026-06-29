@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, BookBookmark, DeviceMobile, ShieldCheck, ArrowRight } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
@@ -142,6 +143,14 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-white font-sans animate-page-enter">
+      <Helmet>
+        <title>About Covey Space — Built for Small Groups & House Churches</title>
+        <meta name="description" content="Learn how Covey Space was built for church small groups, home churches, house churches, and Christian community groups — one app for meals, chat, prayer, and more." />
+        <link rel="canonical" href="https://www.coveyspace.com/about" />
+        <meta property="og:url" content="https://www.coveyspace.com/about" />
+        <meta property="og:title" content="About Covey Space — Built for Small Groups & House Churches" />
+        <meta property="og:description" content="Learn how Covey Space was built to eliminate weekly coordination chaos for community groups. One app for meals, chat, prayer, and more." />
+      </Helmet>
       <Nav />
 
       {/* Hero */}
@@ -154,7 +163,7 @@ export default function AboutPage() {
             Built for groups who break bread around a table.
           </h1>
           <p className="text-stone-500 text-lg leading-relaxed">
-            Covey Space started as a solution to a Sunday night ritual and grew into a platform for the whole community group.
+            Covey Space started as a solution to a Sunday night ritual and grew into a platform for church small groups, home churches, house churches, and Christian community groups everywhere.
           </p>
         </div>
       </section>
@@ -170,7 +179,7 @@ export default function AboutPage() {
               Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place. I expanded it to include chat, birthday reminders, prayer requests, service schedules, and discussion guides, creating a true all-in-one app tailored for community groups.
             </p>
             <p>
-              Within a couple of weeks, Covey Space was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Covey Space helps your community group, small group, or house church stay organized, allowing you to spend less time coordinating and more time focusing on spiritual formation.
+              Within a couple of weeks, Covey Space was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Covey Space helps your community group, church small group, home church, house church, or Bible study group stay organized — so you can spend less time coordinating and more time focusing on spiritual formation.
             </p>
             <p className="font-semibold text-stone-800">Vuong Tran, Founder</p>
           </div>
@@ -201,7 +210,7 @@ export default function AboutPage() {
               <div key={feature.title} className="w-full shrink-0 flex flex-col items-center text-center px-2">
                 <div className="w-36 p-1.5 bg-stone-800 rounded-[1.75rem] shadow-2xl mb-5">
                   <div className="rounded-[1.25rem] overflow-hidden">
-                    <img src={feature.screenshot} alt={feature.alt} className="w-full h-auto block" />
+                    <img src={feature.screenshot} alt={feature.alt} loading="lazy" className="w-full h-auto block" />
                   </div>
                 </div>
                 <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-2.5 ${feature.color}`}>
@@ -285,6 +294,7 @@ export default function AboutPage() {
                     key={f.title}
                     src={f.screenshot}
                     alt={f.alt}
+                    loading="lazy"
                     className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ${
                       i === activeIndex ? 'opacity-100' : 'opacity-0'
                     }`}

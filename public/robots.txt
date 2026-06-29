@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.coveyspace.com/sitemap.xml

@@ -1,6 +1,7 @@
 import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import LandingPage from './components/LandingPage.jsx'
 import AboutPage from './components/AboutPage.jsx'
@@ -18,6 +19,7 @@ function ScrollToTop() {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <HelmetProvider>
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
@@ -29,5 +31,6 @@ createRoot(document.getElementById('root')).render(
         <Route path="*" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
+    </HelmetProvider>
   </StrictMode>,
 )

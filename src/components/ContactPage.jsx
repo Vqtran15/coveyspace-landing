@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { EnvelopeSimple, ChatCircleDots, HandsPraying, ArrowRight } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
@@ -25,6 +26,14 @@ const TOPICS = [
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white font-sans animate-page-enter">
+      <Helmet>
+        <title>Contact Covey Space — Get in Touch</title>
+        <meta name="description" content="Questions about Covey Space? Reach out — whether you're a pastor, group leader, or just curious. We'd love to hear from you." />
+        <link rel="canonical" href="https://www.coveyspace.com/contact" />
+        <meta property="og:url" content="https://www.coveyspace.com/contact" />
+        <meta property="og:title" content="Contact Covey Space — Get in Touch" />
+        <meta property="og:description" content="Questions about Covey Space? Reach out — whether you're a pastor, group leader, or just curious. We'd love to hear from you." />
+      </Helmet>
       <Nav />
 
       {/* Hero */}

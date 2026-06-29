@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 
@@ -13,6 +14,14 @@ function Section({ title, children }) {
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white font-sans animate-page-enter">
+      <Helmet>
+        <title>Privacy Policy — Covey Space</title>
+        <meta name="description" content="How Covey Space collects, stores, and protects your data. We never sell your information or share it with advertisers." />
+        <link rel="canonical" href="https://www.coveyspace.com/privacy" />
+        <meta property="og:url" content="https://www.coveyspace.com/privacy" />
+        <meta property="og:title" content="Privacy Policy — Covey Space" />
+        <meta property="og:description" content="How Covey Space collects, stores, and protects your data. We never sell your information or share it with advertisers." />
+      </Helmet>
       <Nav />
 
       <section className="px-6 py-16 bg-gradient-to-b from-jade-50 to-white">
@@ -29,8 +38,9 @@ export default function PrivacyPage() {
 
           <Section title="Who we are">
             <p>
-              Covey Space ("we", "us", "our") is a community coordination app that helps small groups
-              stay organized and connected. You can reach us at{' '}
+              Covey Space is a community coordination app that helps small groups stay organized and connected.
+              It is operated by Vuong Tran, an individual based in the United States ("we", "us", "our").
+              You can reach us at{' '}
               <a href="mailto:hello@coveyspace.com" className="text-jade hover:underline">hello@coveyspace.com</a>.
             </p>
           </Section>
@@ -41,8 +51,39 @@ export default function PrivacyPage() {
               <li>Your name and email address</li>
               <li>Your group membership and any invite codes you've used</li>
               <li>Content you create: messages, photos, prayer requests, birthdays, meal signups, and service schedule entries</li>
-              <li>Basic usage data through Google Tag Manager (e.g. when you sign up or log in) — no personally identifiable information is included in these events</li>
+              <li>Push notification subscription data — if you enable push notifications, your browser generates a unique push subscription endpoint that we store in order to deliver notifications to your device</li>
+              <li>Basic usage events through Google Tag Manager (e.g. when you sign up or log in) — no personally identifiable information is included in these events</li>
             </ul>
+            <p>
+              Some content you submit — such as prayer requests — is personal and may be sensitive in nature.
+              We treat this content with care and it is visible only to members of your group.
+            </p>
+          </Section>
+
+          <Section title="Cookies and tracking technologies">
+            <p>
+              We use Google Tag Manager (GTM) to collect basic usage analytics. GTM and the tags it
+              manages may set cookies or use similar browser storage technologies to track events such
+              as sign-ups and logins. These cookies do not contain personally identifiable information.
+            </p>
+            <p>
+              You can disable cookies in your browser settings at any time. Doing so may affect
+              some functionality of the app but will not prevent you from using the core service.
+            </p>
+          </Section>
+
+          <Section title="Push notifications">
+            <p>
+              If you choose to enable push notifications, your browser will create a push subscription
+              endpoint — a unique URL that allows us to send notifications to your device. We store
+              this endpoint in our database solely to deliver notifications related to your group
+              activity (such as new messages or upcoming events).
+            </p>
+            <p>
+              You can revoke push notification permission at any time through your browser or device
+              settings. When you do, we will no longer be able to send notifications to that device.
+              You can also manage notification preferences in the app's Settings.
+            </p>
           </Section>
 
           <Section title="How we use your data">
@@ -51,31 +92,99 @@ export default function PrivacyPage() {
               to members of your group, and to let everyone coordinate together. We do not sell your data,
               share it with advertisers, or use it for any purpose beyond operating the app.
             </p>
+            <p>
+              If you opt in to email communications, we may occasionally send you product updates or
+              announcements about Covey Space. You can unsubscribe from these emails at any time by
+              clicking the unsubscribe link in any email we send.
+            </p>
           </Section>
 
           <Section title="Who can see your data">
             <p>
-              Your messages, prayer requests, birthdays, and other content are visible only to members of your group.
-              Covey Space staff may access data when necessary to operate and maintain the service (for example,
-              investigating a bug or responding to a support request).
+              Your messages, prayer requests, birthdays, and other content are visible only to members
+              of your group. Covey Space staff may access data when necessary to operate and maintain
+              the service (for example, investigating a bug or responding to a support request).
+            </p>
+          </Section>
+
+          <Section title="Third-party services">
+            <p>
+              We use the following third-party services to operate Covey Space. Each has its own
+              privacy policy and data practices:
+            </p>
+            <ul className="list-disc list-inside space-y-1.5 pl-2">
+              <li>
+                <strong>Supabase</strong> — our database and file storage provider. Your account data,
+                group content, and uploaded photos are stored on Supabase's infrastructure in the United States.
+                Supabase encrypts data at rest and in transit.{' '}
+                <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" className="text-jade hover:underline">Supabase Privacy Policy</a>
+              </li>
+              <li>
+                <strong>Google Tag Manager</strong> — used to collect basic usage analytics events.
+                No personally identifiable information is sent to Google through GTM.{' '}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-jade hover:underline">Google Privacy Policy</a>
+              </li>
+            </ul>
+            <p>
+              We do not use any advertising networks, data brokers, or additional third-party analytics
+              services beyond those listed above.
+            </p>
+          </Section>
+
+          <Section title="Your rights">
+            <p>Depending on where you live, you may have the right to:</p>
+            <ul className="list-disc list-inside space-y-1.5 pl-2">
+              <li><strong>Access</strong> — request a copy of the personal data we hold about you</li>
+              <li><strong>Correct</strong> — ask us to correct inaccurate information in your account</li>
+              <li><strong>Delete</strong> — request that we delete your account and all associated data</li>
+              <li><strong>Export</strong> — request your data in a portable format</li>
+              <li><strong>Object</strong> — object to certain types of processing, such as analytics</li>
+            </ul>
+            <p>
+              To exercise any of these rights, email us at{' '}
+              <a href="mailto:hello@coveyspace.com" className="text-jade hover:underline">hello@coveyspace.com</a>.
+              We will respond within 30 days. We may ask you to verify your identity before fulfilling a request.
+            </p>
+            <p>
+              If you are located in the European Union, United Kingdom, or another jurisdiction with
+              applicable data protection laws, you may have additional rights under those laws and the
+              right to lodge a complaint with your local data protection authority.
             </p>
           </Section>
 
           <Section title="Data storage">
             <p>
-              Your data is stored securely through{' '}
-              <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="text-jade hover:underline">Supabase</a>,
-              a cloud infrastructure provider. Data is stored in the United States. Supabase encrypts data
-              at rest and in transit.
+              Your data is stored in the United States through Supabase. If you access Covey Space from
+              outside the United States, your information will be transferred to and processed in the
+              United States, where data protection laws may differ from those in your country. By using
+              Covey Space, you consent to this transfer.
             </p>
           </Section>
 
           <Section title="Data retention">
             <p>
               Your data is retained for as long as your account is active. If you'd like your account and
-              data deleted, email us at{' '}
+              all associated data deleted, email us at{' '}
               <a href="mailto:hello@coveyspace.com" className="text-jade hover:underline">hello@coveyspace.com</a>{' '}
               and we'll take care of it within 30 days.
+            </p>
+            <p>
+              If your group is removed by an administrator, the group's content (messages, signups,
+              prayer requests, photos) will also be permanently deleted.
+            </p>
+          </Section>
+
+          <Section title="Data security and breach notification">
+            <p>
+              We take reasonable technical and organizational measures to protect your data against
+              unauthorized access, loss, or disclosure — including encryption at rest and in transit
+              provided by Supabase, and access controls on our systems.
+            </p>
+            <p>
+              In the event of a data breach that affects your personal information, we will notify
+              affected users by email within 72 hours of becoming aware of the breach, to the extent
+              required by applicable law. The notification will describe what happened, what data was
+              affected, and what steps we are taking.
             </p>
           </Section>
 
@@ -85,13 +194,29 @@ export default function PrivacyPage() {
               information from children under 13. If you believe we have inadvertently collected such
               information, please contact us and we will delete it promptly.
             </p>
+            <p>
+              Users between the ages of 13 and 17 may use Covey Space with the knowledge and consent
+              of a parent or guardian.
+            </p>
           </Section>
 
           <Section title="Changes to this policy">
             <p>
-              We may update this policy from time to time. When we do, we'll update the date at the top
-              of this page. Continued use of the app after changes are posted constitutes your acceptance
-              of the updated policy.
+              We may update this policy from time to time. When we make material changes, we will
+              notify registered users by email before the changes take effect. The updated date at
+              the top of this page will always reflect when the policy was last revised.
+            </p>
+            <p>
+              Your continued use of Covey Space after the effective date of any changes constitutes
+              your acceptance of the updated policy.
+            </p>
+          </Section>
+
+          <Section title="Governing law">
+            <p>
+              This policy is governed by the laws of the United States. Any disputes arising from
+              this policy or our data practices will be resolved under applicable United States federal
+              and state law.
             </p>
           </Section>
 
@@ -99,6 +224,7 @@ export default function PrivacyPage() {
             <p>
               Questions about this policy or how we handle your data? Email us at{' '}
               <a href="mailto:hello@coveyspace.com" className="text-jade hover:underline">hello@coveyspace.com</a>.
+              We take privacy seriously and will respond to all inquiries promptly.
             </p>
           </Section>
 
