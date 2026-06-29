@@ -56,6 +56,26 @@ const FEATURES = [
       'The home screen shows your group\'s upcoming birthdays so no one gets forgotten. Birthdays within 30 days show a special animation, and a banner notification appears at the top for anyone turning a year older within 14 days. Let\'s make sure every member feels seen and celebrated.',
   },
   {
+    Icon: BookBookmark,
+    title: 'Discussion Guide',
+    color: 'bg-jade/10 text-jade',
+    screenshot: '/screenshots/guide.PNG',
+    alt: 'Discussion guide screen',
+    shortDesc: 'Link your church\'s weekly guide so every member can open it in one tap from the home screen.',
+    description:
+      'A discussion guide section lives right on the home screen. If your church provides a weekly guide or your group creates its own, your admin can link it so every member can open it in one tap.',
+  },
+  {
+    Icon: ShieldCheck,
+    title: 'Admin Controls',
+    color: 'bg-lagoon/10 text-lagoon-600',
+    screenshot: '/screenshots/admin.PNG',
+    alt: 'Admin settings screen',
+    shortDesc: 'Manage members, invite codes, and feature toggles — all from one dedicated admin panel.',
+    description:
+      'Your group\'s invite code lives in Admin Settings — it\'s how new members join securely. Remove users, promote members to admin, and toggle features on or off. All from one panel.',
+  },
+  {
     Icon: DeviceMobile,
     title: 'Works like a native app',
     color: 'bg-stone-100 text-stone-600',
@@ -64,23 +84,6 @@ const FEATURES = [
     shortDesc: 'Add Covey Space to your home screen and it behaves just like a downloaded app — no App Store required.',
     description:
       'No app store required. Covey Space works in any browser, and when you add it to your home screen it looks and feels just like a native app — complete with push notifications. It works great on desktop too. A dedicated iOS and Android app is on the roadmap.',
-  },
-]
-
-const ALSO_INSIDE = [
-  {
-    Icon: BookBookmark,
-    title: 'Discussion Guide',
-    color: 'bg-jade/10 text-jade',
-    description:
-      'A discussion guide section lives right on the home screen. If your church provides a weekly guide or your group creates its own, your admin can link it so every member can open it in one tap.',
-  },
-  {
-    Icon: ShieldCheck,
-    title: 'Admin Controls',
-    color: 'bg-lagoon/10 text-lagoon-600',
-    description:
-      'Your group\'s invite code lives in Settings — it\'s how new members join securely. Remove users, promote admins via the crown icon, and control meal and service automation — all from one panel.',
   },
 ]
 
@@ -287,26 +290,6 @@ export default function AboutPage() {
 
         </div>
       </div>
-
-      {/* Also inside */}
-      <section className="px-6 py-16 bg-stone-50 border-t border-stone-100 mt-6">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="font-league-gothic text-3xl sm:text-4xl text-stone-800 tracking-wide text-center mb-8">
-            Also inside.
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {ALSO_INSIDE.map(({ Icon, title, color, description }) => (
-              <div key={title} className="bg-white rounded-2xl border border-stone-100 p-6 shadow-sm">
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${color}`}>
-                  <Icon size={22} weight="fill" />
-                </div>
-                <h4 className="font-semibold text-stone-800 mb-2">{title}</h4>
-                <p className="text-stone-500 text-sm leading-relaxed">{description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="px-6 py-20 lg:py-28 bg-jade text-center">
