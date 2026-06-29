@@ -163,18 +163,15 @@ export default function AboutPage() {
         <div className="max-w-2xl mx-auto">
           <div className="flex flex-col gap-5 text-stone-600 text-[1.0625rem] leading-relaxed">
             <p>
-              Hello, my name is Vuong, founder of Covey Space. My wife and I are the meal and service coordinators for our Community Group at Bridgetown Church. Our community group shares a weekly meal, walks through a discussion guide together, and practices a monthly service rhythm.
+              Hello, my name is Vuong, founder of Covey Space. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough. Every Sunday after church, we'd scramble to set up a Google Sheets meal signup and post it in GroupMe—it worked, but it was just one more chore at the end of a long week.
             </p>
             <p>
-              Every Sunday after church, my wife and I would remind each other to create a meal signup on Google Sheets and figure out what we were having next. We'd post it in GroupMe, and people could sign up from there. It worked, but it was just one more thing we needed to think about after a long week.
+              Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place. I expanded it to include chat, birthday reminders, prayer requests, service schedules, and discussion guides, creating a true all-in-one app tailored for community groups.
             </p>
             <p>
-              After building other web apps of my own, I figured why not use those skills to help my community group. Once I started building out the meals section, I figured I might as well bring everything into one place, including chat, birthday reminders, prayer requests, service schedules, and a discussion guide. An all-in-one app for the community group.
+              Within a couple of weeks, Covey Space was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Covey Space helps your community group, small group, or house church stay organized, allowing you to spend less time coordinating and more time focusing on spiritual formation.
             </p>
-            <p>
-              Within a couple of weeks, Covey Space was live. No more thinking about the next meal or having to think about Google Sheets or using a separate platform for chatting with our community group friends. I hope Covey Space also helps your community group, small group, or house church stay organized, so you can spend less time coordinating and more time in spiritual formation.
-            </p>
-            <p className="font-semibold text-stone-800">Vuong, Founder</p>
+            <p className="font-semibold text-stone-800">Vuong Tran, Founder</p>
           </div>
         </div>
       </section>
