@@ -135,7 +135,7 @@ export default function LandingPage() {
         <div className="flex justify-center mt-8">
           <Link
             to="/about"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-stone-200 text-stone-700 font-semibold rounded-2xl text-sm hover:bg-stone-100 transition-colors shadow-sm"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-jade text-white font-semibold rounded-2xl text-sm hover:bg-jade-700 transition-colors shadow-sm"
           >
             Take a Tour <ArrowRight size={16} weight="bold" />
           </Link>
