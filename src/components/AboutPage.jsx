@@ -132,37 +132,37 @@ export default function AboutPage() {
       <Nav />
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-16 lg:pt-28 lg:pb-20 text-center">
+      <section className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-8 lg:pt-28 lg:pb-10 text-center">
         <div className="max-w-3xl mx-auto">
           <div className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
             Our Story
           </div>
           <h1 className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-none mb-6">
-            Built for groups<br />who do life together.
+            Built for groups who break bread around a table.
           </h1>
           <p className="text-stone-500 text-lg leading-relaxed">
-            Covey Space started as a solution to a Sunday night ritual — and grew into a platform for the whole community group.
+            Covey Space started as a solution to a Sunday night ritual and grew into a platform for the whole community group.
           </p>
         </div>
       </section>
 
       {/* Story */}
-      <section className="px-6 py-16 bg-white">
+      <section className="px-6 pt-8 pb-16 bg-white">
         <div className="max-w-2xl mx-auto">
           <div className="flex flex-col gap-5 text-stone-600 text-[1.0625rem] leading-relaxed">
             <p>
-              Hello, my name is Vuong, founder of Covey Space. My wife and I were the meal and service coordinators for our Community Group at Bridgetown Church. Our community group shares a meal every Tuesday, works through a discussion guide together, and has a service night once a month.
+              Hello, my name is Vuong, founder of Covey Space. My wife and I are the meal and service coordinators for our Community Group at Bridgetown Church. Our community group shares a weekly meal, walks through a discussion guide together, and practices a monthly service rhythm.
             </p>
             <p>
               Every Sunday after church, my wife and I would remind each other to create a meal signup on Google Sheets and figure out what we were having next. We'd post it in GroupMe, and people could sign up from there. It worked, but it was just one more thing we needed to think about after a long week.
             </p>
             <p>
-              Working in software, I wanted to automate this. As I started building, I thought, why stop at meals? I figured I might as well bring everything into one place — including chat, birthday reminders, prayer requests, service schedules, and a discussion guide. An all-in-one app for the community group.
+              After building other web apps of my own, I figured why not use those skills to help my community group. Once I started building out the meals section, I figured I might as well bring everything into one place, including chat, birthday reminders, prayer requests, service schedules, and a discussion guide. An all-in-one app for the community group.
             </p>
             <p>
-              Within two weeks, Covey Space was live. I hope it helps your community group, small group, or house church stay organized, so you can spend less time coordinating and more time in spiritual formation.
+              Within a couple of weeks, Covey Space was live. No more thinking about the next meal or having to think about Google Sheets or using a separate platform for chatting with our community group friends. I hope Covey Space also helps your community group, small group, or house church stay organized, so you can spend less time coordinating and more time in spiritual formation.
             </p>
-            <p className="font-semibold text-stone-800">— Vuong, Founder</p>
+            <p className="font-semibold text-stone-800">Vuong, Founder</p>
           </div>
         </div>
       </section>
@@ -172,7 +172,7 @@ export default function AboutPage() {
         <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-2">
           Everything inside Covey Space.
         </h2>
-        <p className="text-stone-400 text-base">One platform for every part of your community group.</p>
+        <p className="lg:hidden text-stone-400 text-base">One platform for every part of your community group.</p>
       </div>
 
       {/* ── Mobile: swipeable carousel ── */}
@@ -246,7 +246,7 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto flex gap-20 items-start">
 
           {/* Left: scrollable feature list */}
-          <div className="flex-1">
+          <div className="flex-1 pb-[50vh]">
             {FEATURES.map((feature, i) => (
               <div
                 key={feature.title}
@@ -266,8 +266,9 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Right: sticky phone */}
-          <div className="w-52 shrink-0 sticky top-20 self-start">
+          {/* Right: sticky heading + phone */}
+          <div className="w-52 shrink-0 sticky top-1/2 -translate-y-1/2 self-start flex flex-col gap-5">
+            <p className="text-stone-600 text-base font-semibold leading-snug">One platform for every part of your community group.</p>
             <div className="p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
               <div className="rounded-[1.25rem] overflow-hidden relative" style={{ paddingBottom: '216%' }}>
                 {FEATURES.map((f, i) => (

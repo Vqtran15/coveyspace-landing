@@ -7,7 +7,7 @@ const TOPICS = [
   {
     Icon: ChatCircleDots,
     title: 'General questions',
-    description: 'Curious about how Covey Space works or whether it\'s the right fit for your group? Just ask.',
+    description: 'Curious about how Covey Space works or whether it\'s the right fit for your group? I\'m happy to help answer questions!',
   },
   {
     Icon: HandsPraying,
@@ -36,7 +36,7 @@ export default function ContactPage() {
             We'd love to<br />hear from you.
           </h1>
           <p className="text-stone-500 text-lg leading-relaxed">
-            Whether you're a pastor, group leader, or just curious — send a note and I'll get back to you.
+            Whether you're a pastor, group leader, or just curious, send a note and I'll get back to you.
           </p>
         </div>
       </section>
@@ -65,7 +65,7 @@ export default function ContactPage() {
               Say hello.
             </h2>
             <p className="text-white/70 text-sm mb-7 max-w-sm mx-auto">
-              Drop me a line at the address below. I typically respond within 24–48 hours.
+              Drop me a line at the address below.
             </p>
             <a
               href="mailto:hello@coveyspace.com"
