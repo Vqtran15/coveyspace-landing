@@ -114,8 +114,11 @@ export default function AboutPage() {
       setActiveIndex(closest)
 
       const firstEl = featureRefs.current[0]
-      if (firstEl) {
-        setPhoneVisible(firstEl.getBoundingClientRect().top < mid + 50)
+      const lastEl = featureRefs.current[featureRefs.current.length - 1]
+      if (firstEl && lastEl) {
+        const firstRect = firstEl.getBoundingClientRect()
+        const lastRect = lastEl.getBoundingClientRect()
+        setPhoneVisible(firstRect.top < mid + 50 && lastRect.bottom > 0)
       }
     }
     window.addEventListener('scroll', onScroll, { passive: true })
