@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, ArrowRight, DeviceMobile, EnvelopeSimple } from '@phosphor-icons/react'
+import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, ArrowRight, EnvelopeSimple } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
+import Footer from './Footer.jsx'
 
 const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
 
@@ -29,6 +30,12 @@ const FEATURES = [
     title: 'Prayer Requests',
     description: "Prayer requests get their own dedicated space — never buried in a chat thread, always easy to find and revisit.",
     color: 'bg-sunrise/10 text-sunrise',
+  },
+  {
+    Icon: Cake,
+    title: 'Birthdays',
+    description: "Add birthdays for your group members and get reminded 30 days before — so no one slips through the cracks.",
+    color: 'bg-coral/10 text-coral',
   },
 ]
 
@@ -92,7 +99,7 @@ export default function LandingPage() {
           <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-12">
             Everything your group needs.
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {FEATURES.map(({ Icon, title, description, color }) => (
               <div key={title} className="rounded-2xl border border-stone-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${color}`}>
@@ -106,31 +113,71 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* How it works */}
+      <section className="px-6 py-20 bg-stone-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-3">
+            Up and running in minutes.
+          </h2>
+          <p className="text-stone-400 text-center text-sm mb-14">No app store. No IT setup. Just share a code.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {[
+              {
+                step: '1',
+                title: 'Create your group',
+                desc: "Sign up at coveyspace.com and name your group. You'll instantly get a 6-character invite code.",
+              },
+              {
+                step: '2',
+                title: 'Invite your members',
+                desc: 'Share the invite code with your group. Members sign up and enter the code to join.',
+              },
+              {
+                step: '3',
+                title: 'Start coordinating',
+                desc: 'Meals, schedules, chat, prayer, birthdays — everything is ready the moment your group joins.',
+              },
+            ].map(({ step, title, desc }) => (
+              <div key={step} className="flex flex-col items-center text-center md:items-start md:text-left">
+                <div className="w-10 h-10 rounded-full bg-jade text-white font-bold text-lg flex items-center justify-center mb-4 shrink-0">
+                  {step}
+                </div>
+                <h3 className="font-semibold text-stone-800 text-lg mb-2">{title}</h3>
+                <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Screenshots */}
-      <section className="py-16 bg-stone-50 overflow-hidden">
+      <section className="py-16 bg-white overflow-hidden">
         <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">See it in action.</h2>
         <div className="relative">
           <div className="flex gap-5 px-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide justify-start lg:justify-center">
             {[
-              { src: '/screenshots/home-screen.PNG', label: 'Home' },
-              { src: '/screenshots/meal-signup.PNG', label: 'Meal Signup' },
-              { src: '/screenshots/service-signup.PNG', label: 'Service Signup' },
-              { src: '/screenshots/chat-list.PNG', label: 'Chats' },
-              { src: '/screenshots/group-chat.PNG', label: 'Group Chat' },
-              { src: '/screenshots/prayer-request.PNG', label: 'Prayer Requests' },
-            ].map(({ src, label }) => (
+              { src: '/screenshots/home-screen.PNG',    label: 'Home',             caption: 'Your group at a glance' },
+              { src: '/screenshots/meal-signup.PNG',    label: 'Meal Signup',      caption: 'Claim your ingredient for the week' },
+              { src: '/screenshots/service-signup.PNG', label: 'Service Schedule', caption: 'Sign up to serve' },
+              { src: '/screenshots/chat-list.PNG',      label: 'Conversations',    caption: 'Group and direct messages' },
+              { src: '/screenshots/group-chat.PNG',     label: 'Group Chat',       caption: 'Stay connected between meetups' },
+              { src: '/screenshots/prayer-request.PNG', label: 'Prayer Requests',  caption: 'Never lose track of what matters' },
+            ].map(({ src, label, caption }) => (
               <div key={label} className="shrink-0 snap-center flex flex-col items-center gap-3">
                 <div className="w-44 lg:w-48 p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
                   <div className="rounded-[1.25rem] overflow-hidden">
                     <img src={src} alt={label} className="w-full h-auto block" />
                   </div>
                 </div>
-                <span className="text-xs font-medium text-stone-400">{label}</span>
+                <div className="text-center">
+                  <span className="text-sm font-semibold text-stone-700 block">{label}</span>
+                  <span className="text-xs text-stone-400">{caption}</span>
+                </div>
               </div>
             ))}
           </div>
           {/* Scroll hint — mobile only */}
-          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-stone-50 to-transparent pointer-events-none lg:hidden" />
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none lg:hidden" />
         </div>
         <div className="flex justify-center mt-8">
           <Link
@@ -158,75 +205,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Add to Home Screen */}
-      <section className="px-6 py-20 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <DeviceMobile size={28} weight="fill" className="text-jade" />
-            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide">
-              Use it like an app.
-            </h2>
-          </div>
-          <p className="text-stone-400 text-sm text-center mb-12">
-            Covey Space is a web app — no app store needed. Add it to your home screen for the full app experience.
-          </p>
-
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-8">
-            {/* Instruction cards */}
-            <div className="grid grid-cols-1 gap-6 w-full max-w-sm mx-auto lg:mx-0">
-              {/* iOS */}
-              <div className="bg-stone-50 rounded-2xl border border-stone-100 shadow-sm p-6">
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-4">iPhone / iPad</p>
-                <ol className="flex flex-col gap-3">
-                  {[
-                    'Open coveyspace.com in Safari',
-                    'Tap the Share button (box with arrow) at the bottom of the screen',
-                    'Scroll down and tap "Add to Home Screen"',
-                    'Tap "Add" in the top right',
-                  ].map((step, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="w-5 h-5 rounded-full bg-jade/10 text-jade text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                        {i + 1}
-                      </span>
-                      <p className="text-stone-600 text-sm leading-relaxed">{step}</p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              {/* Android */}
-              <div className="bg-stone-50 rounded-2xl border border-stone-100 shadow-sm p-6">
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-4">Android</p>
-                <ol className="flex flex-col gap-3">
-                  {[
-                    'Open coveyspace.com in Chrome',
-                    'Tap the three-dot menu in the top right',
-                    'Tap "Add to Home Screen" or "Install App"',
-                    'Tap "Add" to confirm',
-                  ].map((step, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="w-5 h-5 rounded-full bg-jade/10 text-jade text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                        {i + 1}
-                      </span>
-                      <p className="text-stone-600 text-sm leading-relaxed">{step}</p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-
-            {/* Phone screenshot */}
-            <div className="flex justify-center shrink-0">
-              <div className="w-52 lg:w-60 p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
-                <div className="rounded-[1.25rem] overflow-hidden">
-                  <img src="/screenshots/add-to-home-2.PNG" alt="Add to Home Screen" className="w-full h-auto block" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Contact */}
       <section className="px-6 py-20 bg-stone-50 text-center">
         <div className="max-w-lg mx-auto">
@@ -249,13 +227,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="px-6 py-8 bg-stone-900">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span className="font-league-gothic text-xl text-stone-400 tracking-wide">Covey Space</span>
-          <p className="text-stone-600 text-xs">© {new Date().getFullYear()} Covey Space. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
 
     </div>
   )

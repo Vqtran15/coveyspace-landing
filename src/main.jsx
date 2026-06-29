@@ -5,6 +5,8 @@ import './index.css'
 import LandingPage from './components/LandingPage.jsx'
 import AboutPage from './components/AboutPage.jsx'
 import ContactPage from './components/ContactPage.jsx'
+import InstallPage from './components/InstallPage.jsx'
+import PrivacyPage from './components/PrivacyPage.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -22,6 +24,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/install" element={<InstallPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="*" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>

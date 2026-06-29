@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { List, X } from '@phosphor-icons/react'
 
-const LOGIN_URL = 'https://app.coveyspace.com/login'
+const LOGIN_URL   = 'https://app.coveyspace.com/login'
+const SIGNUP_URL  = 'https://app.coveyspace.com/login?tab=signup'
 
 export default function Nav() {
   const { pathname } = useLocation()
@@ -43,12 +44,26 @@ export default function Nav() {
             >
               Contact
             </Link>
+            <Link
+              to="/install"
+              className={`px-3 py-2 text-sm font-semibold rounded-xl transition-colors ${
+                pathname === '/install' ? 'text-jade bg-jade/10' : 'text-stone-500 hover:text-stone-800 hover:bg-stone-50'
+              }`}
+            >
+              Install App
+            </Link>
             <button
               onClick={() => { window.location.href = LOGIN_URL }}
-              className="ml-2 px-4 py-2 bg-jade text-white text-sm font-semibold rounded-xl hover:bg-jade-700 transition-colors"
+              className="ml-2 px-4 py-2 border border-stone-200 text-stone-600 text-sm font-semibold rounded-xl hover:bg-stone-50 transition-colors"
             >
               Log in
             </button>
+            <a
+              href={SIGNUP_URL}
+              className="ml-1 px-4 py-2 bg-jade text-white text-sm font-semibold rounded-xl hover:bg-jade-700 transition-colors"
+            >
+              Get started
+            </a>
           </div>
 
           {/* Mobile hamburger */}
@@ -83,13 +98,27 @@ export default function Nav() {
             >
               Contact
             </Link>
-            <div className="border-t border-stone-100 mt-2 pt-3">
+            <Link
+              to="/install"
+              className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
+                pathname === '/install' ? 'text-jade bg-jade/10' : 'text-stone-700 hover:bg-stone-50'
+              }`}
+            >
+              Install App
+            </Link>
+            <div className="border-t border-stone-100 mt-2 pt-3 flex flex-col gap-2">
               <button
                 onClick={() => { window.location.href = LOGIN_URL }}
-                className="w-full py-3 bg-jade text-white font-semibold rounded-xl text-sm hover:bg-jade-700 transition-colors"
+                className="w-full py-3 border border-stone-200 text-stone-700 font-semibold rounded-xl text-sm hover:bg-stone-50 transition-colors"
               >
                 Log in
               </button>
+              <a
+                href={SIGNUP_URL}
+                className="w-full py-3 bg-jade text-white font-semibold rounded-xl text-sm hover:bg-jade-700 transition-colors text-center"
+              >
+                Get started free
+              </a>
             </div>
           </div>
         </div>

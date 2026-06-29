@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, BookBookmark, DeviceMobile, ShieldCheck, ArrowRight } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
+import Footer from './Footer.jsx'
 
 const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
 
@@ -311,13 +312,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="px-6 py-8 bg-stone-900">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span className="font-league-gothic text-xl text-stone-400 tracking-wide">Covey Space</span>
-          <p className="text-stone-600 text-xs">© {new Date().getFullYear()} Covey Space. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
