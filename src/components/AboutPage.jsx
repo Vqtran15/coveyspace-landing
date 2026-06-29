@@ -79,7 +79,7 @@ const FEATURES = [
     Icon: DeviceMobile,
     title: 'Works like a native app',
     color: 'bg-stone-100 text-stone-600',
-    screenshot: '/screenshots/add-to-home.PNG',
+    screenshot: '/screenshots/add-to-home-2.PNG',
     alt: 'Add to home screen prompt',
     shortDesc: 'Add Covey Space to your home screen and it behaves just like a downloaded app — no App Store required.',
     description:
@@ -90,6 +90,7 @@ const FEATURES = [
 export default function AboutPage() {
   // Desktop sticky scroll
   const [activeIndex, setActiveIndex] = useState(0)
+  const [phoneVisible, setPhoneVisible] = useState(false)
   const featureRefs = useRef([])
 
   // Mobile carousel
@@ -111,6 +112,11 @@ export default function AboutPage() {
         }
       })
       setActiveIndex(closest)
+
+      const firstEl = featureRefs.current[0]
+      if (firstEl) {
+        setPhoneVisible(firstEl.getBoundingClientRect().top < mid + 50)
+      }
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -269,9 +275,8 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Right: sticky heading + phone */}
-          <div className="w-52 shrink-0 sticky top-1/2 -translate-y-1/2 self-start flex flex-col gap-5">
-            <p className="text-stone-600 text-base font-semibold leading-snug">One platform for every part of your community group.</p>
+          {/* Right: sticky phone */}
+          <div className={`w-52 shrink-0 sticky top-1/2 -translate-y-1/2 self-start transition-opacity duration-700 ${phoneVisible ? 'opacity-100' : 'opacity-0'}`}>
             <div className="p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
               <div className="rounded-[1.25rem] overflow-hidden relative" style={{ paddingBottom: '216%' }}>
                 {FEATURES.map((f, i) => (

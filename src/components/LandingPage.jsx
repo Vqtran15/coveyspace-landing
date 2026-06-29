@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, ArrowRight, DeviceMobile, EnvelopeSimple } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 
@@ -131,6 +132,14 @@ export default function LandingPage() {
           {/* Scroll hint — mobile only */}
           <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-stone-50 to-transparent pointer-events-none lg:hidden" />
         </div>
+        <div className="flex justify-center mt-8">
+          <Link
+            to="/about"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-stone-200 text-stone-700 font-semibold rounded-2xl text-sm hover:bg-stone-100 transition-colors shadow-sm"
+          >
+            Take a Tour <ArrowRight size={16} weight="bold" />
+          </Link>
+        </div>
       </section>
 
       {/* Final CTA */}
@@ -210,7 +219,7 @@ export default function LandingPage() {
             <div className="flex justify-center shrink-0">
               <div className="w-52 lg:w-60 p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
                 <div className="rounded-[1.25rem] overflow-hidden">
-                  <img src="/screenshots/add-to-home.PNG" alt="Add to Home Screen" className="w-full h-auto block" />
+                  <img src="/screenshots/add-to-home-2.PNG" alt="Add to Home Screen" className="w-full h-auto block" />
                 </div>
               </div>
             </div>
