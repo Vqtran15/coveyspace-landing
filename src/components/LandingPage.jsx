@@ -44,7 +44,7 @@ export default function LandingPage() {
 
   return (
     <div
-      className={`min-h-screen bg-white font-sans animate-page-enter transition-[opacity,transform] duration-300 ease-in-out ${leaving ? 'opacity-0 translate-y-3' : 'opacity-100 translate-y-0'}`}
+      className={`min-h-screen bg-white font-sans animate-page-enter transition-[opacity,transform] duration-300 ease-in-out ${leaving ? 'opacity-0 translate-y-3' : 'opacity-100'}`}
     >
 
       <Nav />
