@@ -29,6 +29,10 @@ const FAQS = [
     a: 'Each account is tied to one group at a time. If you lead multiple groups — for example as a pastor or small group director — reach out and we can help find the right setup for you.',
   },
   {
+    q: 'Can we turn off features we don\'t use?',
+    a: 'Yes — admins can toggle any feature on or off from the Admin Settings panel. Don\'t need prayer requests or service schedules? Turn them off and keep your group\'s space simple.',
+  },
+  {
     q: 'What devices does it work on?',
     a: 'Covey Space works on any device with a modern browser — iPhone, Android, iPad, Mac, and PC. Install it to your home screen for the best mobile experience.',
   },
@@ -156,9 +160,12 @@ export default function LandingPage() {
       {/* Features */}
       <section className="px-6 py-20 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-12">
+          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-3">
             Everything your group needs.
           </h2>
+          <p className="text-stone-400 text-center text-sm mb-12">
+            Don't need every feature? Admins can turn any of these on or off anytime.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {FEATURES.map(({ Icon, title, description, color }) => (
               <div key={title} className="rounded-2xl border border-stone-100 p-6 shadow-sm hover:shadow-md transition-shadow">
