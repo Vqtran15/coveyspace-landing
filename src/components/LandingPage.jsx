@@ -1,11 +1,38 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, ArrowRight, EnvelopeSimple } from '@phosphor-icons/react'
+import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, ArrowRight, EnvelopeSimple, Plus, Minus } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 
 const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
+
+const FAQS = [
+  {
+    q: 'Is Covey Space free?',
+    a: 'Yes — Covey Space is completely free to use. There are no subscriptions, paywalls, or hidden fees.',
+  },
+  {
+    q: 'Do I need to download an app?',
+    a: 'No app store required. Covey Space runs in your browser and can be added to your home screen in seconds for a full native app experience on iPhone, iPad, and Android.',
+  },
+  {
+    q: 'Is my group\'s data private?',
+    a: 'Yes. Your messages, prayer requests, birthdays, and all other content are visible only to members of your group. We never sell your data or share it with advertisers.',
+  },
+  {
+    q: 'How many people can be in a group?',
+    a: 'There is no hard limit. Covey Space works well for small groups of 5–6 people and scales comfortably to larger groups of 30 or more.',
+  },
+  {
+    q: 'Can one person be in multiple groups?',
+    a: 'Each account is tied to one group at a time. If you lead multiple groups — for example as a pastor or small group director — reach out and we can help find the right setup for you.',
+  },
+  {
+    q: 'What devices does it work on?',
+    a: 'Covey Space works on any device with a modern browser — iPhone, Android, iPad, Mac, and PC. Install it to your home screen for the best mobile experience.',
+  },
+]
 
 const FEATURES = [
   {
@@ -42,6 +69,7 @@ const FEATURES = [
 
 export default function LandingPage() {
   const [leaving, setLeaving] = useState(false)
+  const [openFaq, setOpenFaq] = useState(null)
 
   function goToSignup() {
     if (leaving) return
@@ -62,6 +90,16 @@ export default function LandingPage() {
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   }
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }
+
   return (
     <div
       className={`min-h-screen bg-white font-sans animate-page-enter transition-[opacity,transform] duration-300 ease-in-out ${leaving ? 'opacity-0 translate-y-3' : 'opacity-100'}`}
@@ -74,6 +112,7 @@ export default function LandingPage() {
         <meta property="og:title" content="Covey Space — Community Group App for Meals, Prayer & Chat" />
         <meta property="og:description" content="Automated meal signups, service schedules, group chat, prayer requests, and birthday reminders — all in one app for your small group or house church." />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
 
       <Nav />
@@ -207,6 +246,34 @@ export default function LandingPage() {
           >
             Take a Tour <ArrowRight size={16} weight="bold" />
           </Link>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="px-6 py-20 bg-stone-50">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">
+            Common questions.
+          </h2>
+          <div className="flex flex-col divide-y divide-stone-200 border border-stone-200 rounded-2xl overflow-hidden">
+            {FAQS.map(({ q, a }, i) => (
+              <div key={i} className="bg-white">
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-stone-50 transition-colors"
+                >
+                  <span className="font-semibold text-stone-800 text-sm leading-snug">{q}</span>
+                  {openFaq === i
+                    ? <Minus size={16} weight="bold" className="text-jade shrink-0" />
+                    : <Plus size={16} weight="bold" className="text-stone-400 shrink-0" />
+                  }
+                </button>
+                {openFaq === i && (
+                  <p className="px-6 pb-5 text-sm text-stone-500 leading-relaxed">{a}</p>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
