@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { trackEvent } from '../lib/analytics.js'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, ArrowRight, EnvelopeSimple, Plus, Minus } from '@phosphor-icons/react'
@@ -75,11 +76,10 @@ export default function LandingPage() {
   const [leaving, setLeaving] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
 
-  function goToSignup() {
+  function goToSignup(location = 'hero') {
     if (leaving) return
     setLeaving(true)
-    window.dataLayer = window.dataLayer || []
-    window.dataLayer.push({ event: 'signup_intent' })
+    trackEvent('cta_click', { page: 'home', location })
     setTimeout(() => { window.location.href = SIGNUP_URL }, 350)
   }
 
@@ -291,7 +291,7 @@ export default function LandingPage() {
             Bring your whole group together.
           </h2>
           <button
-            onClick={goToSignup}
+            onClick={() => goToSignup('bottom')}
             disabled={leaving}
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-jade font-semibold rounded-2xl text-base hover:bg-jade-50 transition-colors shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
