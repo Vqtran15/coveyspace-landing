@@ -137,7 +137,7 @@ export default function LandingPage() {
             </p>
             <div className="flex justify-center lg:justify-start">
               <button
-                onClick={goToSignup}
+                onClick={() => goToSignup('hero')}
                 disabled={leaving}
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-jade text-white font-semibold rounded-2xl text-base hover:bg-jade-700 transition-colors shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
               >
