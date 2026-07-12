@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { trackEvent } from '../lib/analytics.js'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, ArrowRight, EnvelopeSimple, Plus, Minus } from '@phosphor-icons/react'
@@ -79,7 +78,6 @@ export default function LandingPage() {
   function goToSignup(location = 'hero') {
     if (leaving) return
     setLeaving(true)
-    trackEvent('cta_click', { page: 'home', location })
     setTimeout(() => { window.location.href = SIGNUP_URL }, 350)
   }
 

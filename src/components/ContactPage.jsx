@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async'
-import { trackEvent } from '../lib/analytics.js'
 import { EnvelopeSimple, ChatCircleDots, HandsPraying, ArrowRight } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
@@ -95,7 +94,6 @@ export default function ContactPage() {
           <p className="text-stone-400 text-sm mb-4">Ready to get started?</p>
           <a
             href={SIGNUP_URL}
-            onClick={() => trackEvent('cta_click', { page: 'contact', location: 'footer' })}
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-jade text-white font-semibold rounded-2xl text-base hover:bg-jade-700 transition-colors shadow-md"
           >
             Sign up for free <ArrowRight size={18} weight="bold" />

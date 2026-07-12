@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import { trackEvent } from '../lib/analytics.js'
 import { Helmet } from 'react-helmet-async'
 import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, BookBookmark, DeviceMobile, ShieldCheck, ArrowRight } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
@@ -316,7 +315,6 @@ export default function AboutPage() {
           </h2>
           <a
             href={SIGNUP_URL}
-            onClick={() => trackEvent('cta_click', { page: 'about', location: 'footer' })}
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-jade font-semibold rounded-2xl text-base hover:bg-jade-50 transition-colors shadow-lg"
           >
             Sign up for free <ArrowRight size={18} weight="bold" />
