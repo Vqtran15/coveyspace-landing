@@ -29,7 +29,7 @@ export default function PrivacyPage() {
           <h1 className="font-league-gothic text-5xl sm:text-6xl text-stone-900 tracking-wide mb-3">
             Privacy Policy
           </h1>
-          <p className="text-stone-400 text-sm">Last updated: June 2026</p>
+          <p className="text-stone-400 text-sm">Last Updated: July 13, 2026</p>
         </div>
       </section>
 
@@ -43,6 +43,10 @@ export default function PrivacyPage() {
               You can reach us at{' '}
               <a href="mailto:hello@coveyspace.com" className="text-jade hover:underline">hello@coveyspace.com</a>.
             </p>
+            <p>
+              Covey Space is a passion project funded entirely by voluntary user donations. We do not
+              monetize your data or lock features behind commercial paywalls.
+            </p>
           </Section>
 
           <Section title="What we collect">
@@ -52,7 +56,7 @@ export default function PrivacyPage() {
               <li>Your group membership and any invite codes you've used</li>
               <li>Content you create: messages, photos, prayer requests, birthdays, meal signups, and service schedule entries</li>
               <li>Push notification subscription data — if you enable push notifications, your browser generates a unique push subscription endpoint that we store in order to deliver notifications to your device</li>
-              <li>Basic usage events through Google Tag Manager (e.g. when you sign up or log in) — no personally identifiable information is included in these events</li>
+              <li>Basic usage events through Google Analytics and Google Tag Manager (e.g. when you sign up or log in) — no personally identifiable information is included in these events</li>
             </ul>
             <p>
               Some content you submit — such as prayer requests — is personal and may be sensitive in nature.
@@ -62,8 +66,8 @@ export default function PrivacyPage() {
 
           <Section title="Cookies and tracking technologies">
             <p>
-              We use Google Tag Manager (GTM) to collect basic usage analytics. GTM and the tags it
-              manages may set cookies or use similar browser storage technologies to track events such
+              We use Google Tag Manager (GTM) and Google Analytics 4 (GA4) to collect basic usage analytics.
+              GTM and GA4 may set cookies or use similar browser storage technologies to track events such
               as sign-ups and logins. These cookies do not contain personally identifiable information.
             </p>
             <p>
@@ -93,6 +97,11 @@ export default function PrivacyPage() {
               share it with advertisers, or use it for any purpose beyond operating the app.
             </p>
             <p>
+              We send transactional emails — such as password reset links, new account notifications, and
+              group activity alerts — through Resend, our email delivery provider. Your email address is
+              transmitted to Resend only for the purpose of delivering these messages.
+            </p>
+            <p>
               If you opt in to email communications, we may occasionally send you product updates or
               announcements about Covey Space. You can unsubscribe from these emails at any time by
               clicking the unsubscribe link in any email we send.
@@ -114,14 +123,22 @@ export default function PrivacyPage() {
             </p>
             <ul className="list-disc list-inside space-y-1.5 pl-2">
               <li>
-                <strong>Supabase</strong> — our database and file storage provider. Your account data,
-                group content, and uploaded photos are stored on Supabase's infrastructure in the United States.
-                Supabase encrypts data at rest and in transit.{' '}
+                <strong>Supabase</strong> — our database, file storage, and authentication provider.
+                Your account data, group content, and uploaded photos are stored on Supabase's
+                infrastructure in the United States. Supabase encrypts data at rest and in transit
+                and also handles transactional auth emails such as password resets.{' '}
                 <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" className="text-jade hover:underline">Supabase Privacy Policy</a>
               </li>
               <li>
-                <strong>Google Tag Manager</strong> — used to collect basic usage analytics events.
-                No personally identifiable information is sent to Google through GTM.{' '}
+                <strong>Resend</strong> — our transactional email delivery provider. We use Resend to
+                send new account notifications, group alerts, and other service emails. Your email
+                address is transmitted to Resend solely for email delivery purposes.{' '}
+                <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-jade hover:underline">Resend Privacy Policy</a>
+              </li>
+              <li>
+                <strong>Google Tag Manager &amp; Google Analytics 4</strong> — used to collect basic
+                usage analytics events. No personally identifiable information is sent to Google
+                through these services.{' '}
                 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-jade hover:underline">Google Privacy Policy</a>
               </li>
             </ul>
@@ -131,7 +148,7 @@ export default function PrivacyPage() {
             </p>
           </Section>
 
-          <Section title="Your rights">
+          <Section title="Your rights (US state and international regulations)">
             <p>Depending on where you live, you may have the right to:</p>
             <ul className="list-disc list-inside space-y-1.5 pl-2">
               <li><strong>Access</strong> — request a copy of the personal data we hold about you</li>
@@ -140,6 +157,12 @@ export default function PrivacyPage() {
               <li><strong>Export</strong> — request your data in a portable format</li>
               <li><strong>Object</strong> — object to certain types of processing, such as analytics</li>
             </ul>
+            <p>
+              Depending on your state of residence — including California, Virginia, Colorado, and
+              others with enacted privacy legislation — you may have specific rights regarding your
+              personal information, including the right to opt out of data collection and request
+              deletion. We honor these rights for all US users regardless of which state you live in.
+            </p>
             <p>
               To exercise any of these rights, email us at{' '}
               <a href="mailto:hello@coveyspace.com" className="text-jade hover:underline">hello@coveyspace.com</a>.
@@ -174,7 +197,7 @@ export default function PrivacyPage() {
             </p>
           </Section>
 
-          <Section title="Data security and breach notification">
+          <Section title="Data security and limitation of liability">
             <p>
               We take reasonable technical and organizational measures to protect your data against
               unauthorized access, loss, or disclosure — including encryption at rest and in transit
@@ -185,6 +208,12 @@ export default function PrivacyPage() {
               affected users by email within 72 hours of becoming aware of the breach, to the extent
               required by applicable law. The notification will describe what happened, what data was
               affected, and what steps we are taking.
+            </p>
+            <p>
+              Covey Space is provided on an "as-is" and "as-available" basis. To the maximum extent
+              permitted by law, Vuong Tran shall not be liable for any indirect, incidental, or
+              consequential damages resulting from your use of the service or any unauthorized access
+              to your data.
             </p>
           </Section>
 
