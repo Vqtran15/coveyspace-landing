@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, ArrowRight, EnvelopeSimple, Plus, Minus } from '@phosphor-icons/react'
+import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, BookBookmark, ArrowRight, EnvelopeSimple, Plus, Minus } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 
@@ -54,7 +54,7 @@ const FEATURES = [
   {
     Icon: ChatCircleDots,
     title: 'Group Chat',
-    description: 'One place for all your group conversations — no more juggling group texts, GroupMe, or WhatsApp.',
+    description: 'A main group chat for everyone, plus direct messages and smaller group threads. No more juggling group texts, GroupMe, or WhatsApp.',
     color: 'bg-sage/20 text-sage-700',
   },
   {
@@ -68,6 +68,12 @@ const FEATURES = [
     title: 'Birthdays',
     description: "Add birthdays for your group members and get reminded 30 days before — so no one slips through the cracks.",
     color: 'bg-coral/10 text-coral',
+  },
+  {
+    Icon: BookBookmark,
+    title: 'Discussion Guide',
+    description: "Link your church's weekly guide so every member can open it in one tap from the home screen. Perfect for Bible study groups.",
+    color: 'bg-jade/10 text-jade',
   },
 ]
 
@@ -88,7 +94,7 @@ export default function LandingPage() {
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'Web, iOS, Android',
     url: 'https://www.coveyspace.com',
-    description: 'Community group app for meal signups, service schedules, group chat, prayer requests, and birthday reminders.',
+    description: 'Community group app for meal signups, service schedules, group chat, prayer requests, birthday reminders, and discussion guides.',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   }
 
@@ -108,11 +114,11 @@ export default function LandingPage() {
     >
       <Helmet>
         <title>Covey Space — Community Group App for Meals, Prayer & Chat</title>
-        <meta name="description" content="The all-in-one app for church small groups, home churches, house churches, Bible study groups, and Christian community groups. Meal signups, group chat, prayer requests, and more." />
+        <meta name="description" content="The all-in-one app for church small groups, home churches, house churches, Bible study groups, and Christian community groups. Meal signups, group chat, prayer requests, discussion guides, and more." />
         <link rel="canonical" href="https://www.coveyspace.com" />
         <meta property="og:url" content="https://www.coveyspace.com" />
         <meta property="og:title" content="Covey Space — Community Group App for Meals, Prayer & Chat" />
-        <meta property="og:description" content="Automated meal signups, service schedules, group chat, prayer requests, and birthday reminders — all in one app for your small group or house church." />
+        <meta property="og:description" content="Automated meal signups, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
@@ -131,7 +137,7 @@ export default function LandingPage() {
               One place for your<br />whole community.
             </h1>
             <p className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
-              Covey Space brings automated meal signups, service schedules, group chat, and prayer requests into one place — built for church small groups, home churches, Bible study groups, and Christian community groups who share life together.
+              Covey Space brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, home churches, Bible study groups, and Christian community groups who share life together.
             </p>
             <div className="flex justify-center lg:justify-start">
               <button
@@ -227,6 +233,7 @@ export default function LandingPage() {
               { src: '/screenshots/chat-list.PNG',      label: 'Conversations',    caption: 'Group and direct messages' },
               { src: '/screenshots/group-chat.PNG',     label: 'Group Chat',       caption: 'Stay connected between meetups' },
               { src: '/screenshots/prayer-request.PNG', label: 'Prayer Requests',  caption: 'Never lose track of what matters' },
+              { src: '/screenshots/guide.PNG',          label: 'Discussion Guide', caption: 'Open your weekly guide in one tap' },
             ].map(({ src, label, caption }) => (
               <div key={label} className="shrink-0 snap-center flex flex-col items-center gap-3">
                 <div className="w-44 lg:w-48 p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
