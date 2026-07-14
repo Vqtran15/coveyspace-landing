@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, BookBookmark, ArrowRight, EnvelopeSimple, Plus, Minus } from '@phosphor-icons/react'
+import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus, Minus } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 
@@ -73,7 +73,13 @@ const FEATURES = [
     Icon: BookBookmark,
     title: 'Discussion Guide',
     description: "Link your church's weekly guide so every member can open it in one tap from the home screen. Perfect for Bible study groups.",
-    color: 'bg-jade/10 text-jade',
+    color: 'bg-sunrise/10 text-sunrise',
+  },
+  {
+    Icon: HandCoins,
+    title: 'Monthly Giving',
+    description: "Link your church's giving or tithing page so members can donate in one tap — right from the home screen.",
+    color: 'bg-lagoon/10 text-lagoon-700',
   },
 ]
 
@@ -81,7 +87,7 @@ export default function LandingPage() {
   const [leaving, setLeaving] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
 
-  function goToSignup(location = 'hero') {
+  function goToSignup() {
     if (leaving) return
     setLeaving(true)
     setTimeout(() => { window.location.href = SIGNUP_URL }, 350)
@@ -119,6 +125,13 @@ export default function LandingPage() {
         <meta property="og:url" content="https://www.coveyspace.com" />
         <meta property="og:title" content="Covey Space — Community Group App for Meals, Prayer & Chat" />
         <meta property="og:description" content="Automated meal signups, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
+        <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Covey Space — Community Group App for Meals, Prayer & Chat" />
+        <meta name="twitter:description" content="Automated meal signups, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
+        <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
@@ -141,7 +154,7 @@ export default function LandingPage() {
             </p>
             <div className="flex justify-center lg:justify-start">
               <button
-                onClick={() => goToSignup('hero')}
+                onClick={() => goToSignup()}
                 disabled={leaving}
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-jade text-white font-semibold rounded-2xl text-base hover:bg-jade-700 transition-colors shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
               >
@@ -296,7 +309,7 @@ export default function LandingPage() {
             Bring your whole group together.
           </h2>
           <button
-            onClick={() => goToSignup('bottom')}
+            onClick={() => goToSignup()}
             disabled={leaving}
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-jade font-semibold rounded-2xl text-base hover:bg-jade-50 transition-colors shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >

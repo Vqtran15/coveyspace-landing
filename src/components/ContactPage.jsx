@@ -33,6 +33,13 @@ export default function ContactPage() {
         <meta property="og:url" content="https://www.coveyspace.com/contact" />
         <meta property="og:title" content="Contact Covey Space — Get in Touch" />
         <meta property="og:description" content="Questions about Covey Space? Reach out — whether you're a pastor, group leader, or just curious. We'd love to hear from you." />
+        <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Covey Space — Get in Touch" />
+        <meta name="twitter:description" content="Questions about Covey Space? Reach out — whether you're a pastor, group leader, or just curious. We'd love to hear from you." />
+        <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />
 

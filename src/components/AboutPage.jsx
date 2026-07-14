@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, BookBookmark, DeviceMobile, ShieldCheck, ArrowRight } from '@phosphor-icons/react'
+import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, BookBookmark, HandCoins, DeviceMobile, ShieldCheck, ArrowRight } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 
@@ -60,12 +60,22 @@ const FEATURES = [
   {
     Icon: BookBookmark,
     title: 'Discussion Guide',
-    color: 'bg-jade/10 text-jade',
+    color: 'bg-sunrise/10 text-sunrise',
     screenshot: '/screenshots/guide.PNG',
     alt: 'Discussion guide screen',
     shortDesc: 'Link your church\'s weekly guide so every member can open it in one tap from the home screen.',
     description:
       'A discussion guide section lives right on the home screen. If your church provides a weekly guide or your group creates its own, your admin can link it so every member can open it in one tap.',
+  },
+  {
+    Icon: HandCoins,
+    title: 'Monthly Giving',
+    color: 'bg-lagoon/10 text-lagoon-700',
+    screenshot: '/screenshots/home-screen.PNG',
+    alt: 'Home screen with giving card',
+    shortDesc: "Link your church's giving page so members can donate in one tap from the home screen.",
+    description:
+      "Add a giving link so every member can support your church in one tap. Admins can paste any giving or tithing page URL and it shows up as a card on the home screen — no hunting for links in a group chat.",
   },
   {
     Icon: ShieldCheck,
@@ -150,6 +160,13 @@ export default function AboutPage() {
         <meta property="og:url" content="https://www.coveyspace.com/about" />
         <meta property="og:title" content="About Covey Space — Built for Small Groups & House Churches" />
         <meta property="og:description" content="Learn how Covey Space was built to eliminate weekly coordination chaos for community groups. One app for meals, chat, prayer, and more." />
+        <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Covey Space — Built for Small Groups & House Churches" />
+        <meta name="twitter:description" content="Learn how Covey Space was built to eliminate weekly coordination chaos for community groups. One app for meals, chat, prayer, and more." />
+        <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />
 

@@ -21,6 +21,13 @@ export default function PrivacyPage() {
         <meta property="og:url" content="https://www.coveyspace.com/privacy" />
         <meta property="og:title" content="Privacy Policy — Covey Space" />
         <meta property="og:description" content="How Covey Space collects, stores, and protects your data. We never sell your information or share it with advertisers." />
+        <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Privacy Policy — Covey Space" />
+        <meta name="twitter:description" content="How Covey Space collects, stores, and protects your data. We never sell your information or share it with advertisers." />
+        <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />
 

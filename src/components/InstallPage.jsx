@@ -36,6 +36,13 @@ export default function InstallPage() {
         <meta property="og:url" content="https://www.coveyspace.com/install" />
         <meta property="og:title" content="Install Covey Space — Add to Your Home Screen" />
         <meta property="og:description" content="Add Covey Space to your home screen for a full-screen native app experience on iPhone, iPad, or Android. No app store needed — takes 30 seconds." />
+        <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Install Covey Space — Add to Your Home Screen" />
+        <meta name="twitter:description" content="Add Covey Space to your home screen for a full-screen native app experience on iPhone, iPad, or Android. No app store needed — takes 30 seconds." />
+        <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />
 
@@ -95,7 +102,7 @@ export default function InstallPage() {
                 <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-5">iPhone / iPad</p>
                 <ol className="flex flex-col gap-4">
                   {[
-                    'Open coveyspace.com in Safari',
+                    'Open app.coveyspace.com in Safari',
                     'Tap the Share button (box with arrow) at the bottom',
                     'Scroll down and tap "Add to Home Screen"',
                     'Tap "Add" in the top right',
@@ -115,7 +122,7 @@ export default function InstallPage() {
                 <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-5">Android</p>
                 <ol className="flex flex-col gap-4">
                   {[
-                    'Open coveyspace.com in Chrome',
+                    'Open app.coveyspace.com in Chrome',
                     'Tap the three-dot menu in the top right',
                     'Tap "Add to Home Screen" or "Install App"',
                     'Tap "Add" to confirm',
