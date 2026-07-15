@@ -9,10 +9,6 @@ const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
 
 const FAQS = [
   {
-    q: 'Is Covey Space free?',
-    a: 'Yes — Covey Space is completely free to use. There are no subscriptions, paywalls, or hidden fees.',
-  },
-  {
     q: 'Do I need to download an app?',
     a: 'No app store required. Covey Space runs in your browser and can be added to your home screen in seconds for a full native app experience on iPhone, iPad, and Android.',
   },
@@ -23,10 +19,6 @@ const FAQS = [
   {
     q: 'How many people can be in a group?',
     a: 'There is no hard limit. Covey Space works well for small groups of 5–6 people and scales comfortably to larger groups of 30 or more.',
-  },
-  {
-    q: 'Can one person be in multiple groups?',
-    a: 'Each account is tied to one group at a time. If you lead multiple groups — for example as a pastor or small group director — reach out and we can help find the right setup for you.',
   },
   {
     q: 'Can we turn off features we don\'t use?',
