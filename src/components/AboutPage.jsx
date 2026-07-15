@@ -71,8 +71,8 @@ const FEATURES = [
     Icon: HandCoins,
     title: 'Monthly Giving',
     color: 'bg-lagoon/10 text-lagoon-700',
-    screenshot: '/screenshots/home-screen.PNG',
-    alt: 'Home screen with giving card',
+    screenshot: '/screenshots/monthly-giving.PNG',
+    alt: 'Monthly giving card on home screen',
     shortDesc: "Link your church's giving page so members can donate in one tap from the home screen.",
     description:
       "Add a giving link so every member can support your church in one tap. Admins can paste any giving or tithing page URL and it shows up as a card on the home screen — no hunting for links in a group chat.",

@@ -287,26 +287,26 @@ export default function LandingPage() {
       <section className="px-6 py-20 bg-stone-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-3">
-            Built for small groups.
+            What makes Covey Space different.
           </h2>
           <p className="text-stone-400 text-center text-sm mb-12">
-            Not a church management platform. Not a broadcast tool. Not just group chat.
+            Designed specifically for small groups who share life together week after week.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="rounded-2xl border border-stone-200 bg-white p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">vs Church Center</p>
-              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">Not congregation management</h3>
-              <p className="text-stone-500 text-sm leading-relaxed">Church Center is for entire congregations — child check-ins, giving processing, Planning Center subscriptions, church staff. Covey Space is for your specific group of 8–20. Any group leader can set it up in minutes, for free.</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">Small group focus</p>
+              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">Built for your group, not your whole church</h3>
+              <p className="text-stone-500 text-sm leading-relaxed">Covey Space is sized and priced for the group itself. Any group leader can get started in minutes — for free — without church admin approval or a software subscription.</p>
             </div>
             <div className="rounded-2xl border border-stone-200 bg-white p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">vs Flocknote</p>
-              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">Not a broadcast tool</h3>
-              <p className="text-stone-500 text-sm leading-relaxed">Flocknote sends email and text blasts. Covey Space is two-way — members post prayer requests, claim meal spots, sign up to serve, and message each other. A shared home for your group, not a megaphone.</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">Two-way community</p>
+              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">Members connect with each other, not just receive messages</h3>
+              <p className="text-stone-500 text-sm leading-relaxed">Every member can post prayer requests, claim meal spots, sign up to serve, and message each other directly. A shared home for your group — not a one-way announcement tool.</p>
             </div>
             <div className="rounded-2xl border border-stone-200 bg-white p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">vs GroupMe / WhatsApp</p>
-              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">Not just group chat</h3>
-              <p className="text-stone-500 text-sm leading-relaxed">Group texts are great for quick messages, but they're just chat. Covey Space adds structured meal signups, service schedules, prayer tracking, birthday reminders, and a giving link — organized the way a small group actually runs week to week.</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">Built for coordination</p>
+              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">More than a group chat — organized for how small groups run</h3>
+              <p className="text-stone-500 text-sm leading-relaxed">Covey Space adds structured meal signups, service schedules, prayer tracking, birthday reminders, and a giving link — all organized the way a small group actually functions week to week.</p>
             </div>
           </div>
         </div>
