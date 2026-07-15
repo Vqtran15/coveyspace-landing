@@ -147,7 +147,7 @@ export default function LandingPage() {
               Gathering community made simple
             </div>
             <h1 className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-none mb-6">
-              One place for your<br />whole community.
+              One place for your<br />whole group.
             </h1>
             <p className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
               Covey Space brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, home churches, Bible study groups, and Christian community groups who share life together.
