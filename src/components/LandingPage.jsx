@@ -60,7 +60,7 @@ const FEATURES = [
   {
     Icon: HandsPraying,
     title: 'Prayer Requests',
-    description: "Prayer requests get their own dedicated space — never buried in a chat thread. Perfect for Bible study groups and home churches who want to pray for one another consistently.",
+    description: "Prayer requests get their own dedicated space — never buried in a chat thread. Perfect for Bible study groups and house churches who want to pray for one another consistently.",
     color: 'bg-sunrise/10 text-sunrise',
   },
   {
@@ -120,7 +120,7 @@ export default function LandingPage() {
     >
       <Helmet>
         <title>Covey Space — Community Group App for Meals, Prayer & Chat</title>
-        <meta name="description" content="The all-in-one app for church small groups, home churches, house churches, Bible study groups, and Christian community groups. Meal signups, group chat, prayer requests, discussion guides, and more." />
+        <meta name="description" content="The all-in-one app for church small groups, house churches, house churches, Bible study groups, and Christian community groups. Meal signups, group chat, prayer requests, discussion guides, and more." />
         <link rel="canonical" href="https://www.coveyspace.com" />
         <meta property="og:url" content="https://www.coveyspace.com" />
         <meta property="og:title" content="Covey Space — Community Group App for Meals, Prayer & Chat" />
@@ -150,7 +150,7 @@ export default function LandingPage() {
               One place for your<br />whole group.
             </h1>
             <p className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
-              Covey Space brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, home churches, Bible study groups, and Christian community groups who share life together.
+              Covey Space brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, house churches, Bible study groups, and Christian community groups who share life together.
             </p>
             <div className="flex flex-col items-center lg:items-start gap-2">
               <button
@@ -204,7 +204,7 @@ export default function LandingPage() {
           <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-3">
             Up and running in minutes.
           </h2>
-          <p className="text-stone-400 text-center text-sm mb-14">No app store. No IT setup. Perfect for any church group, home church, or Bible study.</p>
+          <p className="text-stone-400 text-center text-sm mb-14">No app store. No IT setup. Perfect for any church group, house church, or Bible study.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {

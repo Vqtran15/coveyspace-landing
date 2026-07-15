@@ -155,7 +155,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white font-sans animate-page-enter">
       <Helmet>
         <title>About Covey Space — Built for Small Groups & House Churches</title>
-        <meta name="description" content="Learn how Covey Space was built for church small groups, home churches, house churches, and Christian community groups — one app for meals, chat, prayer, and more." />
+        <meta name="description" content="Learn how Covey Space was built for church small groups, house churches, house churches, and Christian community groups — one app for meals, chat, prayer, and more." />
         <link rel="canonical" href="https://www.coveyspace.com/about" />
         <meta property="og:url" content="https://www.coveyspace.com/about" />
         <meta property="og:title" content="About Covey Space — Built for Small Groups & House Churches" />
@@ -180,7 +180,7 @@ export default function AboutPage() {
             Built for groups who break bread around a table.
           </h1>
           <p className="text-stone-500 text-lg leading-relaxed">
-            Covey Space started as a solution to a Sunday night ritual and grew into a platform for church small groups, home churches, house churches, and Christian community groups everywhere.
+            Covey Space started as a solution to a Sunday night ritual and grew into a platform for church small groups, house churches, house churches, and Christian community groups everywhere.
           </p>
         </div>
       </section>
@@ -196,7 +196,7 @@ export default function AboutPage() {
               Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place. I expanded it to include chat, birthday reminders, prayer requests, service schedules, and discussion guides, creating a true all-in-one app tailored for community groups.
             </p>
             <p>
-              Within a couple of weeks, Covey Space was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Covey Space helps your community group, church small group, home church, house church, or Bible study group stay organized — so you can spend less time coordinating and more time focusing on spiritual formation.
+              Within a couple of weeks, Covey Space was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Covey Space helps your community group, church small group, house church, house church, or Bible study group stay organized — so you can spend less time coordinating and more time focusing on spiritual formation.
             </p>
             <p className="font-semibold text-stone-800">Vuong Tran, Founder</p>
           </div>
