@@ -36,6 +36,14 @@ const FAQS = [
     q: 'What devices does it work on?',
     a: 'Covey Space works on any device with a modern browser — iPhone, Android, iPad, Mac, and PC. Install it to your home screen for the best mobile experience.',
   },
+  {
+    q: 'How is Covey Space different from Church Center or Planning Center?',
+    a: 'Church Center is a church management platform built for entire congregations — it requires a Planning Center subscription (starting at $14/month) and is designed for church staff managing child check-ins, volunteer scheduling, and giving for hundreds of people. Covey Space is built for the small group itself: 8–20 people who meet regularly, share meals, and pray together. No subscription, no church admin approval, no setup overhead — any group leader can get started in minutes.',
+  },
+  {
+    q: 'How is this different from Flocknote or a group text?',
+    a: 'Flocknote is an outbound communication tool — great for email and text blasts to people who may not open an app. A group text works for quick messages. Covey Space is a two-way community space where members post prayer requests, claim meal spots, sign up to serve, track birthdays, and message one another. It replaces the group text, the Google Sheet signup, and the prayer request chain — organized specifically for how a small group functions week to week.',
+  },
 ]
 
 const FEATURES = [
@@ -152,7 +160,7 @@ export default function LandingPage() {
             <p className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
               Covey Space brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, home churches, Bible study groups, and Christian community groups who share life together.
             </p>
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex flex-col items-center lg:items-start gap-2">
               <button
                 onClick={() => goToSignup()}
                 disabled={leaving}
@@ -160,6 +168,7 @@ export default function LandingPage() {
               >
                 Sign up for free <ArrowRight size={18} weight="bold" />
               </button>
+              <p className="text-xs text-stone-400">Free forever — no credit card, no subscription</p>
             </div>
           </div>
 
@@ -274,8 +283,37 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Differentiation */}
       <section className="px-6 py-20 bg-stone-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-3">
+            Built for small groups.
+          </h2>
+          <p className="text-stone-400 text-center text-sm mb-12">
+            Not a church management platform. Not a broadcast tool. Not just group chat.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="rounded-2xl border border-stone-200 bg-white p-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">vs Church Center</p>
+              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">Not congregation management</h3>
+              <p className="text-stone-500 text-sm leading-relaxed">Church Center is for entire congregations — child check-ins, giving processing, Planning Center subscriptions, church staff. Covey Space is for your specific group of 8–20. Any group leader can set it up in minutes, for free.</p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 bg-white p-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">vs Flocknote</p>
+              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">Not a broadcast tool</h3>
+              <p className="text-stone-500 text-sm leading-relaxed">Flocknote sends email and text blasts. Covey Space is two-way — members post prayer requests, claim meal spots, sign up to serve, and message each other. A shared home for your group, not a megaphone.</p>
+            </div>
+            <div className="rounded-2xl border border-stone-200 bg-white p-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">vs GroupMe / WhatsApp</p>
+              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">Not just group chat</h3>
+              <p className="text-stone-500 text-sm leading-relaxed">Group texts are great for quick messages, but they're just chat. Covey Space adds structured meal signups, service schedules, prayer tracking, birthday reminders, and a giving link — organized the way a small group actually runs week to week.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="px-6 py-20 bg-white">
         <div className="max-w-2xl mx-auto">
           <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">
             Common questions.
