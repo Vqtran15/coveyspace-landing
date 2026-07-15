@@ -155,7 +155,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white font-sans animate-page-enter">
       <Helmet>
         <title>About Covey Space — Built for Small Groups & House Churches</title>
-        <meta name="description" content="Learn how Covey Space was built for church small groups, house churches, house churches, and Christian community groups — one app for meals, chat, prayer, and more." />
+        <meta name="description" content="Learn how Covey Space was built for church small groups, house churches, and Christian community groups — one app for meals, chat, prayer, and more." />
         <link rel="canonical" href="https://www.coveyspace.com/about" />
         <meta property="og:url" content="https://www.coveyspace.com/about" />
         <meta property="og:title" content="About Covey Space — Built for Small Groups & House Churches" />
@@ -180,7 +180,7 @@ export default function AboutPage() {
             Built for groups who break bread around a table.
           </h1>
           <p className="text-stone-500 text-lg leading-relaxed">
-            Covey Space started as a solution to a Sunday night ritual and grew into a platform for church small groups, house churches, house churches, and Christian community groups everywhere.
+            Covey Space started as a solution to a Sunday night ritual and grew into a platform for church small groups, house churches, and Christian community groups everywhere.
           </p>
         </div>
       </section>
