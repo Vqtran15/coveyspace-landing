@@ -19,3 +19,17 @@
 .animate-menu-enter {
   animation: menu-enter 0.18s ease-out forwards;
 }
+
+/* Animation 6: infinite marquee for screenshots */
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll 40s linear infinite;
+  will-change: transform;
+}
+
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}

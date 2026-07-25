@@ -1,11 +1,17 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { ForkKnife, CalendarCheck, CalendarStar, ChatCircleDots, HandsPraying, Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus, Minus } from '@phosphor-icons/react'
+import {
+  ForkKnife, CalendarCheck, CalendarStar, ChatCircleDots, HandsPraying,
+  Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus,
+} from '@phosphor-icons/react'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
+import FadeUp from './FadeUp.jsx'
 
 const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
+const EASE = [0.25, 0.46, 0.45, 0.94]
 
 const FAQS = [
   {
@@ -89,9 +95,76 @@ const FEATURES = [
   },
 ]
 
+const SCREENSHOTS = [
+  { src: '/screenshots/home-screen.PNG',    label: 'Home',             caption: 'Your group at a glance' },
+  { src: '/screenshots/meal-signup.PNG',    label: 'Meal Signup',      caption: 'Claim your ingredient for the week' },
+  { src: '/screenshots/service-signup.PNG', label: 'Service Schedule', caption: 'Sign up to serve' },
+  { src: '/screenshots/chat-list.PNG',      label: 'Conversations',    caption: 'Group and direct messages' },
+  { src: '/screenshots/group-chat.PNG',     label: 'Group Chat',       caption: 'Stay connected between meetups' },
+  { src: '/screenshots/prayer-request.PNG', label: 'Prayer Requests',  caption: 'Never lose track of what matters' },
+  { src: '/screenshots/guide.PNG',          label: 'Discussion Guide', caption: 'Open your weekly guide in one tap' },
+]
+
+const STEPS = [
+  {
+    step: '1',
+    title: 'Create your group',
+    desc: "Sign up at coveyspace.com and name your group. You'll instantly get a 6-character invite code.",
+  },
+  {
+    step: '2',
+    title: 'Invite your members',
+    desc: 'Share the invite code with your group. Members sign up and enter the code to join.',
+  },
+  {
+    step: '3',
+    title: 'Start coordinating',
+    desc: 'Meals, schedules, chat, prayer, birthdays — everything is ready the moment your group joins.',
+  },
+]
+
+const DIFF_CARDS = [
+  {
+    label: 'Small group focus',
+    title: 'Built for your group, not your whole church',
+    desc: 'Covey Space is sized and priced for the group itself. Any group leader can get started in minutes — for free — without church admin approval or a software subscription.',
+  },
+  {
+    label: 'Two-way community',
+    title: 'Members connect with each other, not just receive messages',
+    desc: 'Every member can post prayer requests, claim meal spots, sign up to serve, and message each other directly. A shared home for your group — not a one-way announcement tool.',
+  },
+  {
+    label: 'Built for coordination',
+    title: 'More than a group chat — organized for how small groups run',
+    desc: 'Covey Space adds structured meal signups, service schedules, prayer tracking, birthday reminders, and a giving link — all organized the way a small group actually functions week to week.',
+  },
+]
+
+// Animation 3: stagger variants for feature grid
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+}
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+}
+
+const CTA_WORDS = 'Bring your whole group together.'.split(' ')
+
 export default function LandingPage() {
   const [leaving, setLeaving] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
+
+  // Refs for complex scroll-triggered animations
+  const gridRef = useRef(null)
+  const stepsRef = useRef(null)
+  const ctaHeadingRef = useRef(null)
+
+  const gridInView = useInView(gridRef, { once: true, amount: 0.1 })
+  const stepsInView = useInView(stepsRef, { once: true, amount: 0.15 })
+  const ctaInView = useInView(ctaHeadingRef, { once: true, amount: 0.4 })
 
   function goToSignup() {
     if (leaving) return
@@ -121,9 +194,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div
-      className={`min-h-screen bg-white font-sans animate-page-enter transition-[opacity,transform] duration-300 ease-in-out ${leaving ? 'opacity-0 translate-y-3' : 'opacity-100'}`}
-    >
+    <div className={`min-h-screen bg-white font-sans transition-[opacity,transform] duration-300 ease-in-out ${leaving ? 'opacity-0 translate-y-3' : 'opacity-100'}`}>
       <Helmet>
         <title>Covey Space — Community Group App for Meals, Prayer & Chat</title>
         <meta name="description" content="The all-in-one app for church small groups, house churches, house churches, Bible study groups, and Christian community groups. Meal signups, group chat, prayer requests, discussion guides, and more." />
@@ -144,118 +215,160 @@ export default function LandingPage() {
 
       <Nav />
 
-      {/* Hero */}
+      {/* ── Hero ─────────────────────────────────────── */}
       <section className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-16 lg:pt-28 lg:pb-24">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-10">
-          {/* Text */}
+
+          {/* Text — Animation 1: staggered entrance */}
           <div className="flex-1 text-center lg:text-left">
-            <div className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: EASE }}
+              className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6"
+            >
               Gathering community made simple
-            </div>
-            <h1 className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-none mb-6">
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.12, ease: EASE }}
+              className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-none mb-6"
+            >
               One place for your<br />whole group.
-            </h1>
-            <p className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.28, ease: EASE }}
+              className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8"
+            >
               Covey Space brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, house churches, Bible study groups, and Christian community groups who share life together.
-            </p>
-            <div className="flex flex-col items-center lg:items-start gap-2">
-              <button
-                onClick={() => goToSignup()}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.42, ease: EASE }}
+              className="flex flex-col items-center lg:items-start gap-2"
+            >
+              {/* Animation 9: micro-interaction + one-time pulse */}
+              <motion.button
+                onClick={goToSignup}
                 disabled={leaving}
+                whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+                whileTap={{ scale: 0.97 }}
+                animate={{ scale: [1, 1.06, 1] }}
+                transition={{ delay: 2.5, duration: 0.55, ease: 'easeInOut', times: [0, 0.5, 1] }}
                 className="inline-flex items-center gap-2 px-7 py-3.5 bg-jade text-white font-semibold rounded-2xl text-base hover:bg-jade-700 transition-colors shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 Sign up for free <ArrowRight size={18} weight="bold" />
-              </button>
+              </motion.button>
               <p className="text-xs text-stone-400">Free forever — no credit card, no subscription</p>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Phone mockup — desktop only */}
-          <div className="hidden lg:flex shrink-0">
+          {/* Phone mockup — Animation 4: infinite float */}
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="hidden lg:flex shrink-0"
+          >
             <div className="w-64 p-2.5 bg-stone-800 rounded-[2rem] shadow-2xl">
               <div className="rounded-[1.5rem] overflow-hidden">
                 <img src="/screenshots/home-screen.PNG" alt="Covey Space home screen" fetchpriority="high" className="w-full h-auto block" />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Features */}
+      {/* ── Features — Animation 2 (FadeUp heading) + Animation 3 (stagger grid) ── */}
       <section className="px-6 py-20 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-3">
-            Everything your group needs.
-          </h2>
-          <p className="text-stone-400 text-center text-sm mb-12">
-            Don't need every feature? Admins can turn any of these on or off anytime.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <FadeUp className="text-center">
+            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
+              Everything your group needs.
+            </h2>
+            <p className="text-stone-400 text-sm mb-12">
+              Don't need every feature? Admins can turn any of these on or off anytime.
+            </p>
+          </FadeUp>
+
+          <motion.div
+            ref={gridRef}
+            variants={containerVariants}
+            initial="hidden"
+            animate={gridInView ? 'visible' : 'hidden'}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
             {FEATURES.map(({ Icon, title, description, color }) => (
-              <div key={title} className="rounded-2xl border border-stone-100 p-6 shadow-sm hover:shadow-md transition-shadow">
+              <motion.div
+                key={title}
+                variants={cardVariants}
+                className="rounded-2xl border border-stone-100 p-6 shadow-sm hover:shadow-md transition-shadow"
+              >
                 <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${color}`}>
                   <Icon size={22} weight="fill" />
                 </div>
                 <h3 className="font-semibold text-stone-800 mb-1.5">{title}</h3>
                 <p className="text-stone-500 text-sm leading-relaxed">{description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* How it works */}
+      {/* ── How it works — Animation 2 (FadeUp) + Animation 7 (step pop) ── */}
       <section className="px-6 py-20 bg-stone-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-3">
-            Up and running in minutes.
-          </h2>
-          <p className="text-stone-400 text-center text-sm mb-14">No app store. No IT setup. Perfect for any church group, house church, or Bible study.</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {[
-              {
-                step: '1',
-                title: 'Create your group',
-                desc: "Sign up at coveyspace.com and name your group. You'll instantly get a 6-character invite code.",
-              },
-              {
-                step: '2',
-                title: 'Invite your members',
-                desc: 'Share the invite code with your group. Members sign up and enter the code to join.',
-              },
-              {
-                step: '3',
-                title: 'Start coordinating',
-                desc: 'Meals, schedules, chat, prayer, birthdays — everything is ready the moment your group joins.',
-              },
-            ].map(({ step, title, desc }) => (
+          <FadeUp className="text-center mb-14">
+            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
+              Up and running in minutes.
+            </h2>
+            <p className="text-stone-400 text-sm">No app store. No IT setup. Perfect for any church group, house church, or Bible study.</p>
+          </FadeUp>
+
+          <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {STEPS.map(({ step, title, desc }, i) => (
               <div key={step} className="flex flex-col items-center text-center md:items-start md:text-left">
-                <div className="w-10 h-10 rounded-full bg-jade text-white font-bold text-lg flex items-center justify-center mb-4 shrink-0">
+                {/* Animation 7: spring scale pop-in */}
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={stepsInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 18, delay: i * 0.15 }}
+                  className="w-10 h-10 rounded-full bg-jade text-white font-bold text-lg flex items-center justify-center mb-4 shrink-0"
+                >
                   {step}
-                </div>
-                <h3 className="font-semibold text-stone-800 text-lg mb-2">{title}</h3>
-                <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={stepsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                  transition={{ duration: 0.45, delay: i * 0.15 + 0.1, ease: EASE }}
+                >
+                  <h3 className="font-semibold text-stone-800 text-lg mb-2">{title}</h3>
+                  <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
+                </motion.div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Screenshots */}
+      {/* ── Screenshots — Animation 6: infinite marquee ── */}
       <section className="py-16 bg-white overflow-hidden">
-        <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">See it in action.</h2>
-        <div className="relative">
-          <div className="flex gap-5 px-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide justify-start lg:justify-center">
-            {[
-              { src: '/screenshots/home-screen.PNG',    label: 'Home',             caption: 'Your group at a glance' },
-              { src: '/screenshots/meal-signup.PNG',    label: 'Meal Signup',      caption: 'Claim your ingredient for the week' },
-              { src: '/screenshots/service-signup.PNG', label: 'Service Schedule', caption: 'Sign up to serve' },
-              { src: '/screenshots/chat-list.PNG',      label: 'Conversations',    caption: 'Group and direct messages' },
-              { src: '/screenshots/group-chat.PNG',     label: 'Group Chat',       caption: 'Stay connected between meetups' },
-              { src: '/screenshots/prayer-request.PNG', label: 'Prayer Requests',  caption: 'Never lose track of what matters' },
-              { src: '/screenshots/guide.PNG',          label: 'Discussion Guide', caption: 'Open your weekly guide in one tap' },
-            ].map(({ src, label, caption }) => (
-              <div key={label} className="shrink-0 snap-center flex flex-col items-center gap-3">
+        <FadeUp>
+          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">
+            See it in action.
+          </h2>
+        </FadeUp>
+
+        <div className="marquee-wrapper">
+          <div className="marquee-track flex gap-5 px-5">
+            {[...SCREENSHOTS, ...SCREENSHOTS].map(({ src, label, caption }, i) => (
+              <div key={i} className="shrink-0 flex flex-col items-center gap-3">
                 <div className="w-44 lg:w-48 p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
                   <div className="rounded-[1.25rem] overflow-hidden">
                     <img src={src} alt={label} loading="lazy" className="w-full h-auto block" />
@@ -268,95 +381,153 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-          {/* Scroll hint — mobile only */}
-          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none lg:hidden" />
         </div>
-        <div className="flex justify-center mt-8">
-          <Link
-            to="/about"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-jade text-white font-semibold rounded-2xl text-sm hover:bg-jade-700 transition-colors shadow-sm"
+
+        <FadeUp className="flex justify-center mt-8">
+          <motion.div
+            whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex"
           >
-            Take a Tour <ArrowRight size={16} weight="bold" />
-          </Link>
-        </div>
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-jade text-white font-semibold rounded-2xl text-sm hover:bg-jade-700 transition-colors shadow-sm"
+            >
+              Take a Tour <ArrowRight size={16} weight="bold" />
+            </Link>
+          </motion.div>
+        </FadeUp>
       </section>
 
-      {/* Differentiation */}
+      {/* ── Differentiation — Animation 2 (FadeUp) + Animation 10 (3D tilt) ── */}
       <section className="px-6 py-20 bg-stone-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-3">
-            What makes Covey Space different.
-          </h2>
-          <p className="text-stone-400 text-center text-sm mb-12">
-            Designed specifically for small groups who share life together week after week.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="rounded-2xl border border-stone-200 bg-white p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">Small group focus</p>
-              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">Built for your group, not your whole church</h3>
-              <p className="text-stone-500 text-sm leading-relaxed">Covey Space is sized and priced for the group itself. Any group leader can get started in minutes — for free — without church admin approval or a software subscription.</p>
-            </div>
-            <div className="rounded-2xl border border-stone-200 bg-white p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">Two-way community</p>
-              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">Members connect with each other, not just receive messages</h3>
-              <p className="text-stone-500 text-sm leading-relaxed">Every member can post prayer requests, claim meal spots, sign up to serve, and message each other directly. A shared home for your group — not a one-way announcement tool.</p>
-            </div>
-            <div className="rounded-2xl border border-stone-200 bg-white p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">Built for coordination</p>
-              <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">More than a group chat — organized for how small groups run</h3>
-              <p className="text-stone-500 text-sm leading-relaxed">Covey Space adds structured meal signups, service schedules, prayer tracking, birthday reminders, and a giving link — all organized the way a small group actually functions week to week.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+          <FadeUp className="text-center mb-12">
+            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
+              What makes Covey Space different.
+            </h2>
+            <p className="text-stone-400 text-sm">
+              Designed specifically for small groups who share life together week after week.
+            </p>
+          </FadeUp>
 
-      {/* FAQ */}
-      <section className="px-6 py-20 bg-white">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">
-            Common questions.
-          </h2>
-          <div className="flex flex-col divide-y divide-stone-200 border border-stone-200 rounded-2xl overflow-hidden">
-            {FAQS.map(({ q, a }, i) => (
-              <div key={i} className="bg-white">
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-stone-50 transition-colors"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {DIFF_CARDS.map(({ label, title, desc }, i) => (
+              <FadeUp key={label} delay={i * 0.1}>
+                {/* Animation 10: 3D card tilt on hover */}
+                <motion.div
+                  whileHover={{ rotateX: -2, rotateY: 3, y: -4, scale: 1.01 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  style={{ transformPerspective: 800 }}
+                  className="rounded-2xl border border-stone-200 bg-white p-6"
                 >
-                  <span className="font-semibold text-stone-800 text-sm leading-snug">{q}</span>
-                  {openFaq === i
-                    ? <Minus size={16} weight="bold" className="text-jade shrink-0" />
-                    : <Plus size={16} weight="bold" className="text-stone-400 shrink-0" />
-                  }
-                </button>
-                {openFaq === i && (
-                  <p className="px-6 pb-5 text-sm text-stone-500 leading-relaxed">{a}</p>
-                )}
-              </div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">{label}</p>
+                  <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">{title}</h3>
+                  <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
+                </motion.div>
+              </FadeUp>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="px-6 py-20 lg:py-28 bg-jade text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6">
-            Bring your whole group together.
-          </h2>
-          <button
-            onClick={() => goToSignup()}
-            disabled={leaving}
-            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-jade font-semibold rounded-2xl text-base hover:bg-jade-50 transition-colors shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            Sign up for free <ArrowRight size={18} weight="bold" />
-          </button>
+      {/* ── FAQ — Animation 2 (FadeUp) + Animation 5 (smooth accordion) ── */}
+      <section className="px-6 py-20 bg-white">
+        <div className="max-w-2xl mx-auto">
+          <FadeUp>
+            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">
+              Common questions.
+            </h2>
+          </FadeUp>
+
+          <FadeUp delay={0.1}>
+            <div className="flex flex-col divide-y divide-stone-200 border border-stone-200 rounded-2xl overflow-hidden">
+              {FAQS.map(({ q, a }, i) => (
+                <div key={i} className="bg-white">
+                  <button
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-stone-50 transition-colors"
+                  >
+                    <span className="font-semibold text-stone-800 text-sm leading-snug">{q}</span>
+                    {/* Animation 5: rotate Plus 45° = × on open */}
+                    <motion.div
+                      animate={{ rotate: openFaq === i ? 45 : 0 }}
+                      transition={{ duration: 0.2, ease: 'easeInOut' }}
+                      className="shrink-0"
+                    >
+                      <Plus
+                        size={16}
+                        weight="bold"
+                        className={openFaq === i ? 'text-jade' : 'text-stone-400'}
+                      />
+                    </motion.div>
+                  </button>
+
+                  {/* Animation 5: smooth height expand/collapse */}
+                  <AnimatePresence initial={false}>
+                    {openFaq === i && (
+                      <motion.div
+                        key="answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: 'easeInOut' }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <p className="px-6 pb-5 text-sm text-stone-500 leading-relaxed">{a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </FadeUp>
         </div>
       </section>
 
-      {/* Contact */}
+      {/* ── Final CTA — Animation 8: word-by-word reveal ── */}
+      <section className="px-6 py-20 lg:py-28 bg-jade text-center">
+        <div className="max-w-4xl mx-auto">
+          <h2
+            ref={ctaHeadingRef}
+            className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6"
+          >
+            {CTA_WORDS.map((word, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 22 }}
+                animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
+                transition={{ delay: i * 0.09, duration: 0.5, ease: EASE }}
+                className="inline-block mr-[0.22em]"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h2>
+
+          {/* Button fades in after last word */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ delay: CTA_WORDS.length * 0.09 + 0.1, duration: 0.45, ease: EASE }}
+          >
+            {/* Animation 9: micro-interaction on CTA button */}
+            <motion.button
+              onClick={goToSignup}
+              disabled={leaving}
+              whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-jade font-semibold rounded-2xl text-base hover:bg-jade-50 transition-colors shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              Sign up for free <ArrowRight size={18} weight="bold" />
+            </motion.button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Contact ── */}
       <section className="px-6 py-20 bg-stone-50 text-center">
-        <div className="max-w-lg mx-auto">
+        <FadeUp className="max-w-lg mx-auto">
           <div className="w-12 h-12 rounded-2xl bg-jade/10 flex items-center justify-center mx-auto mb-5">
             <EnvelopeSimple size={24} weight="fill" className="text-jade" />
           </div>
@@ -366,18 +537,20 @@ export default function LandingPage() {
           <p className="text-stone-400 text-sm leading-relaxed mb-6">
             Whether you're a pastor, group leader, or just curious — reach out and I'll get back to you.
           </p>
-          <a
+          {/* Animation 9: micro-interaction on email link */}
+          <motion.a
             href="mailto:hello@coveyspace.com"
+            whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+            whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 px-6 py-3 bg-jade hover:bg-jade-700 text-white font-semibold rounded-2xl text-sm transition-colors"
           >
             <EnvelopeSimple size={16} weight="bold" />
             hello@coveyspace.com
-          </a>
-        </div>
+          </motion.a>
+        </FadeUp>
       </section>
 
       <Footer />
-
     </div>
   )
 }
