@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus, Minus } from '@phosphor-icons/react'
+import { ForkKnife, CalendarCheck, CalendarStar, ChatCircleDots, HandsPraying, Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus, Minus } from '@phosphor-icons/react'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 
@@ -52,6 +52,12 @@ const FEATURES = [
     color: 'bg-lagoon/10 text-lagoon-600',
   },
   {
+    Icon: CalendarStar,
+    title: 'Events',
+    description: "Create one-off gatherings and let members RSVP in one tap — going, maybe, or can't go. See who's coming at a glance from the home screen.",
+    color: 'bg-sunrise/10 text-sunrise',
+  },
+  {
     Icon: ChatCircleDots,
     title: 'Group Chat',
     description: 'A main group chat for everyone, plus direct messages and smaller group threads. No more juggling group texts, GroupMe, or WhatsApp.',
@@ -100,7 +106,7 @@ export default function LandingPage() {
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'Web, iOS, Android',
     url: 'https://www.coveyspace.com',
-    description: 'Community group app for meal signups, service schedules, group chat, prayer requests, birthday reminders, and discussion guides.',
+    description: 'Community group app for meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, and discussion guides.',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   }
 
@@ -124,13 +130,13 @@ export default function LandingPage() {
         <link rel="canonical" href="https://www.coveyspace.com" />
         <meta property="og:url" content="https://www.coveyspace.com" />
         <meta property="og:title" content="Covey Space — Community Group App for Meals, Prayer & Chat" />
-        <meta property="og:description" content="Automated meal signups, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
+        <meta property="og:description" content="Automated meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
         <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Covey Space — Community Group App for Meals, Prayer & Chat" />
-        <meta name="twitter:description" content="Automated meal signups, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
+        <meta name="twitter:description" content="Automated meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
         <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
