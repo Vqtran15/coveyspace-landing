@@ -1,10 +1,15 @@
 import { useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { ForkKnife, CalendarCheck, ChatCircleDots, HandsPraying, Cake, BookBookmark, HandCoins, DeviceMobile, ShieldCheck, ArrowRight } from '@phosphor-icons/react'
+import { motion, useInView } from 'framer-motion'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
+import FadeUp from './FadeUp.jsx'
 
 const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
+const EASE = [0.25, 0.46, 0.45, 0.94]
+
+const CTA_WORDS = 'Ready to bring your group together?'.split(' ')
 
 const FEATURES = [
   {
@@ -109,6 +114,10 @@ export default function AboutPage() {
   const [activeSlide, setActiveSlide] = useState(0)
   const touchStartX = useRef(null)
 
+  // CTA word reveal
+  const ctaRef = useRef(null)
+  const ctaInView = useInView(ctaRef, { once: true, amount: 0.4 })
+
   useEffect(() => {
     function onScroll() {
       const mid = window.innerHeight / 2
@@ -152,7 +161,7 @@ export default function AboutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white font-sans animate-page-enter">
+    <div className="min-h-screen bg-white font-sans">
       <Helmet>
         <title>About Covey Space — Built for Small Groups & House Churches</title>
         <meta name="description" content="Learn how Covey Space was built for church small groups, house churches, and Christian community groups — one app for meals, chat, prayer, and more." />
@@ -170,24 +179,39 @@ export default function AboutPage() {
       </Helmet>
       <Nav />
 
-      {/* Hero */}
+      {/* ── Hero — stagger entrance ── */}
       <section className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-8 lg:pt-28 lg:pb-10 text-center">
         <div className="max-w-3xl mx-auto">
-          <div className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: EASE }}
+            className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6"
+          >
             Our Story
-          </div>
-          <h1 className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-none mb-6">
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.12, ease: EASE }}
+            className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-none mb-6"
+          >
             Built for groups who break bread around a table.
-          </h1>
-          <p className="text-stone-500 text-lg leading-relaxed">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.28, ease: EASE }}
+            className="text-stone-500 text-lg leading-relaxed"
+          >
             Covey Space started as a solution to a Sunday night ritual and grew into a platform for church small groups, house churches, and Christian community groups everywhere.
-          </p>
+          </motion.p>
         </div>
       </section>
 
-      {/* Story */}
+      {/* ── Story ── */}
       <section className="px-6 pt-8 pb-16 bg-white">
-        <div className="max-w-2xl mx-auto">
+        <FadeUp className="max-w-2xl mx-auto">
           <div className="flex flex-col gap-5 text-stone-600 text-[1.0625rem] leading-relaxed">
             <p>
               Hello, my name is Vuong, founder of Covey Space. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough. Every Sunday after church, we'd scramble to set up a Google Sheets meal signup and post it in GroupMe—it worked, but it was just one more chore at the end of a long week.
@@ -200,19 +224,21 @@ export default function AboutPage() {
             </p>
             <p className="font-semibold text-stone-800">Vuong Tran, Founder</p>
           </div>
-        </div>
+        </FadeUp>
       </section>
 
-      {/* Section heading */}
+      {/* ── Section heading ── */}
       <div className="border-t border-stone-100 px-6 pt-14 pb-8 text-center">
-        <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-2">
-          Everything inside Covey Space.
-        </h2>
-        <p className="lg:hidden text-stone-400 text-base">One platform for every part of your community group.</p>
+        <FadeUp>
+          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-2">
+            Everything inside Covey Space.
+          </h2>
+          <p className="lg:hidden text-stone-400 text-base">One platform for every part of your community group.</p>
+        </FadeUp>
       </div>
 
       {/* ── Mobile: swipeable carousel ── */}
-      <div className="lg:hidden px-6 pt-10 pb-6">
+      <FadeUp className="lg:hidden px-6 pt-10 pb-6">
         <div
           className="overflow-hidden"
           onTouchStart={handleTouchStart}
@@ -275,7 +301,7 @@ export default function AboutPage() {
             Next →
           </button>
         </div>
-      </div>
+      </FadeUp>
 
       {/* ── Desktop: sticky scroll ── */}
       <div className="hidden lg:block px-6 pb-0">
@@ -320,22 +346,42 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
-      {/* CTA */}
+      {/* ── CTA — word-by-word reveal + micro-interaction ── */}
       <section className="px-6 py-20 lg:py-28 bg-jade text-center">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6">
-            Ready to bring your group together?
-          </h2>
-          <a
-            href={SIGNUP_URL}
-            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-jade font-semibold rounded-2xl text-base hover:bg-jade-50 transition-colors shadow-lg"
+          <h2
+            ref={ctaRef}
+            className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6"
           >
-            Sign up for free <ArrowRight size={18} weight="bold" />
-          </a>
+            {CTA_WORDS.map((word, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 22 }}
+                animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
+                transition={{ delay: i * 0.09, duration: 0.5, ease: EASE }}
+                className="inline-block mr-[0.22em]"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ delay: CTA_WORDS.length * 0.09 + 0.1, duration: 0.45, ease: EASE }}
+          >
+            <motion.a
+              href={SIGNUP_URL}
+              whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-jade font-semibold rounded-2xl text-base hover:bg-jade-50 transition-colors shadow-lg"
+            >
+              Sign up for free <ArrowRight size={18} weight="bold" />
+            </motion.a>
+          </motion.div>
         </div>
       </section>
 

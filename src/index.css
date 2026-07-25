@@ -26,10 +26,12 @@
 }
 
 .marquee-track {
-  animation: marquee-scroll 40s linear infinite;
+  animation: marquee-scroll 22s linear infinite;
   will-change: transform;
 }
 
-.marquee-wrapper:hover .marquee-track {
-  animation-play-state: paused;
+@media (min-width: 1024px) {
+  .marquee-track {
+    animation-duration: 32s;
+  }
 }

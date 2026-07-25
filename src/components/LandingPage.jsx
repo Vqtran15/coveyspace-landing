@@ -270,18 +270,19 @@ export default function LandingPage() {
             </motion.div>
           </div>
 
-          {/* Phone mockup — Animation 4: infinite float */}
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="hidden lg:flex shrink-0"
-          >
-            <div className="w-64 p-2.5 bg-stone-800 rounded-[2rem] shadow-2xl">
-              <div className="rounded-[1.5rem] overflow-hidden">
-                <img src="/screenshots/home-screen.PNG" alt="Covey Space home screen" fetchpriority="high" className="w-full h-auto block" />
+          {/* Phone mockup — Animation 4: infinite float, centered in right half */}
+          <div className="hidden lg:flex flex-1 items-center justify-center">
+            <motion.div
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <div className="w-64 p-2.5 bg-stone-800 rounded-[2rem] shadow-2xl">
+                <div className="rounded-[1.5rem] overflow-hidden">
+                  <img src="/screenshots/home-screen.PNG" alt="Covey Space home screen" fetchpriority="high" className="w-full h-auto block" />
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
