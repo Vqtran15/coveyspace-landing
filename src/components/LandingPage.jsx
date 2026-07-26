@@ -216,7 +216,7 @@ export default function LandingPage() {
       <Nav />
 
       {/* ── Hero ─────────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-16 lg:pt-28 lg:pb-24">
+      <section className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-10 lg:pt-28 lg:pb-24">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-10">
 
           {/* Text — Animation 1: staggered entrance */}
@@ -287,7 +287,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── Features — Animation 2 (FadeUp heading) + Animation 3 (stagger grid) ── */}
-      <section className="px-6 py-20 bg-white">
+      <section className="px-6 pt-14 pb-20 lg:py-20 bg-white">
         <div className="max-w-6xl mx-auto">
           <FadeUp className="text-center">
             <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
