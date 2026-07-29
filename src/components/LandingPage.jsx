@@ -278,7 +278,14 @@ export default function LandingPage() {
             >
               <div className="w-64 p-2.5 bg-stone-800 rounded-[2rem] shadow-2xl">
                 <div className="rounded-[1.5rem] overflow-hidden">
-                  <img src="/screenshots/home-screen.PNG" alt="Covey Space home screen" fetchpriority="high" className="w-full h-auto block" />
+                  <video
+                    src="/videos/home-screen.mov"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-auto block"
+                  />
                 </div>
               </div>
             </motion.div>
