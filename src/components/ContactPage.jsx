@@ -13,7 +13,7 @@ const TOPICS = [
   {
     Icon: ChatCircleDots,
     title: 'General questions',
-    description: 'Curious about how Covey Space works or whether it\'s the right fit for your group? I\'m happy to help answer questions!',
+    description: 'Curious about how Coveyspace works or whether it\'s the right fit for your group? I\'m happy to help answer questions!',
   },
   {
     Icon: HandsPraying,
@@ -44,18 +44,18 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white font-sans">
       <Helmet>
-        <title>Contact Covey Space — Get in Touch</title>
-        <meta name="description" content="Questions about Covey Space? Reach out — whether you're a pastor, group leader, or just curious. We'd love to hear from you." />
+        <title>Contact Coveyspace — Get in Touch</title>
+        <meta name="description" content="Questions about Coveyspace? Reach out — whether you're a pastor, group leader, or just curious. We'd love to hear from you." />
         <link rel="canonical" href="https://www.coveyspace.com/contact" />
         <meta property="og:url" content="https://www.coveyspace.com/contact" />
-        <meta property="og:title" content="Contact Covey Space — Get in Touch" />
-        <meta property="og:description" content="Questions about Covey Space? Reach out — whether you're a pastor, group leader, or just curious. We'd love to hear from you." />
+        <meta property="og:title" content="Contact Coveyspace — Get in Touch" />
+        <meta property="og:description" content="Questions about Coveyspace? Reach out — whether you're a pastor, group leader, or just curious. We'd love to hear from you." />
         <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Contact Covey Space — Get in Touch" />
-        <meta name="twitter:description" content="Questions about Covey Space? Reach out — whether you're a pastor, group leader, or just curious. We'd love to hear from you." />
+        <meta name="twitter:title" content="Contact Coveyspace — Get in Touch" />
+        <meta name="twitter:description" content="Questions about Coveyspace? Reach out — whether you're a pastor, group leader, or just curious. We'd love to hear from you." />
         <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />

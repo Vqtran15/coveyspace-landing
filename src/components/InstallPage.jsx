@@ -17,7 +17,7 @@ const BENEFITS = [
   {
     Icon: DeviceMobile,
     title: 'Home screen shortcut',
-    desc: 'Tap the Covey Space icon on your home screen and go straight in — no typing a URL.',
+    desc: 'Tap the Coveyspace icon on your home screen and go straight in — no typing a URL.',
   },
   {
     Icon: Lightning,
@@ -65,18 +65,18 @@ export default function InstallPage() {
   return (
     <div className="min-h-screen bg-white font-sans">
       <Helmet>
-        <title>Install Covey Space — Add to Your Home Screen</title>
-        <meta name="description" content="Add Covey Space to your home screen for a full-screen native app experience on iPhone, iPad, or Android. No app store needed — takes 30 seconds." />
+        <title>Install Coveyspace — Add to Your Home Screen</title>
+        <meta name="description" content="Add Coveyspace to your home screen for a full-screen native app experience on iPhone, iPad, or Android. No app store needed — takes 30 seconds." />
         <link rel="canonical" href="https://www.coveyspace.com/install" />
         <meta property="og:url" content="https://www.coveyspace.com/install" />
-        <meta property="og:title" content="Install Covey Space — Add to Your Home Screen" />
-        <meta property="og:description" content="Add Covey Space to your home screen for a full-screen native app experience on iPhone, iPad, or Android. No app store needed — takes 30 seconds." />
+        <meta property="og:title" content="Install Coveyspace — Add to Your Home Screen" />
+        <meta property="og:description" content="Add Coveyspace to your home screen for a full-screen native app experience on iPhone, iPad, or Android. No app store needed — takes 30 seconds." />
         <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Install Covey Space — Add to Your Home Screen" />
-        <meta name="twitter:description" content="Add Covey Space to your home screen for a full-screen native app experience on iPhone, iPad, or Android. No app store needed — takes 30 seconds." />
+        <meta name="twitter:title" content="Install Coveyspace — Add to Your Home Screen" />
+        <meta name="twitter:description" content="Add Coveyspace to your home screen for a full-screen native app experience on iPhone, iPad, or Android. No app store needed — takes 30 seconds." />
         <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />
@@ -98,7 +98,7 @@ export default function InstallPage() {
             transition={{ duration: 0.55, delay: 0.15, ease: EASE }}
             className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto"
           >
-            Covey Space is a web app — no app store required. Add it to your home screen in seconds for the full native experience.
+            Coveyspace is a web app — no app store required. Add it to your home screen in seconds for the full native experience.
           </motion.p>
         </div>
       </section>

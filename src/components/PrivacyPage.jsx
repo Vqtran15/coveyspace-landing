@@ -15,18 +15,18 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white font-sans animate-page-enter">
       <Helmet>
-        <title>Privacy Policy — Covey Space</title>
-        <meta name="description" content="How Covey Space collects, stores, and protects your data. We never sell your information or share it with advertisers." />
+        <title>Privacy Policy — Coveyspace</title>
+        <meta name="description" content="How Coveyspace collects, stores, and protects your data. We never sell your information or share it with advertisers." />
         <link rel="canonical" href="https://www.coveyspace.com/privacy" />
         <meta property="og:url" content="https://www.coveyspace.com/privacy" />
-        <meta property="og:title" content="Privacy Policy — Covey Space" />
-        <meta property="og:description" content="How Covey Space collects, stores, and protects your data. We never sell your information or share it with advertisers." />
+        <meta property="og:title" content="Privacy Policy — Coveyspace" />
+        <meta property="og:description" content="How Coveyspace collects, stores, and protects your data. We never sell your information or share it with advertisers." />
         <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Privacy Policy — Covey Space" />
-        <meta name="twitter:description" content="How Covey Space collects, stores, and protects your data. We never sell your information or share it with advertisers." />
+        <meta name="twitter:title" content="Privacy Policy — Coveyspace" />
+        <meta name="twitter:description" content="How Coveyspace collects, stores, and protects your data. We never sell your information or share it with advertisers." />
         <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />
@@ -45,19 +45,19 @@ export default function PrivacyPage() {
 
           <Section title="Who we are">
             <p>
-              Covey Space is a community coordination app that helps small groups stay organized and connected.
+              Coveyspace is a community coordination app that helps small groups stay organized and connected.
               It is operated by Vuong Tran, an individual based in the United States ("we", "us", "our").
               You can reach us at{' '}
               <a href="mailto:hello@coveyspace.com" className="text-jade hover:underline">hello@coveyspace.com</a>.
             </p>
             <p>
-              Covey Space is a passion project funded entirely by voluntary user donations. We do not
+              Coveyspace is a passion project funded entirely by voluntary user donations. We do not
               monetize your data or lock features behind commercial paywalls.
             </p>
           </Section>
 
           <Section title="What we collect">
-            <p>When you create an account or use Covey Space, we collect:</p>
+            <p>When you create an account or use Coveyspace, we collect:</p>
             <ul className="list-disc list-inside space-y-1.5 pl-2">
               <li>Your name and email address</li>
               <li>Your group membership and any invite codes you've used</li>
@@ -99,7 +99,7 @@ export default function PrivacyPage() {
 
           <Section title="How we use your data">
             <p>
-              We use your data solely to provide the Covey Space service — to show your group's information
+              We use your data solely to provide the Coveyspace service — to show your group's information
               to members of your group, and to let everyone coordinate together. We do not sell your data,
               share it with advertisers, or use it for any purpose beyond operating the app.
             </p>
@@ -110,7 +110,7 @@ export default function PrivacyPage() {
             </p>
             <p>
               If you opt in to email communications, we may occasionally send you product updates or
-              announcements about Covey Space. You can unsubscribe from these emails at any time by
+              announcements about Coveyspace. You can unsubscribe from these emails at any time by
               clicking the unsubscribe link in any email we send.
             </p>
           </Section>
@@ -118,14 +118,14 @@ export default function PrivacyPage() {
           <Section title="Who can see your data">
             <p>
               Your messages, prayer requests, birthdays, and other content are visible only to members
-              of your group. Covey Space staff may access data when necessary to operate and maintain
+              of your group. Coveyspace staff may access data when necessary to operate and maintain
               the service (for example, investigating a bug or responding to a support request).
             </p>
           </Section>
 
           <Section title="Third-party services">
             <p>
-              We use the following third-party services to operate Covey Space. Each has its own
+              We use the following third-party services to operate Coveyspace. Each has its own
               privacy policy and data practices:
             </p>
             <ul className="list-disc list-inside space-y-1.5 pl-2">
@@ -184,10 +184,10 @@ export default function PrivacyPage() {
 
           <Section title="Data storage">
             <p>
-              Your data is stored in the United States through Supabase. If you access Covey Space from
+              Your data is stored in the United States through Supabase. If you access Coveyspace from
               outside the United States, your information will be transferred to and processed in the
               United States, where data protection laws may differ from those in your country. By using
-              Covey Space, you consent to this transfer.
+              Coveyspace, you consent to this transfer.
             </p>
           </Section>
 
@@ -217,7 +217,7 @@ export default function PrivacyPage() {
               affected, and what steps we are taking.
             </p>
             <p>
-              Covey Space is provided on an "as-is" and "as-available" basis. To the maximum extent
+              Coveyspace is provided on an "as-is" and "as-available" basis. To the maximum extent
               permitted by law, Vuong Tran shall not be liable for any indirect, incidental, or
               consequential damages resulting from your use of the service or any unauthorized access
               to your data.
@@ -226,12 +226,12 @@ export default function PrivacyPage() {
 
           <Section title="Children's privacy">
             <p>
-              Covey Space is not directed at children under 13. We do not knowingly collect personal
+              Coveyspace is not directed at children under 13. We do not knowingly collect personal
               information from children under 13. If you believe we have inadvertently collected such
               information, please contact us and we will delete it promptly.
             </p>
             <p>
-              Users between the ages of 13 and 17 may use Covey Space with the knowledge and consent
+              Users between the ages of 13 and 17 may use Coveyspace with the knowledge and consent
               of a parent or guardian.
             </p>
           </Section>
@@ -243,7 +243,7 @@ export default function PrivacyPage() {
               the top of this page will always reflect when the policy was last revised.
             </p>
             <p>
-              Your continued use of Covey Space after the effective date of any changes constitutes
+              Your continued use of Coveyspace after the effective date of any changes constitutes
               your acceptance of the updated policy.
             </p>
           </Section>

@@ -16,7 +16,7 @@ const EASE = [0.25, 0.46, 0.45, 0.94]
 const FAQS = [
   {
     q: 'Do I need to download an app?',
-    a: 'No app store required. Covey Space runs in your browser and can be added to your home screen in seconds for a full native app experience on iPhone, iPad, and Android.',
+    a: 'No app store required. Coveyspace runs in your browser and can be added to your home screen in seconds for a full native app experience on iPhone, iPad, and Android.',
   },
   {
     q: 'Is my group\'s data private?',
@@ -24,7 +24,7 @@ const FAQS = [
   },
   {
     q: 'How many people can be in a group?',
-    a: 'There is no hard limit. Covey Space works well for small groups of 5–6 people and scales comfortably to larger groups of 30 or more.',
+    a: 'There is no hard limit. Coveyspace works well for small groups of 5–6 people and scales comfortably to larger groups of 30 or more.',
   },
   {
     q: 'Can we turn off features we don\'t use?',
@@ -32,15 +32,15 @@ const FAQS = [
   },
   {
     q: 'What devices does it work on?',
-    a: 'Covey Space works on any device with a modern browser — iPhone, Android, iPad, Mac, and PC. Install it to your home screen for the best mobile experience.',
+    a: 'Coveyspace works on any device with a modern browser — iPhone, Android, iPad, Mac, and PC. Install it to your home screen for the best mobile experience.',
   },
   {
-    q: 'How is Covey Space different from Church Center or Planning Center?',
-    a: 'Church Center is a church management platform built for entire congregations — it requires a Planning Center subscription (starting at $14/month) and is designed for church staff managing child check-ins, volunteer scheduling, and giving for hundreds of people. Covey Space is built for the small group itself: 8–20 people who meet regularly, share meals, and pray together. No subscription, no church admin approval, no setup overhead — any group leader can get started in minutes.',
+    q: 'How is Coveyspace different from Church Center or Planning Center?',
+    a: 'Church Center is a church management platform built for entire congregations — it requires a Planning Center subscription (starting at $14/month) and is designed for church staff managing child check-ins, volunteer scheduling, and giving for hundreds of people. Coveyspace is built for the small group itself: 8–20 people who meet regularly, share meals, and pray together. No subscription, no church admin approval, no setup overhead — any group leader can get started in minutes.',
   },
   {
     q: 'How is this different from Flocknote or a group text?',
-    a: 'Flocknote is an outbound communication tool — great for email and text blasts to people who may not open an app. A group text works for quick messages. Covey Space is a two-way community space where members post prayer requests, claim meal spots, sign up to serve, track birthdays, and message one another. It replaces the group text, the Google Sheet signup, and the prayer request chain — organized specifically for how a small group functions week to week.',
+    a: 'Flocknote is an outbound communication tool — great for email and text blasts to people who may not open an app. A group text works for quick messages. Coveyspace is a two-way community space where members post prayer requests, claim meal spots, sign up to serve, track birthdays, and message one another. It replaces the group text, the Google Sheet signup, and the prayer request chain — organized specifically for how a small group functions week to week.',
   },
 ]
 
@@ -127,7 +127,7 @@ const DIFF_CARDS = [
   {
     label: 'Small group focus',
     title: 'Built for your group, not your whole church',
-    desc: 'Covey Space is sized and priced for the group itself. Any group leader can get started in minutes — for free — without church admin approval or a software subscription.',
+    desc: 'Coveyspace is sized and priced for the group itself. Any group leader can get started in minutes — for free — without church admin approval or a software subscription.',
   },
   {
     label: 'Two-way community',
@@ -137,7 +137,7 @@ const DIFF_CARDS = [
   {
     label: 'Built for coordination',
     title: 'More than a group chat — organized for how small groups run',
-    desc: 'Covey Space adds structured meal signups, service schedules, prayer tracking, birthday reminders, and a giving link — all organized the way a small group actually functions week to week.',
+    desc: 'Coveyspace adds structured meal signups, service schedules, prayer tracking, birthday reminders, and a giving link — all organized the way a small group actually functions week to week.',
   },
 ]
 
@@ -175,7 +175,7 @@ export default function LandingPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'Covey Space',
+    name: 'Coveyspace',
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'Web, iOS, Android',
     url: 'https://www.coveyspace.com',
@@ -196,17 +196,17 @@ export default function LandingPage() {
   return (
     <div className={`min-h-screen bg-white font-sans transition-[opacity,transform] duration-300 ease-in-out ${leaving ? 'opacity-0 translate-y-3' : 'opacity-100'}`}>
       <Helmet>
-        <title>Covey Space — Community Group App for Meals, Prayer & Chat</title>
+        <title>Coveyspace — Community Group App for Meals, Prayer & Chat</title>
         <meta name="description" content="The all-in-one app for church small groups, house churches, house churches, Bible study groups, and Christian community groups. Meal signups, group chat, prayer requests, discussion guides, and more." />
         <link rel="canonical" href="https://www.coveyspace.com" />
         <meta property="og:url" content="https://www.coveyspace.com" />
-        <meta property="og:title" content="Covey Space — Community Group App for Meals, Prayer & Chat" />
+        <meta property="og:title" content="Coveyspace — Community Group App for Meals, Prayer & Chat" />
         <meta property="og:description" content="Automated meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
         <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Covey Space — Community Group App for Meals, Prayer & Chat" />
+        <meta name="twitter:title" content="Coveyspace — Community Group App for Meals, Prayer & Chat" />
         <meta name="twitter:description" content="Automated meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
         <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -245,7 +245,7 @@ export default function LandingPage() {
               transition={{ duration: 0.55, delay: 0.28, ease: EASE }}
               className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8"
             >
-              Covey Space brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, house churches, Bible study groups, and Christian community groups who share life together.
+              Coveyspace brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, house churches, Bible study groups, and Christian community groups who share life together.
             </motion.p>
 
             <motion.div
@@ -412,7 +412,7 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto">
           <FadeUp className="text-center mb-12">
             <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
-              What makes Covey Space different.
+              What makes Coveyspace different.
             </h2>
             <p className="text-stone-400 text-sm">
               Designed specifically for small groups who share life together week after week.
