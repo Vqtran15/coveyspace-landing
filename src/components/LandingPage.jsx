@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import {
   ForkKnife, CalendarCheck, CalendarStar, ChatCircleDots, HandsPraying,
-  Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus,
+  Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus, Megaphone, UsersThree,
 } from '@phosphor-icons/react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Nav from './Nav.jsx'
@@ -35,8 +35,12 @@ const FAQS = [
     a: 'Coveyspace works on any device with a modern browser — iPhone, Android, iPad, Mac, and PC. Install it to your home screen for the best mobile experience.',
   },
   {
+    q: 'Can a church manage multiple small groups in Coveyspace?',
+    a: 'Yes. Church admins can link multiple community groups under one church account and send rich-text broadcasts — either to all members across every group, or to group leaders only. Each group still keeps its own private chat, meals, and prayer space. Members can also belong to more than one group (a men\'s group and a couples group, for example) and switch their active group in Settings at any time.',
+  },
+  {
     q: 'How is Coveyspace different from Church Center or Planning Center?',
-    a: 'Church Center is a church management platform built for entire congregations — it requires a Planning Center subscription (starting at $14/month) and is designed for church staff managing child check-ins, volunteer scheduling, and giving for hundreds of people. Coveyspace is built for the small group itself: 8–20 people who meet regularly, share meals, and pray together. No subscription, no church admin approval, no setup overhead — any group leader can get started in minutes.',
+    a: 'Church Center is a church management platform built for entire congregations — designed for staff managing child check-ins, volunteer scheduling, and giving for hundreds of people, starting at $14/month. Coveyspace is built for the small group itself: 8–20 people who meet regularly, share meals, and pray together. Any group leader can start for free in minutes. Church staff can also link their groups under one account for coordinated broadcasts — without the overhead of a full church management system.',
   },
   {
     q: 'How is this different from Flocknote or a group text?',
@@ -92,6 +96,18 @@ const FEATURES = [
     title: 'Monthly Giving',
     description: "Link your church's giving or tithing page so members can donate in one tap — right from the home screen.",
     color: 'bg-lagoon/10 text-lagoon-700',
+  },
+  {
+    Icon: Megaphone,
+    title: 'Church Broadcasts',
+    description: "Church admins can send rich-text announcements to all groups at once — or just to group leaders. Members see an unread dot so nothing gets missed.",
+    color: 'bg-ember/10 text-ember',
+  },
+  {
+    Icon: UsersThree,
+    title: 'Multi-Group',
+    description: "Belong to more than one group — a men's group and a couples group, for example. Switch your active group in Settings and the whole app follows.",
+    color: 'bg-stone-100 text-stone-500',
   },
 ]
 
@@ -179,7 +195,7 @@ export default function LandingPage() {
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'Web, iOS, Android',
     url: 'https://www.coveyspace.com',
-    description: 'Community group app for meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, and discussion guides.',
+    description: 'Community group app for meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, discussion guides, and church-wide broadcasts across multiple groups.',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   }
 
@@ -245,7 +261,7 @@ export default function LandingPage() {
               transition={{ duration: 0.55, delay: 0.28, ease: EASE }}
               className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8"
             >
-              Coveyspace brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, house churches, Bible study groups, and Christian community groups who share life together.
+              Coveyspace brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, house churches, and Bible study groups. Church admins can link multiple groups under one account and broadcast announcements across all of them at once.
             </motion.p>
 
             <motion.div
