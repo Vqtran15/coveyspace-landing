@@ -282,7 +282,6 @@ export default function LandingPage() {
               >
                 Sign up for free <ArrowRight size={18} weight="bold" />
               </motion.button>
-              <p className="text-xs text-stone-400">Free forever — no credit card, no subscription</p>
             </motion.div>
           </div>
 
@@ -316,9 +315,7 @@ export default function LandingPage() {
             <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
               Everything your group needs.
             </h2>
-            <p className="text-stone-400 text-sm mb-12">
-              Don't need every feature? Admins can turn any of these on or off anytime.
-            </p>
+            <p className="text-stone-400 text-sm mb-12"></p>
           </FadeUp>
 
           <motion.div
@@ -352,7 +349,6 @@ export default function LandingPage() {
             <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
               Up and running in minutes.
             </h2>
-            <p className="text-stone-400 text-sm">No app store. No IT setup. Perfect for any church group, house church, or Bible study.</p>
           </FadeUp>
 
           <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-3 gap-10">
