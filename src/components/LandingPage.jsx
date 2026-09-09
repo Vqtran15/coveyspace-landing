@@ -958,7 +958,7 @@ export default function LandingPage() {
             className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6"
           >
             {CTA_WORDS.map((word, i) => (
-              <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.22em' }}>
+              <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.22em', paddingBottom: '0.12em', marginBottom: '-0.12em' }}>
                 <motion.span
                   initial={{ y: '110%' }}
                   animate={ctaInView ? { y: 0 } : { y: '110%' }}
