@@ -24,13 +24,13 @@ const FEATURES = [
   {
     Icon: CalendarCheck,
     title: 'Service Schedules',
-    description: "Organize who's serving and when. Members sign up directly in the app — no spreadsheets required.",
+    description: "Organize who's serving and when. Members sign up directly in the app with no spreadsheets required.",
     color: 'bg-lagoon/10 text-lagoon-600',
   },
   {
     Icon: CalendarStar,
     title: 'Events',
-    description: "Create one-off gatherings and let members RSVP in one tap — going, maybe, or can't go. See who's coming at a glance from the home screen.",
+    description: "Create one-off gatherings and let members RSVP in one tap: going, maybe, or can't go. See who's coming at a glance from the home screen.",
     color: 'bg-sunrise/10 text-sunrise',
   },
   {
@@ -42,13 +42,13 @@ const FEATURES = [
   {
     Icon: HandsPraying,
     title: 'Prayer Requests',
-    description: "Prayer requests get their own dedicated space — never buried in a chat thread. Perfect for Bible study groups and house churches who want to pray for one another consistently.",
+    description: "Prayer requests get their own dedicated space, never buried in a chat thread. Perfect for Bible study groups and house churches who want to pray for one another consistently.",
     color: 'bg-sunrise/10 text-sunrise',
   },
   {
     Icon: Cake,
     title: 'Birthdays',
-    description: "Add birthdays for your group members and get reminded 30 days before — so no one slips through the cracks.",
+    description: "Add birthdays for your group members and get reminded 30 days before, so no one slips through the cracks.",
     color: 'bg-coral/10 text-coral',
   },
   {
@@ -60,19 +60,19 @@ const FEATURES = [
   {
     Icon: HandCoins,
     title: 'Monthly Giving',
-    description: "Link your church's giving or tithing page so members can donate in one tap — right from the home screen.",
+    description: "Link your church's giving or tithing page so members can donate in one tap, right from the home screen.",
     color: 'bg-lagoon/10 text-lagoon-700',
   },
   {
     Icon: Megaphone,
     title: 'Church Broadcasts',
-    description: "Church admins can send rich-text announcements to all groups at once — or just to group leaders. Members see an unread dot so nothing gets missed.",
+    description: "Church admins can send rich-text announcements to all groups at once, or just to group leaders. Members see an unread dot so nothing gets missed.",
     color: 'bg-ember/10 text-ember',
   },
   {
     Icon: UsersThree,
     title: 'Multi-Group',
-    description: "Belong to more than one group — a men's group and a couples group, for example. Switch your active group in Settings and the whole app follows.",
+    description: "Belong to more than one group, like a men's group and a couples group. Switch your active group in Settings and the whole app follows.",
     color: 'bg-stone-100 text-stone-500',
   },
 ]
@@ -86,7 +86,7 @@ const FEATURE_TOUR = [
     screenshot: '/screenshots/meal-signup.PNG',
     alt: 'Meal signup screen',
     shortDesc: 'Members sign up for an ingredient each week. The app auto-advances to the next meal and cycles back to older ones when the list runs out.',
-    description: "Load up your weekly meal rotation once, and the app handles the rest. Members sign in and claim an ingredient — pasta week? Someone brings noodles, someone else brings sauce, another brings dessert. The night after your group meets, it automatically advances to the next meal. When the list runs out, it cycles back to meals you haven't had in a while. Tap the menu to edit ingredients, reorder your meal list, or pause signups for weeks you're skipping.",
+    description: "Load up your weekly meal rotation once, and the app handles the rest. Members sign in and claim an ingredient. Pasta week? Someone brings noodles, someone else brings sauce, another brings dessert. The night after your group meets, it automatically advances to the next meal. When the list runs out, it cycles back to meals you haven't had in a while. Tap the menu to edit ingredients, reorder your meal list, or pause signups for weeks you're skipping.",
   },
   {
     Icon: CalendarCheck,
@@ -113,7 +113,7 @@ const FEATURE_TOUR = [
     screenshot: '/screenshots/prayer-request.PNG',
     alt: 'Prayer requests screen',
     shortDesc: 'Every member has a prayer profile. Log requests under their name and look back months later to see what God has done.',
-    description: "Every member has a profile in the Prayer Requests tab — no need to type out names each time. Just find the person and write their request. Requests are saved to their profile so you can look back months later and see what God has done. There's something powerful about revisiting old prayers and seeing them answered.",
+    description: "Every member has a profile in the Prayer Requests tab. No need to type out names each time. Just find the person and write their request. Requests are saved to their profile so you can look back months later and see what God has done. There's something powerful about revisiting old prayers and seeing them answered.",
   },
   {
     Icon: Cake,
@@ -140,7 +140,7 @@ const FEATURE_TOUR = [
     screenshot: '/screenshots/monthly-giving.PNG',
     alt: 'Monthly giving card on home screen',
     shortDesc: "Link your church's giving page so members can donate in one tap from the home screen.",
-    description: "Add a giving link so every member can support your church in one tap. Admins can paste any giving or tithing page URL and it shows up as a card on the home screen — no hunting for links in a group chat.",
+    description: "Add a giving link so every member can support your church in one tap. Admins can paste any giving or tithing page URL and it shows up as a card on the home screen. No more hunting for links in a group chat.",
   },
   {
     Icon: ShieldCheck,
@@ -148,8 +148,8 @@ const FEATURE_TOUR = [
     color: 'bg-lagoon/10 text-lagoon-600',
     screenshot: '/screenshots/admin.PNG',
     alt: 'Admin settings screen',
-    shortDesc: 'Manage members, invite codes, and feature toggles — all from one dedicated admin panel.',
-    description: "Your group's invite code lives in Admin Settings — it's how new members join securely. Remove users, promote members to admin, and toggle features on or off. All from one panel.",
+    shortDesc: 'Manage members, invite codes, and feature toggles. All from one dedicated admin panel.',
+    description: "Your group's invite code lives in Admin Settings. That's how new members join securely. Remove users, promote members to admin, and toggle features on or off from one panel.",
   },
   {
     Icon: DeviceMobile,
@@ -157,8 +157,8 @@ const FEATURE_TOUR = [
     color: 'bg-stone-100 text-stone-600',
     screenshot: '/screenshots/add-to-home-2.PNG',
     alt: 'Add to home screen prompt',
-    shortDesc: 'Add Coveyspace to your home screen and it behaves just like a downloaded app — no App Store required.',
-    description: "No app store required. Coveyspace works in any browser, and when you add it to your home screen it looks and feels just like a native app — complete with push notifications. It works great on desktop too. A dedicated iOS and Android app is on the roadmap.",
+    shortDesc: 'Add Coveyspace to your home screen and it behaves just like a downloaded app, with no App Store required.',
+    description: "No app store required. Coveyspace works in any browser, and when you add it to your home screen it looks and feels just like a native app, complete with push notifications. It works great on desktop too. A dedicated iOS and Android app is on the roadmap.",
   },
 ]
 
@@ -177,7 +177,7 @@ const STEPS = [
   {
     step: '3',
     title: 'Start coordinating',
-    desc: 'Meals, schedules, chat, prayer, birthdays — everything is ready the moment your group joins.',
+    desc: 'Meals, schedules, chat, prayer, birthdays. Everything is ready the moment your group joins.',
   },
 ]
 
@@ -186,17 +186,17 @@ const DIFF_CARDS = [
   {
     label: 'Small group focus',
     title: 'Built for your group, not your whole church',
-    desc: 'Coveyspace is sized and priced for the group itself. Any group leader can get started in minutes — for free — without church admin approval or a software subscription.',
+    desc: 'Coveyspace is sized and priced for the group itself. Any group leader can get started for free in minutes, without church admin approval or a software subscription.',
   },
   {
     label: 'Two-way community',
     title: 'Members connect with each other, not just receive messages',
-    desc: 'Every member can post prayer requests, claim meal spots, sign up to serve, and message each other directly. A shared home for your group — not a one-way announcement tool.',
+    desc: 'Every member can post prayer requests, claim meal spots, sign up to serve, and message each other directly. A shared home for your group, not a one-way announcement tool.',
   },
   {
     label: 'Built for coordination',
-    title: 'More than a group chat — organized for how small groups run',
-    desc: 'Coveyspace adds structured meal signups, service schedules, prayer tracking, birthday reminders, and a giving link — all organized the way a small group actually functions week to week.',
+    title: 'More than a group chat, organized for how small groups run',
+    desc: 'Coveyspace adds structured meal signups, service schedules, prayer tracking, birthday reminders, and a giving link. All organized the way a small group actually functions week to week.',
   },
 ]
 
@@ -205,12 +205,12 @@ const BENEFITS = [
   {
     Icon: ArrowsOut,
     title: 'Full-screen experience',
-    desc: 'No browser bar taking up space — the app fills your whole screen just like a native app.',
+    desc: 'No browser bar taking up space. The app fills your whole screen just like a native app.',
   },
   {
     Icon: DeviceMobile,
     title: 'Home screen shortcut',
-    desc: 'Tap the Coveyspace icon on your home screen and go straight in — no typing a URL.',
+    desc: 'Tap the Coveyspace icon on your home screen and go straight in, no typing a URL.',
   },
   {
     Icon: Lightning,
@@ -254,23 +254,23 @@ const FAQS = [
   },
   {
     q: 'Can we turn off features we don\'t use?',
-    a: "Yes — admins can toggle any feature on or off from the Admin Settings panel. Don't need prayer requests or service schedules? Turn them off and keep your group's space simple.",
+    a: "Yes. Admins can toggle any feature on or off from the Admin Settings panel. Don't need prayer requests or service schedules? Turn them off and keep your group's space simple.",
   },
   {
     q: 'What devices does it work on?',
-    a: 'Coveyspace works on any device with a modern browser — iPhone, Android, iPad, Mac, and PC. Install it to your home screen for the best mobile experience.',
+    a: 'Coveyspace works on any device with a modern browser: iPhone, Android, iPad, Mac, and PC. Install it to your home screen for the best mobile experience.',
   },
   {
     q: 'Can a church manage multiple small groups in Coveyspace?',
-    a: "Yes. Church admins can link multiple community groups under one church account and send rich-text broadcasts — either to all members across every group, or to group leaders only. Each group still keeps its own private chat, meals, and prayer space. Members can also belong to more than one group (a men's group and a couples group, for example) and switch their active group in Settings at any time.",
+    a: "Yes. Church admins can link multiple community groups under one church account and send rich-text broadcasts, either to all members across every group or to group leaders only. Each group still keeps its own private chat, meals, and prayer space. Members can also belong to more than one group (a men's group and a couples group, for example) and switch their active group in Settings at any time.",
   },
   {
     q: 'How is Coveyspace different from Church Center or Planning Center?',
-    a: "Church Center is a church management platform built for entire congregations — designed for staff managing child check-ins, volunteer scheduling, and giving for hundreds of people, starting at $14/month. Coveyspace is built for the small group itself: 8–20 people who meet regularly, share meals, and pray together. Any group leader can start for free in minutes. Church staff can also link their groups under one account for coordinated broadcasts — without the overhead of a full church management system.",
+    a: "Church Center is a church management platform built for entire congregations, designed for staff managing child check-ins, volunteer scheduling, and giving for hundreds of people, starting at $14/month. Coveyspace is built for the small group itself: 8–20 people who meet regularly, share meals, and pray together. Any group leader can start for free in minutes. Church staff can also link their groups under one account for coordinated broadcasts, without the overhead of a full church management system.",
   },
   {
     q: 'How is this different from Flocknote or a group text?',
-    a: "Flocknote is an outbound communication tool — great for email and text blasts to people who may not open an app. A group text works for quick messages. Coveyspace is a two-way community space where members post prayer requests, claim meal spots, sign up to serve, track birthdays, and message one another. It replaces the group text, the Google Sheet signup, and the prayer request chain — organized specifically for how a small group functions week to week.",
+    a: "Flocknote is an outbound communication tool, great for email and text blasts to people who may not open an app. A group text works for quick messages. Coveyspace is a two-way community space where members post prayer requests, claim meal spots, sign up to serve, track birthdays, and message one another. It replaces the group text, the Google Sheet signup, and the prayer request chain, organized specifically for how a small group functions week to week.",
   },
 ]
 
@@ -384,13 +384,13 @@ export default function LandingPage() {
         <link rel="canonical" href="https://www.coveyspace.com" />
         <meta property="og:url" content="https://www.coveyspace.com" />
         <meta property="og:title" content="Coveyspace — Community Group App for Meals, Prayer & Chat" />
-        <meta property="og:description" content="Automated meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
+        <meta property="og:description" content="Automated meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, and discussion guides, all in one app for your small group or house church." />
         <meta property="og:image" content="https://www.coveyspace.com/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Coveyspace — Community Group App for Meals, Prayer & Chat" />
-        <meta name="twitter:description" content="Automated meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, and discussion guides — all in one app for your small group or house church." />
+        <meta name="twitter:description" content="Automated meal signups, events with RSVP, service schedules, group chat, prayer requests, birthday reminders, and discussion guides, all in one app for your small group or house church." />
         <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -427,7 +427,7 @@ export default function LandingPage() {
               transition={{ duration: 0.55, delay: 0.28, ease: EASE }}
               className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8"
             >
-              Coveyspace brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides into one place — built for church small groups, house churches, and Bible study groups. Church admins can link multiple groups under one account and broadcast announcements across all of them at once.
+              Coveyspace brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides all into one single platform. It's built for church small groups, house churches, and Bible study groups. Church admins can link multiple groups under one account and broadcast announcements across all of them at once.
             </motion.p>
 
             <motion.div
@@ -704,13 +704,13 @@ export default function LandingPage() {
           <FadeUp delay={0.1}>
             <div className="flex flex-col gap-5 text-stone-600 text-[1.0625rem] leading-relaxed">
               <p>
-                Hello, my name is Vuong, founder of Coveyspace. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough. Every Sunday after church, we'd scramble to set up a Google Sheets meal signup and post it in GroupMe — it worked, but it was just one more chore at the end of a long week.
+                Hello, my name is Vuong, founder of Coveyspace. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough. Every Sunday after church, we'd scramble to set up a Google Sheets meal signup and post it in GroupMe. It worked, but it was just one more chore at the end of a long week.
               </p>
               <p>
                 Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place. I expanded it to include chat, birthday reminders, prayer requests, service schedules, and discussion guides, creating a true all-in-one app tailored for community groups.
               </p>
               <p>
-                Within a couple of weeks, Coveyspace was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Coveyspace helps your community group, church small group, house church, or Bible study group stay organized — so you can spend less time coordinating and more time focusing on spiritual formation.
+                Within a couple of weeks, Coveyspace was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Coveyspace helps your community group, church small group, house church, or Bible study group stay organized, so you can spend less time coordinating and more time focusing on spiritual formation.
               </p>
               <p className="font-semibold text-stone-800">Vuong Tran, Founder</p>
             </div>
@@ -729,7 +729,7 @@ export default function LandingPage() {
               Use it like an app.
             </h2>
             <p className="text-stone-500 text-base max-w-xl mx-auto">
-              Coveyspace is a web app — no app store required. Add it to your home screen in seconds for the full native experience.
+              Coveyspace is a web app with no app store required. Add it to your home screen in seconds for the full native experience.
             </p>
           </FadeUp>
 
@@ -947,7 +947,7 @@ export default function LandingPage() {
             Have questions?
           </h2>
           <p className="text-stone-400 text-sm leading-relaxed mb-6">
-            Whether you're a pastor, group leader, or just curious — reach out and I'll get back to you.
+            Whether you're a pastor, group leader, or just curious. Reach out and I'll get back to you.
           </p>
           <motion.a
             href="mailto:hello@coveyspace.com"
