@@ -293,7 +293,7 @@ function SplitHeading({ children, className = '', delay = 0, as: Tag = 'h2' }) {
   const inView = useInView(ref, { once: true, amount: 0.35 })
   return (
     <Tag ref={ref} className={className}>
-      {String(children).split(' ').map((word, i, arr) => (
+      {String(children).trim().split(/\s+/).filter(Boolean).map((word, i, arr) => (
         <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
           <motion.span
             initial={{ y: '105%' }}
@@ -1005,26 +1005,30 @@ export default function LandingPage() {
 
       {/* ── Contact ───────────────────────────────────── */}
       <section id="contact" className="px-6 py-20 bg-stone-50 text-center">
-        <FadeUp className="max-w-lg mx-auto">
-          <div className="w-12 h-12 rounded-2xl bg-jade/10 flex items-center justify-center mx-auto mb-5">
-            <EnvelopeSimple size={24} weight="fill" className="text-jade" />
-          </div>
+        <div className="max-w-lg mx-auto">
+          <FadeUp>
+            <div className="w-12 h-12 rounded-2xl bg-jade/10 flex items-center justify-center mx-auto mb-5">
+              <EnvelopeSimple size={24} weight="fill" className="text-jade" />
+            </div>
+          </FadeUp>
           <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
             Have questions?
           </SplitHeading>
-          <p className="text-stone-400 text-sm leading-relaxed mb-6">
-            Whether you're a pastor, group leader, or just curious. Reach out and I'll get back to you.
-          </p>
-          <motion.a
-            href="mailto:hello@coveyspace.com"
-            whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-            whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-jade hover:bg-jade-700 text-white font-semibold rounded-2xl text-sm transition-colors"
-          >
-            <EnvelopeSimple size={16} weight="bold" />
-            hello@coveyspace.com
-          </motion.a>
-        </FadeUp>
+          <FadeUp delay={0.35}>
+            <p className="text-stone-400 text-sm leading-relaxed mb-6">
+              Whether you're a pastor, group leader, or just curious. Reach out and I'll get back to you.
+            </p>
+            <motion.a
+              href="mailto:hello@coveyspace.com"
+              whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-jade hover:bg-jade-700 text-white font-semibold rounded-2xl text-sm transition-colors"
+            >
+              <EnvelopeSimple size={16} weight="bold" />
+              hello@coveyspace.com
+            </motion.a>
+          </FadeUp>
+        </div>
       </section>
 
       <Footer />
