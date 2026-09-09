@@ -510,22 +510,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Feature marquee belt ─────────────────────── */}
-      <div className="overflow-hidden bg-jade py-3 select-none" aria-hidden="true">
-        <div className="marquee-features-track">
-          {[...FEATURES, ...FEATURES].map(({ title }, i) => (
-            <span
-              key={i}
-              className="inline-flex items-center gap-2.5 text-white/90 font-semibold text-sm tracking-wide mx-8 shrink-0"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-white/50 shrink-0" />
-              {title}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Features overview grid ────────────────────── */}
+{/* ── Features overview grid ────────────────────── */}
       <section id="features" className="px-6 pt-14 pb-20 lg:py-20 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center">
