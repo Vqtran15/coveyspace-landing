@@ -1,17 +1,18 @@
-import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { List, X } from '@phosphor-icons/react'
 
-const LOGIN_URL   = 'https://app.coveyspace.com/login'
-const SIGNUP_URL  = 'https://app.coveyspace.com/login?tab=signup'
+const LOGIN_URL  = 'https://app.coveyspace.com/login'
+const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
+
+const NAV_LINKS = [
+  { label: 'About',       href: '/#about' },
+  { label: 'Install App', href: '/#install' },
+  { label: 'Contact',     href: '/#contact' },
+]
 
 export default function Nav() {
-  const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
-
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [pathname])
 
   return (
     <>
@@ -28,30 +29,15 @@ export default function Nav() {
 
           {/* Desktop links */}
           <div className="hidden sm:flex items-center gap-1">
-            <Link
-              to="/about"
-              className={`px-3 py-2 text-sm font-semibold rounded-xl transition-colors ${
-                pathname === '/about' ? 'text-jade bg-jade/10' : 'text-stone-500 hover:text-stone-800 hover:bg-stone-50'
-              }`}
-            >
-              About
-            </Link>
-            <Link
-              to="/install"
-              className={`px-3 py-2 text-sm font-semibold rounded-xl transition-colors ${
-                pathname === '/install' ? 'text-jade bg-jade/10' : 'text-stone-500 hover:text-stone-800 hover:bg-stone-50'
-              }`}
-            >
-              Install App
-            </Link>
-            <Link
-              to="/contact"
-              className={`px-3 py-2 text-sm font-semibold rounded-xl transition-colors ${
-                pathname === '/contact' ? 'text-jade bg-jade/10' : 'text-stone-500 hover:text-stone-800 hover:bg-stone-50'
-              }`}
-            >
-              Contact
-            </Link>
+            {NAV_LINKS.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                className="px-3 py-2 text-sm font-semibold rounded-xl transition-colors text-stone-500 hover:text-stone-800 hover:bg-stone-50"
+              >
+                {label}
+              </a>
+            ))}
             <button
               onClick={() => { window.location.href = LOGIN_URL }}
               className="ml-2 px-4 py-2 border border-stone-200 text-stone-600 text-sm font-semibold rounded-xl hover:bg-stone-50 transition-colors"
@@ -82,30 +68,16 @@ export default function Nav() {
         <div className="sm:hidden fixed inset-0 z-40">
           <div className="absolute inset-0 bg-black/20" onClick={() => setMenuOpen(false)} />
           <div className="absolute inset-x-0 top-[65px] bg-white border-b border-stone-200 shadow-xl px-6 py-4 flex flex-col gap-1 animate-menu-enter">
-            <Link
-              to="/about"
-              className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
-                pathname === '/about' ? 'text-jade bg-jade/10' : 'text-stone-700 hover:bg-stone-50'
-              }`}
-            >
-              About
-            </Link>
-            <Link
-              to="/install"
-              className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
-                pathname === '/install' ? 'text-jade bg-jade/10' : 'text-stone-700 hover:bg-stone-50'
-              }`}
-            >
-              Install App
-            </Link>
-            <Link
-              to="/contact"
-              className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
-                pathname === '/contact' ? 'text-jade bg-jade/10' : 'text-stone-700 hover:bg-stone-50'
-              }`}
-            >
-              Contact
-            </Link>
+            {NAV_LINKS.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                className="px-4 py-3 rounded-xl text-sm font-semibold text-stone-700 hover:bg-stone-50 transition-colors"
+              >
+                {label}
+              </a>
+            ))}
             <div className="border-t border-stone-100 mt-2 pt-3 flex flex-col gap-2">
               <button
                 onClick={() => { window.location.href = LOGIN_URL }}

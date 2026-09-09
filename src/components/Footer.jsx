@@ -7,9 +7,9 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-6">
           <span className="font-league-gothic text-2xl text-stone-400 tracking-wide">Coveyspace</span>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link to="/about"   className="text-stone-300 hover:text-white text-sm transition-colors">About</Link>
-            <Link to="/contact" className="text-stone-300 hover:text-white text-sm transition-colors">Contact</Link>
-            <Link to="/install" className="text-stone-300 hover:text-white text-sm transition-colors">Install App</Link>
+            <a href="/#about"   className="text-stone-300 hover:text-white text-sm transition-colors">About</a>
+            <a href="/#contact" className="text-stone-300 hover:text-white text-sm transition-colors">Contact</a>
+            <a href="/#install" className="text-stone-300 hover:text-white text-sm transition-colors">Install App</a>
             <Link to="/privacy" className="text-stone-300 hover:text-white text-sm transition-colors">Privacy Policy</Link>
           </div>
         </div>
