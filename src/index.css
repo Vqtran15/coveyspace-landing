@@ -39,3 +39,11 @@ html {
     animation-duration: 32s;
   }
 }
+
+/* Feature name marquee belt */
+.marquee-features-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+  will-change: transform;
+}

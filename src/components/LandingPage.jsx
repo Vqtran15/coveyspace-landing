@@ -5,13 +5,14 @@ import {
   Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus, Megaphone, UsersThree,
   ShieldCheck, DeviceMobile, Browser, ArrowsOut, Lightning,
 } from '@phosphor-icons/react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { motion, AnimatePresence, useInView, useScroll, useSpring } from 'framer-motion'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 import FadeUp from './FadeUp.jsx'
 
 const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
 const EASE = [0.25, 0.46, 0.45, 0.94]
+const REVEAL_EASE = [0.22, 1, 0.36, 1]
 
 // ── Feature overview grid ─────────────────────────────
 const FEATURES = [
@@ -276,19 +277,45 @@ const FAQS = [
 
 // ── Animation variants ────────────────────────────────
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+  hidden: { opacity: 0, y: 52, scale: 0.94 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.65, ease: REVEAL_EASE } },
 }
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+  visible: { transition: { staggerChildren: 0.065, delayChildren: 0.05 } },
 }
 
 const CTA_WORDS = 'Bring your whole group together.'.split(' ')
 
+// ── Split heading: word-by-word clip-mask reveal ──────
+function SplitHeading({ children, className = '', delay = 0, as: Tag = 'h2' }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, amount: 0.35 })
+  return (
+    <Tag ref={ref} className={className}>
+      {String(children).split(' ').map((word, i, arr) => (
+        <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
+          <motion.span
+            initial={{ y: '105%' }}
+            animate={inView ? { y: 0 } : { y: '105%' }}
+            transition={{ duration: 0.7, delay: delay + i * 0.08, ease: REVEAL_EASE }}
+            style={{ display: 'inline-block' }}
+          >
+            {word}{i < arr.length - 1 ? ' ' : ''}
+          </motion.span>
+        </span>
+      ))}
+    </Tag>
+  )
+}
+
 export default function LandingPage() {
   const [leaving, setLeaving] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
+
+  // Scroll progress bar
+  const { scrollYProgress } = useScroll()
+  const progressScaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
 
   // Feature tour — sticky scroll (desktop)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -378,6 +405,11 @@ export default function LandingPage() {
 
   return (
     <div className={`min-h-screen bg-white font-sans transition-[opacity,transform] duration-300 ease-in-out ${leaving ? 'opacity-0 translate-y-3' : 'opacity-100'}`}>
+      {/* Scroll progress bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[3px] bg-jade origin-left z-[200] pointer-events-none"
+        style={{ scaleX: progressScaleX }}
+      />
       <Helmet>
         <title>Coveyspace — Community Group App for Meals, Prayer & Chat</title>
         <meta name="description" content="The all-in-one app for church small groups, house churches, Bible study groups, and Christian community groups. Meal signups, group chat, prayer requests, discussion guides, and more." />
@@ -412,14 +444,20 @@ export default function LandingPage() {
               Gathering community made simple
             </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.12, ease: EASE }}
-              className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-none mb-6"
-            >
-              One place for your<br />whole group.
-            </motion.h1>
+            <h1 className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-[1.05] mb-6">
+              {['One place for your', 'whole group.'].map((line, li) => (
+                <div key={li} style={{ overflow: 'hidden' }}>
+                  <motion.span
+                    initial={{ y: '110%' }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.9, delay: 0.08 + li * 0.18, ease: REVEAL_EASE }}
+                    style={{ display: 'block' }}
+                  >
+                    {line}
+                  </motion.span>
+                </div>
+              ))}
+            </h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -472,14 +510,29 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── Feature marquee belt ─────────────────────── */}
+      <div className="overflow-hidden bg-jade py-3 select-none" aria-hidden="true">
+        <div className="marquee-features-track">
+          {[...FEATURES, ...FEATURES].map(({ title }, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center gap-2.5 text-white/90 font-semibold text-sm tracking-wide mx-8 shrink-0"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-white/50 shrink-0" />
+              {title}
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* ── Features overview grid ────────────────────── */}
       <section id="features" className="px-6 pt-14 pb-20 lg:py-20 bg-white">
         <div className="max-w-6xl mx-auto">
-          <FadeUp className="text-center">
-            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-12">
+          <div className="text-center">
+            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-12">
               Everything your group needs.
-            </h2>
-          </FadeUp>
+            </SplitHeading>
+          </div>
 
           <motion.div
             ref={gridRef}
@@ -508,11 +561,11 @@ export default function LandingPage() {
       {/* ── How it works ─────────────────────────────── */}
       <section className="px-6 py-20 bg-stone-50">
         <div className="max-w-4xl mx-auto">
-          <FadeUp className="text-center mb-14">
-            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
+          <div className="text-center mb-14">
+            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
               Up and running in minutes.
-            </h2>
-          </FadeUp>
+            </SplitHeading>
+          </div>
 
           <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {STEPS.map(({ step, title, desc }, i) => (
@@ -542,11 +595,11 @@ export default function LandingPage() {
       {/* ── App Tour — feature deep-dive ─────────────── */}
       <section id="tour" className="bg-white">
         <div className="border-t border-stone-100 px-6 pt-14 pb-8 text-center">
-          <FadeUp>
-            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-2">
-              Everything inside Coveyspace.
-            </h2>
-            <p className="lg:hidden text-stone-400 text-base">One platform for every part of your community group.</p>
+          <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-2">
+            Everything inside Coveyspace.
+          </SplitHeading>
+          <FadeUp delay={0.5} className="lg:hidden">
+            <p className="text-stone-400 text-base">One platform for every part of your community group.</p>
           </FadeUp>
         </div>
 
@@ -661,22 +714,24 @@ export default function LandingPage() {
       {/* ── What makes Coveyspace different ──────────── */}
       <section className="px-6 py-20 bg-stone-50">
         <div className="max-w-4xl mx-auto">
-          <FadeUp className="text-center mb-12">
-            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
+          <div className="text-center mb-12">
+            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
               What makes Coveyspace different.
-            </h2>
-            <p className="text-stone-400 text-sm">
-              Designed specifically for small groups who share life together week after week.
-            </p>
-          </FadeUp>
+            </SplitHeading>
+            <FadeUp delay={0.55}>
+              <p className="text-stone-400 text-sm">
+                Designed specifically for small groups who share life together week after week.
+              </p>
+            </FadeUp>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {DIFF_CARDS.map(({ label, title, desc }, i) => (
               <FadeUp key={label} delay={i * 0.1}>
                 <motion.div
-                  whileHover={{ rotateX: -2, rotateY: 3, y: -4, scale: 1.01 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  style={{ transformPerspective: 800 }}
+                  whileHover={{ rotateX: -4, rotateY: 6, y: -10, scale: 1.04, boxShadow: '0 24px 48px -8px rgba(0,0,0,0.14)' }}
+                  transition={{ type: 'spring', stiffness: 280, damping: 18 }}
+                  style={{ transformPerspective: 900 }}
                   className="rounded-2xl border border-stone-200 bg-white p-6"
                 >
                   <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">{label}</p>
@@ -692,46 +747,58 @@ export default function LandingPage() {
       {/* ── Our Story ─────────────────────────────────── */}
       <section id="about" className="px-6 py-20 bg-white">
         <div className="max-w-2xl mx-auto">
-          <FadeUp className="text-center mb-10">
-            <div className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
-              Our Story
-            </div>
-            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide">
+          <div className="text-center mb-10">
+            <FadeUp className="mb-6">
+              <div className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full">
+                Our Story
+              </div>
+            </FadeUp>
+            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide">
               Built for groups who break bread around a table.
-            </h2>
-          </FadeUp>
+            </SplitHeading>
+          </div>
 
-          <FadeUp delay={0.1}>
-            <div className="flex flex-col gap-5 text-stone-600 text-[1.0625rem] leading-relaxed">
+          <div className="flex flex-col gap-5 text-stone-600 text-[1.0625rem] leading-relaxed">
+            <FadeUp delay={0.08}>
               <p>
                 Hello, my name is Vuong, founder of Coveyspace. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough. Every Sunday after church, we'd scramble to set up a Google Sheets meal signup and post it in GroupMe. It worked, but it was just one more chore at the end of a long week.
               </p>
+            </FadeUp>
+            <FadeUp delay={0.18}>
               <p>
                 Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place. I expanded it to include chat, birthday reminders, prayer requests, service schedules, and discussion guides, creating a true all-in-one app tailored for community groups.
               </p>
+            </FadeUp>
+            <FadeUp delay={0.28}>
               <p>
                 Within a couple of weeks, Coveyspace was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Coveyspace helps your community group, church small group, house church, or Bible study group stay organized, so you can spend less time coordinating and more time focusing on spiritual formation.
               </p>
+            </FadeUp>
+            <FadeUp delay={0.38}>
               <p className="font-semibold text-stone-800">Vuong Tran, Founder</p>
-            </div>
-          </FadeUp>
+            </FadeUp>
+          </div>
         </div>
       </section>
 
       {/* ── Install App ───────────────────────────────── */}
       <section id="install" className="px-6 py-20 bg-stone-50">
         <div className="max-w-4xl mx-auto">
-          <FadeUp className="text-center mb-12">
-            <div className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
-              Install App
-            </div>
-            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
+          <div className="text-center mb-12">
+            <FadeUp className="mb-6">
+              <div className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full">
+                Install App
+              </div>
+            </FadeUp>
+            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
               Use it like an app.
-            </h2>
-            <p className="text-stone-500 text-base max-w-xl mx-auto">
-              Coveyspace is a web app with no app store required. Add it to your home screen in seconds for the full native experience.
-            </p>
-          </FadeUp>
+            </SplitHeading>
+            <FadeUp delay={0.45}>
+              <p className="text-stone-500 text-base max-w-xl mx-auto">
+                Coveyspace is a web app with no app store required. Add it to your home screen in seconds for the full native experience.
+              </p>
+            </FadeUp>
+          </div>
 
           {/* Why install benefits */}
           <motion.div
@@ -850,11 +917,9 @@ export default function LandingPage() {
       {/* ── FAQ ───────────────────────────────────────── */}
       <section className="px-6 py-20 bg-white">
         <div className="max-w-2xl mx-auto">
-          <FadeUp>
-            <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">
-              Common questions.
-            </h2>
-          </FadeUp>
+          <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">
+            Common questions.
+          </SplitHeading>
 
           <FadeUp delay={0.1}>
             <div className="flex flex-col divide-y divide-stone-200 border border-stone-200 rounded-2xl overflow-hidden">
@@ -907,15 +972,16 @@ export default function LandingPage() {
             className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6"
           >
             {CTA_WORDS.map((word, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 22 }}
-                animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
-                transition={{ delay: i * 0.09, duration: 0.5, ease: EASE }}
-                className="inline-block mr-[0.22em]"
-              >
-                {word}
-              </motion.span>
+              <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.22em' }}>
+                <motion.span
+                  initial={{ y: '110%' }}
+                  animate={ctaInView ? { y: 0 } : { y: '110%' }}
+                  transition={{ delay: i * 0.1, duration: 0.7, ease: REVEAL_EASE }}
+                  style={{ display: 'inline-block' }}
+                >
+                  {word}
+                </motion.span>
+              </span>
             ))}
           </h2>
 
@@ -943,9 +1009,9 @@ export default function LandingPage() {
           <div className="w-12 h-12 rounded-2xl bg-jade/10 flex items-center justify-center mx-auto mb-5">
             <EnvelopeSimple size={24} weight="fill" className="text-jade" />
           </div>
-          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
+          <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
             Have questions?
-          </h2>
+          </SplitHeading>
           <p className="text-stone-400 text-sm leading-relaxed mb-6">
             Whether you're a pastor, group leader, or just curious. Reach out and I'll get back to you.
           </p>
