@@ -294,7 +294,7 @@ function SplitHeading({ children, className = '', delay = 0, as: Tag = 'h2' }) {
   return (
     <Tag ref={ref} className={className}>
       {String(children).trim().split(/\s+/).filter(Boolean).map((word, i, arr) => (
-        <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
+        <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.12em', marginBottom: '-0.12em' }}>
           <motion.span
             initial={{ y: '105%' }}
             animate={inView ? { y: 0 } : { y: '105%' }}
@@ -446,7 +446,7 @@ export default function LandingPage() {
 
             <h1 className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-[1.05] mb-6">
               {['One place for your', 'whole group.'].map((line, li) => (
-                <div key={li} style={{ overflow: 'hidden' }}>
+                <div key={li} style={{ overflow: 'hidden', paddingBottom: '0.12em', marginBottom: '-0.12em' }}>
                   <motion.span
                     initial={{ y: '110%' }}
                     animate={{ y: 0 }}
@@ -497,6 +497,7 @@ export default function LandingPage() {
                 <div className="rounded-[1.5rem] overflow-hidden">
                   <video
                     src="/videos/home-screen.mov"
+                    poster="/screenshots/home-screen.PNG"
                     autoPlay
                     muted
                     loop
