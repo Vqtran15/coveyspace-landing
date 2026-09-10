@@ -673,7 +673,7 @@ export default function LandingPage() {
         {/* Desktop: sticky scroll */}
         <div className="hidden lg:block px-6 pb-0">
           <div className="max-w-5xl mx-auto flex gap-20 items-start">
-            <div className="flex-1 pb-[20vh]">
+            <div className="flex-1 pb-[10vh]">
               {FEATURE_TOUR.map((feature, i) => (
                 <div
                   key={feature.title}
