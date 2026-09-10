@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { List, X } from '@phosphor-icons/react'
+import { motion } from 'framer-motion'
 
 const LOGIN_URL  = 'https://app.coveyspace.com/login'
 const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
@@ -38,18 +39,22 @@ export default function Nav() {
                 {label}
               </a>
             ))}
-            <button
+            <motion.button
               onClick={() => { window.location.href = LOGIN_URL }}
+              whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+              whileTap={{ scale: 0.97 }}
               className="ml-2 px-4 py-2 border border-stone-200 text-stone-600 text-sm font-semibold rounded-xl hover:bg-stone-50 transition-colors"
             >
               Log in
-            </button>
-            <a
+            </motion.button>
+            <motion.a
               href={SIGNUP_URL}
+              whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+              whileTap={{ scale: 0.97 }}
               className="ml-1 px-4 py-2 bg-jade text-white text-sm font-semibold rounded-xl hover:bg-jade-700 transition-colors"
             >
               Get started
-            </a>
+            </motion.a>
           </div>
 
           {/* Mobile hamburger */}

@@ -531,7 +531,10 @@ export default function LandingPage() {
               <motion.div
                 key={title}
                 variants={cardVariants}
-                className="rounded-2xl border border-stone-100 p-6 shadow-sm hover:shadow-md transition-shadow"
+                whileHover={{ rotateX: -4, rotateY: 6, y: -10, scale: 1.04, boxShadow: '0 24px 48px -8px rgba(0,0,0,0.14)' }}
+                transition={{ type: 'spring', stiffness: 280, damping: 18 }}
+                style={{ transformPerspective: 900 }}
+                className="rounded-2xl border border-stone-100 p-6 shadow-sm"
               >
                 <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${color}`}>
                   <Icon size={22} weight="fill" />
