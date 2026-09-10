@@ -800,6 +800,8 @@ export default function LandingPage() {
               <motion.div
                 key={title}
                 variants={cardVariants}
+                whileHover={{ rotateX: -4, rotateY: 6, y: -10, scale: 1.04, boxShadow: '0 24px 48px -8px rgba(0,0,0,0.14)', transition: { type: 'spring', stiffness: 280, damping: 18 } }}
+                style={{ transformPerspective: 900 }}
                 className="flex items-start gap-4 p-5 rounded-2xl border border-stone-200 bg-white shadow-sm"
               >
                 <div className="w-10 h-10 rounded-xl bg-jade/10 text-jade flex items-center justify-center shrink-0">
