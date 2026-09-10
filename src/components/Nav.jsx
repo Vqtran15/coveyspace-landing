@@ -24,7 +24,7 @@ export default function Nav() {
 
   // Transparent→frosted + active section — one listener
   useEffect(() => {
-    const unsub = scrollY.on('change', v => {
+    const check = v => {
       setScrolled(v > 40)
 
       const mid = v + window.innerHeight * 0.4
@@ -34,7 +34,10 @@ export default function Nav() {
         if (el && el.offsetTop <= mid) active = id
       }
       setActiveSection(active)
-    })
+    }
+
+    const unsub = scrollY.on('change', check)
+    check(scrollY.get()) // sync state immediately on mount
     return unsub
   }, [scrollY])
 
