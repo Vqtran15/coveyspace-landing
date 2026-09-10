@@ -5,7 +5,7 @@ import {
   Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus, Megaphone, UsersThree,
   ShieldCheck, DeviceMobile, Browser, ArrowsOut, Lightning,
 } from '@phosphor-icons/react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 import FadeUp from './FadeUp.jsx'
@@ -335,6 +335,28 @@ export default function LandingPage() {
   const benefitsInView = useInView(benefitsRef,   { once: true, amount: 0.1 })
   const installInView  = useInView(installRef,    { once: true, amount: 0.15 })
 
+  // Parallax refs
+  const heroSectionRef = useRef(null)
+  const storyRef       = useRef(null)
+  const ctaSectionRef  = useRef(null)
+  const diffSectionRef = useRef(null)
+
+  // Parallax scroll trackers
+  const { scrollYProgress: heroScroll } = useScroll({ target: heroSectionRef, offset: ['start start', 'end start'] })
+  const { scrollYProgress: storyScroll } = useScroll({ target: storyRef, offset: ['start end', 'end start'] })
+  const { scrollYProgress: ctaScroll } = useScroll({ target: ctaSectionRef, offset: ['start end', 'end start'] })
+  const { scrollYProgress: diffScroll } = useScroll({ target: diffSectionRef, offset: ['start end', 'end start'] })
+
+  // Parallax transforms
+  const heroPhoneY  = useTransform(heroScroll,  [0, 1], ['0px', '-80px'])
+  const storyP1Y    = useTransform(storyScroll, [0, 1], ['12px', '-18px'])
+  const storyP2Y    = useTransform(storyScroll, [0, 1], ['22px', '-30px'])
+  const storyP3Y    = useTransform(storyScroll, [0, 1], ['30px', '-24px'])
+  const storyP4Y    = useTransform(storyScroll, [0, 1], ['8px',  '-12px'])
+  const ctaContentY = useTransform(ctaScroll,   [0, 1], ['28px', '-28px'])
+  const diffBlobY   = useTransform(diffScroll,  [0, 1], ['0px',  '-70px'])
+  const ctaBlobY    = useTransform(ctaScroll,   [0, 1], ['-10px', '50px'])
+
   // Track which feature is centred in the viewport (for sticky phone)
   useEffect(() => {
     function onScroll() {
@@ -422,7 +444,7 @@ export default function LandingPage() {
       <Nav />
 
       {/* ── Hero ──────────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-10 lg:pt-28 lg:pb-24">
+      <section ref={heroSectionRef} className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-10 lg:pt-28 lg:pb-24">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-10">
 
           <div className="flex-1 text-center lg:text-left">
@@ -480,6 +502,7 @@ export default function LandingPage() {
           </div>
 
           <div className="hidden lg:flex flex-1 items-center justify-center">
+            <motion.div style={{ y: heroPhoneY }}>
             <motion.div
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
@@ -497,6 +520,7 @@ export default function LandingPage() {
                   />
                 </div>
               </div>
+            </motion.div>
             </motion.div>
           </div>
         </div>
@@ -691,8 +715,12 @@ export default function LandingPage() {
       </section>
 
       {/* ── What makes Coveyspace different ──────────── */}
-      <section className="px-6 py-20 bg-stone-50">
-        <div className="max-w-4xl mx-auto">
+      <section ref={diffSectionRef} className="px-6 py-20 bg-stone-50 relative overflow-hidden">
+        <motion.div
+          style={{ y: diffBlobY }}
+          className="absolute -right-40 -top-40 w-[560px] h-[560px] rounded-full bg-jade/[0.06] pointer-events-none"
+        />
+        <div className="max-w-4xl mx-auto relative">
           <div className="text-center mb-12">
             <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
               What makes Coveyspace different.
@@ -724,7 +752,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── Our Story ─────────────────────────────────── */}
-      <section id="about" className="px-6 py-20 bg-white">
+      <section ref={storyRef} id="about" className="px-6 py-20 bg-white">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
             <FadeUp className="mb-6">
@@ -738,24 +766,32 @@ export default function LandingPage() {
           </div>
 
           <div className="flex flex-col gap-5 text-stone-600 text-[1.0625rem] leading-relaxed">
-            <FadeUp delay={0.08}>
-              <p>
-                Hello, my name is Vuong, founder of Coveyspace. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough. Every Sunday after church, we'd scramble to set up a Google Sheets meal signup and post it in GroupMe. It worked, but it was just one more chore at the end of a long week.
-              </p>
-            </FadeUp>
-            <FadeUp delay={0.18}>
-              <p>
-                Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place. I expanded it to include chat, birthday reminders, prayer requests, service schedules, and discussion guides, creating a true all-in-one app tailored for community groups.
-              </p>
-            </FadeUp>
-            <FadeUp delay={0.28}>
-              <p>
-                Within a couple of weeks, Coveyspace was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Coveyspace helps your community group, church small group, house church, or Bible study group stay organized, so you can spend less time coordinating and more time focusing on spiritual formation.
-              </p>
-            </FadeUp>
-            <FadeUp delay={0.38}>
-              <p className="font-semibold text-stone-800">Vuong Tran, Founder</p>
-            </FadeUp>
+            <motion.div style={{ y: storyP1Y }}>
+              <FadeUp delay={0.08}>
+                <p>
+                  Hello, my name is Vuong, founder of Coveyspace. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough. Every Sunday after church, we'd scramble to set up a Google Sheets meal signup and post it in GroupMe. It worked, but it was just one more chore at the end of a long week.
+                </p>
+              </FadeUp>
+            </motion.div>
+            <motion.div style={{ y: storyP2Y }}>
+              <FadeUp delay={0.18}>
+                <p>
+                  Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place. I expanded it to include chat, birthday reminders, prayer requests, service schedules, and discussion guides, creating a true all-in-one app tailored for community groups.
+                </p>
+              </FadeUp>
+            </motion.div>
+            <motion.div style={{ y: storyP3Y }}>
+              <FadeUp delay={0.28}>
+                <p>
+                  Within a couple of weeks, Coveyspace was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Coveyspace helps your community group, church small group, house church, or Bible study group stay organized, so you can spend less time coordinating and more time focusing on spiritual formation.
+                </p>
+              </FadeUp>
+            </motion.div>
+            <motion.div style={{ y: storyP4Y }}>
+              <FadeUp delay={0.38}>
+                <p className="font-semibold text-stone-800">Vuong Tran, Founder</p>
+              </FadeUp>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -946,8 +982,12 @@ export default function LandingPage() {
       </section>
 
       {/* ── Final CTA ─────────────────────────────────── */}
-      <section className="px-6 py-20 lg:py-28 bg-jade text-center">
-        <div className="max-w-4xl mx-auto">
+      <section ref={ctaSectionRef} className="px-6 py-20 lg:py-28 bg-jade text-center relative overflow-hidden">
+        <motion.div
+          style={{ y: ctaBlobY }}
+          className="absolute -left-32 -bottom-32 w-[480px] h-[480px] rounded-full bg-white/[0.05] pointer-events-none"
+        />
+        <motion.div style={{ y: ctaContentY }} className="max-w-4xl mx-auto relative">
           <h2
             ref={ctaHeadingRef}
             className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6"
@@ -981,7 +1021,7 @@ export default function LandingPage() {
               Sign up for free <ArrowRight size={18} weight="bold" />
             </motion.button>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ── Contact ───────────────────────────────────── */}
