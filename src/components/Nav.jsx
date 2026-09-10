@@ -14,6 +14,15 @@ const NAV_LINKS = [
 
 const SECTION_IDS = NAV_LINKS.map(l => l.sectionId)
 
+const menuItemVariants = {
+  open:   { opacity: 1, y: 0,  transition: { type: 'spring', stiffness: 380, damping: 28 } },
+  closed: { opacity: 0, y: -6 },
+}
+const menuContainerVariants = {
+  open:   { transition: { staggerChildren: 0.055, delayChildren: 0.05 } },
+  closed: {},
+}
+
 export default function Nav() {
   const [menuOpen, setMenuOpen]         = useState(false)
   const [scrolled, setScrolled]         = useState(false)
@@ -132,37 +141,45 @@ export default function Nav() {
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
-              style={{ top: scrolled ? 53 : 65 }}
-              className="absolute inset-x-0 bg-white border-b border-stone-200 shadow-xl px-6 py-4 flex flex-col gap-1"
+              initial={{ opacity: 0, y: -16, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+              style={{ top: scrolled ? 53 : 65, transformOrigin: 'top center' }}
+              className="absolute inset-x-0 bg-white border-b border-stone-200 shadow-xl px-6 py-4"
             >
-              {NAV_LINKS.map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  onClick={() => setMenuOpen(false)}
-                  className="px-4 py-3 rounded-xl text-sm font-semibold text-stone-700 hover:bg-stone-50 transition-colors"
-                >
-                  {label}
-                </a>
-              ))}
-              <div className="border-t border-stone-100 mt-2 pt-3 flex flex-col gap-2">
-                <button
-                  onClick={() => { window.location.href = LOGIN_URL }}
-                  className="w-full py-3 border border-stone-200 text-stone-700 font-semibold rounded-xl text-sm hover:bg-stone-50 transition-colors"
-                >
-                  Log in
-                </button>
-                <a
-                  href={SIGNUP_URL}
-                  className="w-full py-3 bg-jade text-white font-semibold rounded-xl text-sm hover:bg-jade-700 transition-colors text-center"
-                >
-                  Get started
-                </a>
-              </div>
+              <motion.div
+                variants={menuContainerVariants}
+                initial="closed"
+                animate="open"
+                className="flex flex-col gap-1"
+              >
+                {NAV_LINKS.map(({ label, href }) => (
+                  <motion.a
+                    key={label}
+                    href={href}
+                    variants={menuItemVariants}
+                    onClick={() => setMenuOpen(false)}
+                    className="px-4 py-3 rounded-xl text-sm font-semibold text-stone-700 hover:bg-stone-50 transition-colors"
+                  >
+                    {label}
+                  </motion.a>
+                ))}
+                <motion.div variants={menuItemVariants} className="border-t border-stone-100 mt-2 pt-3 flex flex-col gap-2">
+                  <button
+                    onClick={() => { window.location.href = LOGIN_URL }}
+                    className="w-full py-3 border border-stone-200 text-stone-700 font-semibold rounded-xl text-sm hover:bg-stone-50 transition-colors"
+                  >
+                    Log in
+                  </button>
+                  <a
+                    href={SIGNUP_URL}
+                    className="w-full py-3 bg-jade text-white font-semibold rounded-xl text-sm hover:bg-jade-700 transition-colors text-center"
+                  >
+                    Get started
+                  </a>
+                </motion.div>
+              </motion.div>
             </motion.div>
           </div>
         )}
