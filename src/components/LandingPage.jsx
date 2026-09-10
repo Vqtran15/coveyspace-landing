@@ -290,7 +290,7 @@ const CTA_WORDS = 'Bring your whole group together.'.split(' ')
 // ── Split heading: word-by-word clip-mask reveal ──────
 function SplitHeading({ children, className = '', delay = 0, as: Tag = 'h2' }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, amount: 0.35 })
+  const inView = useInView(ref, { once: false, amount: 0.35 })
   return (
     <Tag ref={ref} className={className}>
       {String(children).trim().split(/\s+/).filter(Boolean).map((word, i, arr) => (
@@ -329,11 +329,11 @@ export default function LandingPage() {
   const benefitsRef    = useRef(null)
   const installRef     = useRef(null)
 
-  const gridInView     = useInView(gridRef,       { once: true, amount: 0.1 })
-  const stepsInView    = useInView(stepsRef,      { once: true, amount: 0.15 })
-  const ctaInView      = useInView(ctaHeadingRef, { once: true, amount: 0.4 })
-  const benefitsInView = useInView(benefitsRef,   { once: true, amount: 0.1 })
-  const installInView  = useInView(installRef,    { once: true, amount: 0.15 })
+  const gridInView     = useInView(gridRef,       { once: false, amount: 0.1 })
+  const stepsInView    = useInView(stepsRef,      { once: false, amount: 0.15 })
+  const ctaInView      = useInView(ctaHeadingRef, { once: false, amount: 0.4 })
+  const benefitsInView = useInView(benefitsRef,   { once: false, amount: 0.1 })
+  const installInView  = useInView(installRef,    { once: false, amount: 0.15 })
 
   // Parallax refs
   const heroSectionRef = useRef(null)

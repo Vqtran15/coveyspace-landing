@@ -5,7 +5,7 @@ const EASE = [0.25, 0.46, 0.45, 0.94]
 
 export default function FadeUp({ children, delay = 0, className = '', amount = 0.15, as: Tag = 'div' }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, amount })
+  const inView = useInView(ref, { once: false, amount })
   const MotionTag = motion[Tag] || motion.div
 
   return (
