@@ -354,8 +354,8 @@ export default function LandingPage() {
   const storyP3Y    = useTransform(storyScroll, [0, 1], ['30px', '-24px'])
   const storyP4Y    = useTransform(storyScroll, [0, 1], ['8px',  '-12px'])
   const ctaContentY = useTransform(ctaScroll,   [0, 1], ['28px', '-28px'])
-  const diffBlobY   = useTransform(diffScroll,  [0, 1], ['0px',  '-70px'])
-  const ctaBlobY    = useTransform(ctaScroll,   [0, 1], ['-10px', '50px'])
+  const diffBlobY   = useTransform(diffScroll,  [0, 1], ['0px',   '-160px'])
+  const ctaBlobY    = useTransform(ctaScroll,   [0, 1], ['-20px', '120px'])
 
   // Track which feature is centred in the viewport (for sticky phone)
   useEffect(() => {
