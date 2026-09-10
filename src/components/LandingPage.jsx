@@ -769,21 +769,21 @@ export default function LandingPage() {
             <motion.div style={{ y: storyP1Y }}>
               <FadeUp delay={0.08}>
                 <p>
-                  Hello, my name is Vuong, founder of Coveyspace. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough. Every Sunday after church, we'd scramble to set up a Google Sheets meal signup and post it in GroupMe. It worked, but it was just one more chore at the end of a long week.
+                  Hello, my name is Vuong, founder of Coveyspace. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough.
                 </p>
               </FadeUp>
             </motion.div>
             <motion.div style={{ y: storyP2Y }}>
               <FadeUp delay={0.18}>
                 <p>
-                  Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place. I expanded it to include chat, birthday reminders, prayer requests, service schedules, and discussion guides, creating a true all-in-one app tailored for community groups.
+                  Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place including chat, birthday reminders, prayer requests, service schedules, and discussion guides.
                 </p>
               </FadeUp>
             </motion.div>
             <motion.div style={{ y: storyP3Y }}>
               <FadeUp delay={0.28}>
                 <p>
-                  Within a couple of weeks, Coveyspace was live, completely eliminating the need for Google Sheets and chat apps. My hope is that Coveyspace helps your community group, church small group, house church, or Bible study group stay organized, so you can spend less time coordinating and more time focusing on spiritual formation.
+                  My hope is that Coveyspace helps your community group, church small group, house church, or Bible study group stay organized, so you can spend less time coordinating and more time focusing on spiritual formation.
                 </p>
               </FadeUp>
             </motion.div>
