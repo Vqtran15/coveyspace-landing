@@ -5,7 +5,7 @@ import {
   Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus, Megaphone, UsersThree,
   ShieldCheck, DeviceMobile, Browser, ArrowsOut, Lightning,
 } from '@phosphor-icons/react'
-import { motion, AnimatePresence, useInView, useScroll, useSpring } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 import FadeUp from './FadeUp.jsx'
@@ -313,10 +313,6 @@ export default function LandingPage() {
   const [leaving, setLeaving] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
 
-  // Scroll progress bar
-  const { scrollYProgress } = useScroll()
-  const progressScaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
-
   // Feature tour — sticky scroll (desktop)
   const [activeIndex, setActiveIndex] = useState(0)
   const [phoneVisible, setPhoneVisible] = useState(false)
@@ -405,11 +401,6 @@ export default function LandingPage() {
 
   return (
     <div className={`min-h-screen bg-white font-sans transition-[opacity,transform] duration-300 ease-in-out ${leaving ? 'opacity-0 translate-y-3' : 'opacity-100'}`}>
-      {/* Scroll progress bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-jade origin-left z-[200] pointer-events-none"
-        style={{ scaleX: progressScaleX }}
-      />
       <Helmet>
         <title>Coveyspace — Community Group App for Meals, Prayer & Chat</title>
         <meta name="description" content="The all-in-one app for church small groups, house churches, Bible study groups, and Christian community groups. Meal signups, group chat, prayer requests, discussion guides, and more." />
