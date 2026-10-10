@@ -357,7 +357,7 @@ export default function LandingPage() {
             ease: 'power2.out',
             scrollTrigger: {
               trigger: card,
-              containerAnimation: hScrollST.scrollTrigger,
+              containerAnimation: hScrollST,
               start: 'left 90%',
               toggleActions: 'play none none reverse',
             },
