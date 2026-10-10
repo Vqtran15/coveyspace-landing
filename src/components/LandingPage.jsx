@@ -261,7 +261,7 @@ function SplitHeading({ children, className = '', delay = 0, as: Tag = 'h2' }) {
   }, [delay])
 
   return (
-    <Tag ref={ref} className={className} style={{ overflow: 'hidden' }}>
+    <Tag ref={ref} className={className} style={{ overflow: 'hidden', paddingBottom: '0.15em', marginBottom: '-0.15em' }}>
       {children}
     </Tag>
   )
