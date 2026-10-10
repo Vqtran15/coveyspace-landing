@@ -698,21 +698,29 @@ export default function LandingPage() {
 
       {/* ── Features — horizontal scroll (desktop) / grid (mobile) ── */}
       <section id="features">
-        <div className="px-6 pt-14 pb-10 lg:pt-20 lg:pb-6 bg-white text-center">
+        {/* Mobile heading (hidden on desktop — desktop gets it inside the pin area) */}
+        <div className="lg:hidden px-6 pt-14 pb-10 bg-white text-center">
           <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide">
             Everything your group needs.
           </SplitHeading>
         </div>
 
-        {/* Desktop: horizontal scroll strip */}
+        {/* Desktop: heading + horizontal scroll pinned together */}
         <div
           ref={hScrollSection}
           className="hidden lg:block bg-white overflow-hidden"
           style={{ minHeight: '100vh' }}
         >
+          {/* Heading inside the pin area so it stays visible while cards scroll */}
+          <div className="px-6 pt-20 pb-6 text-center">
+            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide">
+              Everything your group needs.
+            </SplitHeading>
+          </div>
+
           <div
             ref={hScrollTrack}
-            className="flex gap-6 px-16 py-16 items-stretch"
+            className="flex gap-6 px-16 pb-16 items-stretch"
             style={{ width: 'max-content' }}
           >
             {FEATURES.map(({ Icon, title, description, color }) => (
