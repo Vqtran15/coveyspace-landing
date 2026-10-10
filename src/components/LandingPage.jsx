@@ -708,11 +708,11 @@ export default function LandingPage() {
         {/* Desktop: heading + horizontal scroll pinned together */}
         <div
           ref={hScrollSection}
-          className="hidden lg:block bg-white overflow-hidden"
+          className="hidden lg:flex lg:flex-col lg:justify-center bg-white overflow-hidden"
           style={{ minHeight: '100vh' }}
         >
           {/* Heading inside the pin area so it stays visible while cards scroll */}
-          <div className="px-6 pt-20 pb-6 text-center">
+          <div className="px-6 pb-8 text-center">
             <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide">
               Everything your group needs.
             </SplitHeading>
@@ -720,7 +720,7 @@ export default function LandingPage() {
 
           <div
             ref={hScrollTrack}
-            className="flex gap-6 px-16 pb-16 items-stretch"
+            className="flex gap-6 px-16 pb-8 items-stretch"
             style={{ width: 'max-content' }}
           >
             {FEATURES.map(({ Icon, title, description, color }) => (
