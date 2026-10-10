@@ -279,7 +279,6 @@ export default function LandingPage() {
   const hScrollSection   = useRef(null)
   const hScrollTrack     = useRef(null)
   const tourSectionRef   = useRef(null)
-  const tourInnerRef     = useRef(null)
   const featureRefs      = useRef([])
   const phoneImgRefs     = useRef([])
   const stepsRef         = useRef(null)
@@ -290,7 +289,6 @@ export default function LandingPage() {
   const diffBlobRef      = useRef(null)
   const storyRef         = useRef(null)
   const benefitsRef      = useRef(null)
-  const installRef       = useRef(null)
   const benefitCardRefs  = useRef([])
 
   // ── All GSAP scroll animations ──────────────────────
@@ -336,10 +334,11 @@ export default function LandingPage() {
         const totalWidth = hScrollTrack.current.scrollWidth
         const viewW = window.innerWidth
 
-        gsap.to(hScrollTrack.current, {
+        const hScrollST = gsap.to(hScrollTrack.current, {
           x: -(totalWidth - viewW + 64),
           ease: 'none',
           scrollTrigger: {
+            id: 'hScroll',
             trigger: hScrollSection.current,
             pin: true,
             scrub: 1,
@@ -358,7 +357,7 @@ export default function LandingPage() {
             ease: 'power2.out',
             scrollTrigger: {
               trigger: card,
-              containerAnimation: ScrollTrigger.getById('hScroll'),
+              containerAnimation: hScrollST.scrollTrigger,
               start: 'left 90%',
               toggleActions: 'play none none reverse',
             },
@@ -528,12 +527,12 @@ export default function LandingPage() {
           }
         )
 
-        // CTA content slides up slightly as section enters
+        // CTA content rises on entrance — no opacity here since SplitText
+        // handles the heading chars and the button has its own Framer animation
         const content = ctaSectionRef.current.querySelector('.cta-content')
         if (content) {
           gsap.from(content, {
             y: 40,
-            opacity: 0,
             duration: 0.8,
             ease: 'power3.out',
             scrollTrigger: {
@@ -775,7 +774,7 @@ export default function LandingPage() {
               <path
                 ref={svgPathRef}
                 d="M 80 8 Q 280 2 400 8 Q 520 14 720 8"
-                stroke="#48986E"
+                stroke="#C4622D"
                 strokeWidth="2"
                 strokeDasharray="6 4"
                 strokeLinecap="round"
@@ -853,29 +852,32 @@ export default function LandingPage() {
 
         {/* Desktop: GSAP pinned scroll tour */}
         <div ref={tourSectionRef} className="hidden lg:block">
-          <div ref={tourInnerRef} className="px-6 pb-0">
-            <div className="max-w-5xl mx-auto flex gap-20 items-start min-h-screen">
-              {/* Left: feature list — GSAP controls opacity/y per item */}
-              <div className="flex-1 pb-[10vh] relative">
+          <div className="px-6">
+            <div className="max-w-5xl mx-auto flex gap-20" style={{ height: '100vh' }}>
+
+              {/* Left: feature items stacked absolutely so the column stays 100vh tall.
+                  GSAP crossfades between them — no natural-flow stacking needed. */}
+              <div className="flex-1 relative">
                 {FEATURE_TOUR.map((feature, i) => (
                   <div
                     key={feature.title}
                     ref={el => { featureRefs.current[i] = el }}
-                    className="py-10 border-b border-stone-100 last:border-0"
+                    className="absolute inset-0 flex flex-col justify-center pr-4"
                     style={{ opacity: i === 0 ? 1 : 0 }}
                   >
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${feature.color}`}>
                       <feature.Icon size={20} weight="fill" />
                     </div>
                     <h3 className="font-league-gothic text-3xl sm:text-4xl tracking-wide text-stone-800 mb-3">{feature.title}</h3>
-                    <p className="text-stone-500 text-sm leading-relaxed">{feature.description}</p>
+                    <p className="text-stone-500 text-sm leading-relaxed max-w-md">{feature.description}</p>
                   </div>
                 ))}
               </div>
 
-              {/* Right: phone with crossfading screenshots */}
-              <div className="w-52 shrink-0 sticky top-1/2 -translate-y-1/2 self-start">
-                <div className="p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
+              {/* Right: phone centered vertically via flex — sticky is unnecessary
+                  inside a GSAP-pinned (position:fixed) section. */}
+              <div className="w-52 shrink-0 flex items-center">
+                <div className="p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl w-full">
                   <div className="rounded-[1.25rem] overflow-hidden relative" style={{ paddingBottom: '216%' }}>
                     {FEATURE_TOUR.map((f, i) => (
                       <img
@@ -891,6 +893,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -1002,7 +1005,7 @@ export default function LandingPage() {
             ))}
           </div>
 
-          <div ref={installRef} className="flex flex-col lg:flex-row lg:items-start gap-12">
+          <div className="flex flex-col lg:flex-row lg:items-start gap-12">
             <div className="flex-1 flex flex-col gap-6">
               <FadeUp>
                 <div className="relative overflow-hidden flex items-start gap-3 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 shadow-sm">
