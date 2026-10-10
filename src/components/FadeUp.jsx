@@ -1,22 +1,44 @@
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const EASE = [0.25, 0.46, 0.45, 0.94]
+gsap.registerPlugin(ScrollTrigger)
 
-export default function FadeUp({ children, delay = 0, className = '', amount = 0.15, as: Tag = 'div' }) {
+export default function FadeUp({ children, delay = 0, className = '', as: Tag = 'div' }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: false, amount })
-  const MotionTag = motion[Tag] || motion.div
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    // Respect prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(el,
+        { clipPath: 'inset(0 0 100% 0)', y: 20, opacity: 0 },
+        {
+          clipPath: 'inset(0 0 0% 0)',
+          y: 0,
+          opacity: 1,
+          duration: 0.75,
+          delay,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    })
+
+    return () => ctx.revert()
+  }, [delay])
 
   return (
-    <MotionTag
-      ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-      transition={{ duration: 0.55, delay, ease: EASE }}
-      className={className}
-    >
+    <Tag ref={ref} className={className}>
       {children}
-    </MotionTag>
+    </Tag>
   )
 }

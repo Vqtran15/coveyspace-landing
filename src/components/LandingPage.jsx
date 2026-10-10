@@ -5,14 +5,18 @@ import {
   Cake, BookBookmark, HandCoins, ArrowRight, EnvelopeSimple, Plus, Megaphone, UsersThree,
   ShieldCheck, DeviceMobile, Browser, ArrowsOut, Lightning,
 } from '@phosphor-icons/react'
-import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
 import Nav from './Nav.jsx'
 import Footer from './Footer.jsx'
 import FadeUp from './FadeUp.jsx'
 
+gsap.registerPlugin(ScrollTrigger, SplitText)
+
 const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
-const EASE = [0.25, 0.46, 0.45, 0.94]
-const REVEAL_EASE = [0.22, 1, 0.36, 1]
+const EASE_SPRING = [0.25, 0.46, 0.45, 0.94]
 
 // ── Feature overview grid ─────────────────────────────
 const FEATURES = [
@@ -165,21 +169,9 @@ const FEATURE_TOUR = [
 
 // ── How it works ──────────────────────────────────────
 const STEPS = [
-  {
-    step: '1',
-    title: 'Create your group',
-    desc: "Sign up at coveyspace.com and name your group. You'll instantly get a 6-character invite code.",
-  },
-  {
-    step: '2',
-    title: 'Invite your members',
-    desc: 'Share the invite code with your group. Members sign up and enter the code to join.',
-  },
-  {
-    step: '3',
-    title: 'Start coordinating',
-    desc: 'Meals, schedules, chat, prayer, birthdays. Everything is ready the moment your group joins.',
-  },
+  { step: '1', title: 'Create your group',    desc: "Sign up at coveyspace.com and name your group. You'll instantly get a 6-character invite code." },
+  { step: '2', title: 'Invite your members',  desc: 'Share the invite code with your group. Members sign up and enter the code to join.' },
+  { step: '3', title: 'Start coordinating',   desc: 'Meals, schedules, chat, prayer, birthdays. Everything is ready the moment your group joins.' },
 ]
 
 // ── What makes Coveyspace different ───────────────────
@@ -203,26 +195,10 @@ const DIFF_CARDS = [
 
 // ── Install ───────────────────────────────────────────
 const BENEFITS = [
-  {
-    Icon: ArrowsOut,
-    title: 'Full-screen experience',
-    desc: 'No browser bar taking up space. The app fills your whole screen just like a native app.',
-  },
-  {
-    Icon: DeviceMobile,
-    title: 'Home screen shortcut',
-    desc: 'Tap the Coveyspace icon on your home screen and go straight in, no typing a URL.',
-  },
-  {
-    Icon: Lightning,
-    title: 'Faster loads',
-    desc: 'Installed web apps cache resources locally so the app opens instantly, even on slow connections.',
-  },
-  {
-    Icon: Browser,
-    title: 'No app store needed',
-    desc: "There's nothing to download or update. Improvements roll out automatically in the background.",
-  },
+  { Icon: ArrowsOut,    title: 'Full-screen experience', desc: 'No browser bar taking up space. The app fills your whole screen just like a native app.' },
+  { Icon: DeviceMobile, title: 'Home screen shortcut',   desc: 'Tap the Coveyspace icon on your home screen and go straight in, no typing a URL.' },
+  { Icon: Lightning,    title: 'Faster loads',           desc: 'Installed web apps cache resources locally so the app opens instantly, even on slow connections.' },
+  { Icon: Browser,      title: 'No app store needed',    desc: "There's nothing to download or update. Improvements roll out automatically in the background." },
 ]
 
 const IOS_STEPS = [
@@ -241,146 +217,340 @@ const ANDROID_STEPS = [
 
 // ── FAQ ───────────────────────────────────────────────
 const FAQS = [
-  {
-    q: 'Do I need to download an app?',
-    a: 'No app store required. Coveyspace runs in your browser and can be added to your home screen in seconds for a full native app experience on iPhone, iPad, and Android.',
-  },
-  {
-    q: 'Is my group\'s data private?',
-    a: 'Yes. Your messages, prayer requests, birthdays, and all other content are visible only to members of your group. We never sell your data or share it with advertisers.',
-  },
-  {
-    q: 'How many people can be in a group?',
-    a: 'There is no hard limit. Coveyspace works well for small groups of 5–6 people and scales comfortably to larger groups of 30 or more.',
-  },
-  {
-    q: 'Can we turn off features we don\'t use?',
-    a: "Yes. Admins can toggle any feature on or off from the Admin Settings panel. Don't need prayer requests or service schedules? Turn them off and keep your group's space simple.",
-  },
-  {
-    q: 'What devices does it work on?',
-    a: 'Coveyspace works on any device with a modern browser: iPhone, Android, iPad, Mac, and PC. Install it to your home screen for the best mobile experience.',
-  },
-  {
-    q: 'Can a church manage multiple small groups in Coveyspace?',
-    a: "Yes. Church admins can link multiple community groups under one church account and send rich-text broadcasts, either to all members across every group or to group leaders only. Each group still keeps its own private chat, meals, and prayer space. Members can also belong to more than one group (a men's group and a couples group, for example) and switch their active group in Settings at any time.",
-  },
-  {
-    q: 'How is Coveyspace different from Church Center or Planning Center?',
-    a: "Church Center is a church management platform built for entire congregations, designed for staff managing child check-ins, volunteer scheduling, and giving for hundreds of people, starting at $14/month. Coveyspace is built for the small group itself: 8–20 people who meet regularly, share meals, and pray together. Any group leader can start for free in minutes. Church staff can also link their groups under one account for coordinated broadcasts, without the overhead of a full church management system.",
-  },
-  {
-    q: 'How is this different from Flocknote or a group text?',
-    a: "Flocknote is an outbound communication tool, great for email and text blasts to people who may not open an app. A group text works for quick messages. Coveyspace is a two-way community space where members post prayer requests, claim meal spots, sign up to serve, track birthdays, and message one another. It replaces the group text, the Google Sheet signup, and the prayer request chain, organized specifically for how a small group functions week to week.",
-  },
+  { q: 'Do I need to download an app?', a: 'No app store required. Coveyspace runs in your browser and can be added to your home screen in seconds for a full native app experience on iPhone, iPad, and Android.' },
+  { q: "Is my group's data private?",   a: 'Yes. Your messages, prayer requests, birthdays, and all other content are visible only to members of your group. We never sell your data or share it with advertisers.' },
+  { q: 'How many people can be in a group?', a: 'There is no hard limit. Coveyspace works well for small groups of 5–6 people and scales comfortably to larger groups of 30 or more.' },
+  { q: "Can we turn off features we don't use?", a: "Yes. Admins can toggle any feature on or off from the Admin Settings panel. Don't need prayer requests or service schedules? Turn them off and keep your group's space simple." },
+  { q: 'What devices does it work on?', a: 'Coveyspace works on any device with a modern browser: iPhone, Android, iPad, Mac, and PC. Install it to your home screen for the best mobile experience.' },
+  { q: 'Can a church manage multiple small groups in Coveyspace?', a: "Yes. Church admins can link multiple community groups under one church account and send rich-text broadcasts, either to all members across every group or to group leaders only. Each group still keeps its own private chat, meals, and prayer space. Members can also belong to more than one group (a men's group and a couples group, for example) and switch their active group in Settings at any time." },
+  { q: 'How is Coveyspace different from Church Center or Planning Center?', a: "Church Center is a church management platform built for entire congregations, designed for staff managing child check-ins, volunteer scheduling, and giving for hundreds of people, starting at $14/month. Coveyspace is built for the small group itself: 8–20 people who meet regularly, share meals, and pray together. Any group leader can start for free in minutes. Church staff can also link their groups under one account for coordinated broadcasts, without the overhead of a full church management system." },
+  { q: 'How is this different from Flocknote or a group text?', a: "Flocknote is an outbound communication tool, great for email and text blasts to people who may not open an app. A group text works for quick messages. Coveyspace is a two-way community space where members post prayer requests, claim meal spots, sign up to serve, track birthdays, and message one another. It replaces the group text, the Google Sheet signup, and the prayer request chain, organized specifically for how a small group functions week to week." },
 ]
 
-// ── Animation variants ────────────────────────────────
-const cardVariants = {
-  hidden: { opacity: 0, y: 52, scale: 0.94 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.65, ease: REVEAL_EASE } },
-}
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.065, delayChildren: 0.05 } },
-}
-
-const CTA_WORDS = 'Bring your whole group together.'.split(' ')
-
-// ── Split heading: word-by-word clip-mask reveal ──────
+// ── GSAP SplitText heading ─────────────────────────────
 function SplitHeading({ children, className = '', delay = 0, as: Tag = 'h2' }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: false, amount: 0.35 })
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const split = new SplitText(el, { type: 'chars,words', wordsClass: 'split-word' })
+
+    const ctx = gsap.context(() => {
+      gsap.from(split.chars, {
+        y: '110%',
+        opacity: 0,
+        duration: 0.65,
+        ease: 'back.out(1.4)',
+        stagger: { each: 0.018, from: 'start' },
+        delay,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      })
+    })
+
+    return () => {
+      ctx.revert()
+      split.revert()
+    }
+  }, [delay])
+
   return (
-    <Tag ref={ref} className={className}>
-      {String(children).trim().split(/\s+/).filter(Boolean).map((word, i, arr) => (
-        <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', paddingBottom: '0.12em', marginBottom: '-0.12em' }}>
-          <motion.span
-            initial={{ y: '105%' }}
-            animate={inView ? { y: 0 } : { y: '105%' }}
-            transition={{ duration: 0.7, delay: delay + i * 0.08, ease: REVEAL_EASE }}
-            style={{ display: 'inline-block' }}
-          >
-            {word}{i < arr.length - 1 ? ' ' : ''}
-          </motion.span>
-        </span>
-      ))}
+    <Tag ref={ref} className={className} style={{ overflow: 'hidden' }}>
+      {children}
     </Tag>
   )
 }
 
 export default function LandingPage() {
-  const [leaving, setLeaving] = useState(false)
-  const [openFaq, setOpenFaq] = useState(null)
-
-  // Feature tour — sticky scroll (desktop)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [phoneVisible, setPhoneVisible] = useState(false)
-  const featureRefs = useRef([])
-
-  // Feature tour — swipeable carousel (mobile)
+  const [leaving,     setLeaving]     = useState(false)
+  const [openFaq,     setOpenFaq]     = useState(null)
   const [activeSlide, setActiveSlide] = useState(0)
   const touchStartX = useRef(null)
 
-  // Scroll-triggered refs
-  const gridRef        = useRef(null)
-  const stepsRef       = useRef(null)
-  const ctaHeadingRef  = useRef(null)
-  const benefitsRef    = useRef(null)
-  const installRef     = useRef(null)
+  // Refs for GSAP targets
+  const heroPhoneRef     = useRef(null)
+  const heroSectionRef   = useRef(null)
+  const hScrollSection   = useRef(null)
+  const hScrollTrack     = useRef(null)
+  const tourSectionRef   = useRef(null)
+  const tourInnerRef     = useRef(null)
+  const featureRefs      = useRef([])
+  const phoneImgRefs     = useRef([])
+  const stepsRef         = useRef(null)
+  const svgPathRef       = useRef(null)
+  const stepNumRefs      = useRef([])
+  const ctaSectionRef    = useRef(null)
+  const diffSectionRef   = useRef(null)
+  const diffBlobRef      = useRef(null)
+  const storyRef         = useRef(null)
+  const benefitsRef      = useRef(null)
+  const installRef       = useRef(null)
+  const benefitCardRefs  = useRef([])
 
-  const gridInView     = useInView(gridRef,       { once: false, amount: 0.1 })
-  const stepsInView    = useInView(stepsRef,      { once: false, amount: 0.15 })
-  const ctaInView      = useInView(ctaHeadingRef, { once: false, amount: 0.4 })
-  const benefitsInView = useInView(benefitsRef,   { once: false, amount: 0.1 })
-  const installInView  = useInView(installRef,    { once: false, amount: 0.15 })
-
-  // Parallax refs
-  const heroSectionRef = useRef(null)
-  const storyRef       = useRef(null)
-  const ctaSectionRef  = useRef(null)
-  const diffSectionRef = useRef(null)
-
-  // Parallax scroll trackers
-  const { scrollYProgress: heroScroll } = useScroll({ target: heroSectionRef, offset: ['start start', 'end start'] })
-  const { scrollYProgress: storyScroll } = useScroll({ target: storyRef, offset: ['start end', 'end start'] })
-  const { scrollYProgress: ctaScroll } = useScroll({ target: ctaSectionRef, offset: ['start end', 'end start'] })
-  const { scrollYProgress: diffScroll } = useScroll({ target: diffSectionRef, offset: ['start end', 'end start'] })
-
-  // Parallax transforms
-  const heroPhoneY  = useTransform(heroScroll,  [0, 1], ['0px', '-80px'])
-  const storyP1Y    = useTransform(storyScroll, [0, 1], ['12px', '-18px'])
-  const storyP2Y    = useTransform(storyScroll, [0, 1], ['22px', '-30px'])
-  const storyP3Y    = useTransform(storyScroll, [0, 1], ['30px', '-24px'])
-  const storyP4Y    = useTransform(storyScroll, [0, 1], ['8px',  '-12px'])
-  const ctaContentY = useTransform(ctaScroll,   [0, 1], ['28px', '-28px'])
-  const diffBlobY   = useTransform(diffScroll,  [0, 1], ['0px',   '-160px'])
-  const ctaBlobY    = useTransform(ctaScroll,   [0, 1], ['-20px', '120px'])
-
-  // Track which feature is centred in the viewport (for sticky phone)
+  // ── All GSAP scroll animations ──────────────────────
   useEffect(() => {
-    function onScroll() {
-      const mid = window.innerHeight / 2
-      let closest = 0
-      let closestDist = Infinity
-      featureRefs.current.forEach((el, i) => {
-        if (!el) return
-        const rect = el.getBoundingClientRect()
-        const dist = Math.abs(rect.top + rect.height / 2 - mid)
-        if (dist < closestDist) { closestDist = dist; closest = i }
-      })
-      setActiveIndex(closest)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-      const firstEl = featureRefs.current[0]
-      const lastEl  = featureRefs.current[featureRefs.current.length - 1]
-      if (firstEl && lastEl) {
-        const firstRect = firstEl.getBoundingClientRect()
-        const lastRect  = lastEl.getBoundingClientRect()
-        setPhoneVisible(firstRect.top < mid + 50 && lastRect.bottom > 0)
+    const mm = gsap.matchMedia()
+    const ctx = gsap.context(() => {
+
+      // ─ Hero phone: subtle 3D tilt + parallax on scroll out ─
+      if (heroPhoneRef.current && heroSectionRef.current) {
+        gsap.fromTo(heroPhoneRef.current,
+          { rotateY: 12, rotateX: 4 },
+          {
+            rotateY: 0,
+            rotateX: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: heroSectionRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 1.5,
+            },
+          }
+        )
+        // Parallax: phone rises as hero scrolls away
+        gsap.to(heroPhoneRef.current, {
+          y: -60,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroSectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        })
       }
+
+      // ─ Horizontal feature panels (desktop only) ─────────
+      mm.add('(min-width: 1024px)', () => {
+        if (!hScrollSection.current || !hScrollTrack.current) return
+
+        const totalWidth = hScrollTrack.current.scrollWidth
+        const viewW = window.innerWidth
+
+        gsap.to(hScrollTrack.current, {
+          x: -(totalWidth - viewW + 64),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: hScrollSection.current,
+            pin: true,
+            scrub: 1,
+            end: () => '+=' + (totalWidth - viewW + 64),
+            invalidateOnRefresh: true,
+          },
+        })
+
+        // Cards fade + scale in as they enter the viewport during horizontal scroll
+        const cards = hScrollTrack.current.querySelectorAll('.h-card')
+        cards.forEach((card) => {
+          gsap.from(card, {
+            opacity: 0,
+            scale: 0.88,
+            duration: 0.4,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: ScrollTrigger.getById('hScroll'),
+              start: 'left 90%',
+              toggleActions: 'play none none reverse',
+            },
+          })
+        })
+      })
+
+      // ─ How it works: step counters animate in ──────────
+      if (stepsRef.current) {
+        stepNumRefs.current.forEach((el, i) => {
+          if (!el) return
+          gsap.from(el, {
+            scale: 0,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'back.out(2)',
+            delay: i * 0.12,
+            scrollTrigger: {
+              trigger: stepsRef.current,
+              start: 'top 75%',
+              toggleActions: 'play none none reverse',
+            },
+          })
+        })
+
+        // SVG path draw
+        if (svgPathRef.current) {
+          const length = svgPathRef.current.getTotalLength?.() || 300
+          gsap.set(svgPathRef.current, { strokeDasharray: length, strokeDashoffset: length })
+          gsap.to(svgPathRef.current, {
+            strokeDashoffset: 0,
+            duration: 1.2,
+            ease: 'power2.inOut',
+            scrollTrigger: {
+              trigger: stepsRef.current,
+              start: 'top 75%',
+              toggleActions: 'play none none reverse',
+            },
+          })
+        }
+      }
+
+      // ─ Feature tour: pinned scrub (desktop only) ─────────
+      mm.add('(min-width: 1024px)', () => {
+        if (!tourSectionRef.current || featureRefs.current.length === 0) return
+
+        const totalFeatures = FEATURE_TOUR.length
+        const scrollDistance = totalFeatures * window.innerHeight
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: tourSectionRef.current,
+            pin: true,
+            scrub: 1.2,
+            start: 'top top',
+            end: '+=' + scrollDistance,
+            invalidateOnRefresh: true,
+          },
+        })
+
+        // Each step: current text fades out/slides up, next fades in/slides up from below
+        // Phone image crossfades in sync
+        featureRefs.current.forEach((el, i) => {
+          if (!el) return
+          const img = phoneImgRefs.current[i]
+          if (i === 0) {
+            gsap.set(el, { opacity: 1, y: 0 })
+            if (img) gsap.set(img, { opacity: 1 })
+            return
+          }
+          // Start hidden
+          gsap.set(el, { opacity: 0, y: 40 })
+          if (img) gsap.set(img, { opacity: 0 })
+
+          const prev = featureRefs.current[i - 1]
+          const prevImg = phoneImgRefs.current[i - 1]
+          const segDuration = 1 / totalFeatures
+
+          tl.to(prev,    { opacity: 0, y: -40, duration: segDuration * 0.4, ease: 'power1.inOut' }, (i - 1) * segDuration)
+          if (prevImg) tl.to(prevImg, { opacity: 0, duration: segDuration * 0.4, ease: 'none' }, '<')
+          tl.to(el,      { opacity: 1, y: 0,   duration: segDuration * 0.5, ease: 'power2.out'  }, (i - 1) * segDuration + segDuration * 0.3)
+          if (img) tl.to(img, { opacity: 1, duration: segDuration * 0.5, ease: 'none' }, '<')
+        })
+      })
+
+      // ─ "What makes us different" blob parallax ─────────
+      if (diffBlobRef.current && diffSectionRef.current) {
+        gsap.to(diffBlobRef.current, {
+          y: -160,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: diffSectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        })
+      }
+
+      // ─ Diff cards: stagger in from below ───────────────
+      if (diffSectionRef.current) {
+        const cards = diffSectionRef.current.querySelectorAll('.diff-card')
+        gsap.from(cards, {
+          y: 50,
+          opacity: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: diffSectionRef.current,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
+        })
+      }
+
+      // ─ Story paragraphs: gentle parallax ───────────────
+      if (storyRef.current) {
+        const paras = storyRef.current.querySelectorAll('.story-para')
+        paras.forEach((p, i) => {
+          const direction = i % 2 === 0 ? 1 : -1
+          gsap.to(p, {
+            y: direction * -20,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: p,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          })
+        })
+      }
+
+      // ─ Benefit cards: stagger on scroll ─────────────────
+      if (benefitsRef.current) {
+        gsap.from(benefitCardRefs.current.filter(Boolean), {
+          y: 40,
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.65,
+          ease: 'power3.out',
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: benefitsRef.current,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse',
+          },
+        })
+      }
+
+      // ─ CTA background color scrub (stone-50 → jade) ────
+      if (ctaSectionRef.current) {
+        // The section above CTA is stone-50; scrub the background
+        // color transition over 80vh before CTA hits the top
+        gsap.fromTo(ctaSectionRef.current,
+          { backgroundColor: '#fafaf9' }, // stone-50
+          {
+            backgroundColor: '#C4622D', // jade
+            ease: 'none',
+            scrollTrigger: {
+              trigger: ctaSectionRef.current,
+              start: 'top 80%',
+              end: 'top top',
+              scrub: true,
+            },
+          }
+        )
+
+        // CTA content slides up slightly as section enters
+        const content = ctaSectionRef.current.querySelector('.cta-content')
+        if (content) {
+          gsap.from(content, {
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: ctaSectionRef.current,
+              start: 'top 60%',
+              toggleActions: 'play none none reverse',
+            },
+          })
+        }
+      }
+
+    }) // end gsap.context
+
+    return () => {
+      ctx.revert()
+      mm.revert()
     }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   function handleTouchStart(e) { touchStartX.current = e.touches[0].clientX }
@@ -424,7 +594,7 @@ export default function LandingPage() {
   return (
     <div className={`min-h-screen bg-white font-sans transition-[opacity,transform] duration-300 ease-in-out ${leaving ? 'opacity-0 translate-y-3' : 'opacity-100'}`}>
       <Helmet>
-        <title>Coveyspace — Community Group App for Meals, Prayer & Chat</title>
+        <title>Coveyspace — Community Group App for Meals, Prayer &amp; Chat</title>
         <meta name="description" content="The all-in-one app for church small groups, house churches, Bible study groups, and Christian community groups. Meal signups, group chat, prayer requests, discussion guides, and more." />
         <link rel="canonical" href="https://www.coveyspace.com" />
         <meta property="og:url" content="https://www.coveyspace.com" />
@@ -451,7 +621,7 @@ export default function LandingPage() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: EASE }}
+              transition={{ duration: 0.5, ease: EASE_SPRING }}
               className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6"
             >
               Gathering community made simple
@@ -463,7 +633,7 @@ export default function LandingPage() {
                   <motion.span
                     initial={{ y: '110%' }}
                     animate={{ y: 0 }}
-                    transition={{ duration: 0.9, delay: 0.08 + li * 0.18, ease: REVEAL_EASE }}
+                    transition={{ duration: 0.9, delay: 0.08 + li * 0.18, ease: [0.22, 1, 0.36, 1] }}
                     style={{ display: 'block' }}
                   >
                     {line}
@@ -475,7 +645,7 @@ export default function LandingPage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.28, ease: EASE }}
+              transition={{ duration: 0.55, delay: 0.28, ease: EASE_SPRING }}
               className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8"
             >
               Coveyspace brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides all into one single platform. It's built for church small groups, house churches, and Bible study groups. Church admins can link multiple groups under one account and broadcast announcements across all of them at once.
@@ -484,7 +654,7 @@ export default function LandingPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.42, ease: EASE }}
+              transition={{ duration: 0.5, delay: 0.42, ease: EASE_SPRING }}
               className="flex flex-col items-center lg:items-start gap-2"
             >
               <motion.button
@@ -501,54 +671,57 @@ export default function LandingPage() {
             </motion.div>
           </div>
 
+          {/* Hero phone — GSAP controls 3D tilt + parallax */}
           <div className="hidden lg:flex flex-1 items-center justify-center">
-            <motion.div style={{ y: heroPhoneY }}>
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <div className="w-64 p-2.5 bg-stone-800 rounded-[2rem] shadow-2xl">
-                <div className="rounded-[1.5rem] overflow-hidden">
-                  <video
-                    src="/videos/home-screen.mov"
-                    poster="/screenshots/home-screen.PNG"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-auto block"
-                  />
+            <div ref={heroPhoneRef} style={{ transformPerspective: 1200, willChange: 'transform' }}>
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <div className="w-64 p-2.5 bg-stone-800 rounded-[2rem] shadow-2xl">
+                  <div className="rounded-[1.5rem] overflow-hidden">
+                    <video
+                      src="/videos/home-screen.mov"
+                      poster="/screenshots/home-screen.PNG"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-auto block"
+                    />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-{/* ── Features overview grid ────────────────────── */}
-      <section id="features" className="px-6 pt-14 pb-20 lg:py-20 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center">
-            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-12">
-              Everything your group needs.
-            </SplitHeading>
-          </div>
+      {/* ── Features — horizontal scroll (desktop) / grid (mobile) ── */}
+      <section id="features">
+        <div className="px-6 pt-14 pb-10 lg:pt-20 lg:pb-6 bg-white text-center">
+          <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide">
+            Everything your group needs.
+          </SplitHeading>
+        </div>
 
-          <motion.div
-            ref={gridRef}
-            variants={containerVariants}
-            initial="hidden"
-            animate={gridInView ? 'visible' : 'hidden'}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        {/* Desktop: horizontal scroll strip */}
+        <div
+          ref={hScrollSection}
+          className="hidden lg:block bg-white overflow-hidden"
+          style={{ minHeight: '100vh' }}
+        >
+          <div
+            ref={hScrollTrack}
+            className="flex gap-6 px-16 py-16 items-stretch"
+            style={{ width: 'max-content' }}
           >
             {FEATURES.map(({ Icon, title, description, color }) => (
               <motion.div
                 key={title}
-                variants={cardVariants}
+                className="h-card w-72 rounded-2xl border border-stone-100 p-7 shadow-sm bg-white shrink-0 flex flex-col"
                 whileHover={{ rotateX: -4, rotateY: 6, y: -10, scale: 1.04, boxShadow: '0 24px 48px -8px rgba(0,0,0,0.14)', transition: { type: 'spring', stiffness: 280, damping: 18 } }}
                 style={{ transformPerspective: 900 }}
-                className="rounded-2xl border border-stone-100 p-6 shadow-sm"
               >
                 <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${color}`}>
                   <Icon size={22} weight="fill" />
@@ -557,7 +730,27 @@ export default function LandingPage() {
                 <p className="text-stone-500 text-sm leading-relaxed">{description}</p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
+        </div>
+
+        {/* Mobile: vertical grid */}
+        <div className="lg:hidden px-6 pb-20 bg-white">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {FEATURES.map(({ Icon, title, description, color }) => (
+              <motion.div
+                key={title}
+                whileHover={{ rotateX: -4, rotateY: 6, y: -10, scale: 1.04, boxShadow: '0 24px 48px -8px rgba(0,0,0,0.14)', transition: { type: 'spring', stiffness: 280, damping: 18 } }}
+                style={{ transformPerspective: 900 }}
+                className="rounded-2xl border border-stone-100 p-6 shadow-sm bg-white"
+              >
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${color}`}>
+                  <Icon size={22} weight="fill" />
+                </div>
+                <h3 className="font-semibold text-stone-800 mb-1.5">{title}</h3>
+                <p className="text-stone-500 text-sm leading-relaxed">{description}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -570,43 +763,55 @@ export default function LandingPage() {
             </SplitHeading>
           </div>
 
-          <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div ref={stepsRef} className="relative grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* SVG connector line (desktop) */}
+            <svg
+              className="hidden md:block absolute top-5 left-0 w-full h-4 pointer-events-none"
+              viewBox="0 0 800 16"
+              preserveAspectRatio="none"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                ref={svgPathRef}
+                d="M 80 8 Q 280 2 400 8 Q 520 14 720 8"
+                stroke="#48986E"
+                strokeWidth="2"
+                strokeDasharray="6 4"
+                strokeLinecap="round"
+              />
+            </svg>
+
             {STEPS.map(({ step, title, desc }, i) => (
               <div key={step} className="flex flex-col items-center text-center md:items-start md:text-left">
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={stepsInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 18, delay: i * 0.15 }}
-                  className="w-10 h-10 rounded-full bg-jade text-white font-bold text-lg flex items-center justify-center mb-4 shrink-0"
+                <div
+                  ref={el => { stepNumRefs.current[i] = el }}
+                  className="w-10 h-10 rounded-full bg-jade text-white font-bold text-lg flex items-center justify-center mb-4 shrink-0 relative z-10"
                 >
                   {step}
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={stepsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                  transition={{ duration: 0.45, delay: i * 0.15 + 0.1, ease: EASE }}
-                >
+                </div>
+                <FadeUp delay={i * 0.1}>
                   <h3 className="font-semibold text-stone-800 text-lg mb-2">{title}</h3>
                   <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
-                </motion.div>
+                </FadeUp>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── App Tour — feature deep-dive ─────────────── */}
+      {/* ── App Tour ─────────────────────────────────── */}
       <section id="tour" className="bg-white">
         <div className="border-t border-stone-100 px-6 pt-14 pb-8 text-center">
           <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-2">
             Everything inside Coveyspace.
           </SplitHeading>
-          <FadeUp delay={0.5} className="lg:hidden">
+          <FadeUp delay={0.3} className="lg:hidden">
             <p className="text-stone-400 text-base">One platform for every part of your community group.</p>
           </FadeUp>
         </div>
 
-        {/* Mobile: swipeable carousel */}
+        {/* Mobile: swipeable carousel (unchanged) */}
         <FadeUp className="lg:hidden px-6 pt-10 pb-6">
           <div
             className="overflow-hidden"
@@ -628,85 +833,62 @@ export default function LandingPage() {
                   <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-2.5 ${feature.color}`}>
                     <feature.Icon size={18} weight="fill" />
                   </div>
-                  <h3 className="font-league-gothic text-2xl tracking-wide text-stone-800 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed max-w-xs mx-auto">
-                    {feature.shortDesc}
-                  </p>
+                  <h3 className="font-league-gothic text-2xl tracking-wide text-stone-800 mb-2">{feature.title}</h3>
+                  <p className="text-stone-500 text-sm leading-relaxed max-w-xs mx-auto">{feature.shortDesc}</p>
                 </div>
               ))}
             </div>
           </div>
-
           <div className="flex justify-center items-center gap-2 mt-5">
             {FEATURE_TOUR.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveSlide(i)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  i === activeSlide ? 'w-6 bg-jade' : 'w-2 bg-stone-300'
-                }`}
-              />
+              <button key={i} onClick={() => setActiveSlide(i)} className={`h-2 rounded-full transition-all duration-300 ${i === activeSlide ? 'w-6 bg-jade' : 'w-2 bg-stone-300'}`} />
             ))}
           </div>
-
           <div className="flex justify-between items-center mt-4 text-sm font-semibold">
-            <button
-              onClick={() => setActiveSlide(s => Math.max(s - 1, 0))}
-              disabled={activeSlide === 0}
-              className="px-4 py-2 rounded-xl text-stone-400 disabled:opacity-0 transition-opacity"
-            >
-              ← Prev
-            </button>
+            <button onClick={() => setActiveSlide(s => Math.max(s - 1, 0))} disabled={activeSlide === 0} className="px-4 py-2 rounded-xl text-stone-400 disabled:opacity-0 transition-opacity">← Prev</button>
             <span className="text-stone-300 text-xs">{activeSlide + 1} / {FEATURE_TOUR.length}</span>
-            <button
-              onClick={() => setActiveSlide(s => Math.min(s + 1, FEATURE_TOUR.length - 1))}
-              disabled={activeSlide === FEATURE_TOUR.length - 1}
-              className="px-4 py-2 rounded-xl text-stone-400 disabled:opacity-0 transition-opacity"
-            >
-              Next →
-            </button>
+            <button onClick={() => setActiveSlide(s => Math.min(s + 1, FEATURE_TOUR.length - 1))} disabled={activeSlide === FEATURE_TOUR.length - 1} className="px-4 py-2 rounded-xl text-stone-400 disabled:opacity-0 transition-opacity">Next →</button>
           </div>
         </FadeUp>
 
-        {/* Desktop: sticky scroll */}
-        <div className="hidden lg:block px-6 pb-0">
-          <div className="max-w-5xl mx-auto flex gap-20 items-start">
-            <div className="flex-1 pb-[10vh]">
-              {FEATURE_TOUR.map((feature, i) => (
-                <div
-                  key={feature.title}
-                  ref={el => { featureRefs.current[i] = el }}
-                  className={`py-10 border-b border-stone-100 last:border-0 transition-opacity duration-300 ${
-                    i === activeIndex ? 'opacity-100' : 'opacity-30'
-                  }`}
-                >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${feature.color}`}>
-                    <feature.Icon size={20} weight="fill" />
+        {/* Desktop: GSAP pinned scroll tour */}
+        <div ref={tourSectionRef} className="hidden lg:block">
+          <div ref={tourInnerRef} className="px-6 pb-0">
+            <div className="max-w-5xl mx-auto flex gap-20 items-start min-h-screen">
+              {/* Left: feature list — GSAP controls opacity/y per item */}
+              <div className="flex-1 pb-[10vh] relative">
+                {FEATURE_TOUR.map((feature, i) => (
+                  <div
+                    key={feature.title}
+                    ref={el => { featureRefs.current[i] = el }}
+                    className="py-10 border-b border-stone-100 last:border-0"
+                    style={{ opacity: i === 0 ? 1 : 0 }}
+                  >
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${feature.color}`}>
+                      <feature.Icon size={20} weight="fill" />
+                    </div>
+                    <h3 className="font-league-gothic text-3xl sm:text-4xl tracking-wide text-stone-800 mb-3">{feature.title}</h3>
+                    <p className="text-stone-500 text-sm leading-relaxed">{feature.description}</p>
                   </div>
-                  <h3 className="font-league-gothic text-3xl sm:text-4xl tracking-wide text-stone-800 mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">{feature.description}</p>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            <div className={`w-52 shrink-0 sticky top-1/2 -translate-y-1/2 self-start transition-opacity duration-700 ${phoneVisible ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
-                <div className="rounded-[1.25rem] overflow-hidden relative" style={{ paddingBottom: '216%' }}>
-                  {FEATURE_TOUR.map((f, i) => (
-                    <img
-                      key={f.title}
-                      src={f.screenshot}
-                      alt={f.alt}
-                      loading="lazy"
-                      className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 ${
-                        i === activeIndex ? 'opacity-100' : 'opacity-0'
-                      }`}
-                    />
-                  ))}
+              {/* Right: phone with crossfading screenshots */}
+              <div className="w-52 shrink-0 sticky top-1/2 -translate-y-1/2 self-start">
+                <div className="p-2 bg-stone-800 rounded-[1.75rem] shadow-2xl">
+                  <div className="rounded-[1.25rem] overflow-hidden relative" style={{ paddingBottom: '216%' }}>
+                    {FEATURE_TOUR.map((f, i) => (
+                      <img
+                        key={f.title}
+                        ref={el => { phoneImgRefs.current[i] = el }}
+                        src={f.screenshot}
+                        alt={f.alt}
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover object-top"
+                        style={{ opacity: i === 0 ? 1 : 0 }}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -716,16 +898,13 @@ export default function LandingPage() {
 
       {/* ── What makes Coveyspace different ──────────── */}
       <section ref={diffSectionRef} className="px-6 py-20 bg-stone-50 relative overflow-hidden">
-        <motion.div
-          style={{ y: diffBlobY }}
-          className="absolute -right-40 -top-40 w-[560px] h-[560px] rounded-full bg-jade/[0.06] pointer-events-none"
-        />
+        <div ref={diffBlobRef} className="absolute -right-40 -top-40 w-[560px] h-[560px] rounded-full bg-jade/[0.06] pointer-events-none" />
         <div className="max-w-4xl mx-auto relative">
           <div className="text-center mb-12">
             <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
               What makes Coveyspace different.
             </SplitHeading>
-            <FadeUp delay={0.55}>
+            <FadeUp delay={0.3}>
               <p className="text-stone-400 text-sm">
                 Designed specifically for small groups who share life together week after week.
               </p>
@@ -733,19 +912,18 @@ export default function LandingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {DIFF_CARDS.map(({ label, title, desc }, i) => (
-              <FadeUp key={label} delay={i * 0.1}>
-                <motion.div
-                  whileHover={{ rotateX: -4, rotateY: 6, y: -10, scale: 1.04, boxShadow: '0 24px 48px -8px rgba(0,0,0,0.14)' }}
-                  transition={{ type: 'spring', stiffness: 280, damping: 18 }}
-                  style={{ transformPerspective: 900 }}
-                  className="rounded-2xl border border-stone-200 bg-white p-6"
-                >
-                  <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">{label}</p>
-                  <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">{title}</h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
-                </motion.div>
-              </FadeUp>
+            {DIFF_CARDS.map(({ label, title, desc }) => (
+              <motion.div
+                key={label}
+                className="diff-card rounded-2xl border border-stone-200 bg-white p-6"
+                whileHover={{ rotateX: -4, rotateY: 6, y: -10, scale: 1.04, boxShadow: '0 24px 48px -8px rgba(0,0,0,0.14)' }}
+                transition={{ type: 'spring', stiffness: 280, damping: 18 }}
+                style={{ transformPerspective: 900 }}
+              >
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">{label}</p>
+                <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">{title}</h3>
+                <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -766,32 +944,18 @@ export default function LandingPage() {
           </div>
 
           <div className="flex flex-col gap-5 text-stone-600 text-[1.0625rem] leading-relaxed">
-            <motion.div style={{ y: storyP1Y }}>
-              <FadeUp delay={0.08}>
-                <p>
-                  Hello, my name is Vuong, founder of Coveyspace. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough.
-                </p>
+            {[
+              "Hello, my name is Vuong, founder of Coveyspace. My wife and I serve as the meal coordinators for our Community Group at Bridgetown Church, where we share weekly meals, dive into discussion guides, and practice a monthly service rhythm. We love serving our community, but the weekly coordination was getting tough.",
+              "Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place including chat, birthday reminders, prayer requests, service schedules, and discussion guides.",
+              "My hope is that Coveyspace helps your community group, church small group, house church, or Bible study group stay organized, so you can spend less time coordinating and more time focusing on spiritual formation.",
+            ].map((text, i) => (
+              <FadeUp key={i} delay={i * 0.1} className="story-para">
+                <p>{text}</p>
               </FadeUp>
-            </motion.div>
-            <motion.div style={{ y: storyP2Y }}>
-              <FadeUp delay={0.18}>
-                <p>
-                  Having built web apps before, I realized I could use my skills to solve this problem for our group. I started by building out a meals section, but quickly realized I could bring everything into one place including chat, birthday reminders, prayer requests, service schedules, and discussion guides.
-                </p>
-              </FadeUp>
-            </motion.div>
-            <motion.div style={{ y: storyP3Y }}>
-              <FadeUp delay={0.28}>
-                <p>
-                  My hope is that Coveyspace helps your community group, church small group, house church, or Bible study group stay organized, so you can spend less time coordinating and more time focusing on spiritual formation.
-                </p>
-              </FadeUp>
-            </motion.div>
-            <motion.div style={{ y: storyP4Y }}>
-              <FadeUp delay={0.38}>
-                <p className="font-semibold text-stone-800">Vuong Tran, Founder</p>
-              </FadeUp>
-            </motion.div>
+            ))}
+            <FadeUp delay={0.3} className="story-para">
+              <p className="font-semibold text-stone-800">Vuong Tran, Founder</p>
+            </FadeUp>
           </div>
         </div>
       </section>
@@ -808,113 +972,80 @@ export default function LandingPage() {
             <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
               Use it like an app.
             </SplitHeading>
-            <FadeUp delay={0.45}>
+            <FadeUp delay={0.2}>
               <p className="text-stone-500 text-base max-w-xl mx-auto">
                 Coveyspace is a web app with no app store required. Add it to your home screen in seconds for the full native experience.
               </p>
             </FadeUp>
           </div>
 
-          {/* Why install benefits */}
-          <motion.div
-            ref={benefitsRef}
-            variants={containerVariants}
-            initial="hidden"
-            animate={benefitsInView ? 'visible' : 'hidden'}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-14"
-          >
-            {BENEFITS.map(({ Icon, title, desc }) => (
-              <motion.div
+          <div ref={benefitsRef} className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-14">
+            {BENEFITS.map(({ Icon, title, desc }, i) => (
+              <div
                 key={title}
-                variants={cardVariants}
-                whileHover={{ rotateX: -4, rotateY: 6, y: -10, scale: 1.04, boxShadow: '0 24px 48px -8px rgba(0,0,0,0.14)', transition: { type: 'spring', stiffness: 280, damping: 18 } }}
-                style={{ transformPerspective: 900 }}
-                className="flex items-start gap-4 p-5 rounded-2xl border border-stone-200 bg-white shadow-sm"
+                ref={el => { benefitCardRefs.current[i] = el }}
               >
-                <div className="w-10 h-10 rounded-xl bg-jade/10 text-jade flex items-center justify-center shrink-0">
-                  <Icon size={20} weight="fill" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-stone-800 mb-1 text-sm">{title}</h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
-                </div>
-              </motion.div>
+                <motion.div
+                  whileHover={{ rotateX: -4, rotateY: 6, y: -10, scale: 1.04, boxShadow: '0 24px 48px -8px rgba(0,0,0,0.14)', transition: { type: 'spring', stiffness: 280, damping: 18 } }}
+                  style={{ transformPerspective: 900 }}
+                  className="flex items-start gap-4 p-5 rounded-2xl border border-stone-200 bg-white shadow-sm h-full"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-jade/10 text-jade flex items-center justify-center shrink-0">
+                    <Icon size={20} weight="fill" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-stone-800 mb-1 text-sm">{title}</h3>
+                    <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
+                  </div>
+                </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Install steps */}
           <div ref={installRef} className="flex flex-col lg:flex-row lg:items-start gap-12">
             <div className="flex-1 flex flex-col gap-6">
-              {/* iOS warning */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={installInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, ease: EASE }}
-                className="relative overflow-hidden flex items-start gap-3 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 shadow-sm"
-              >
-                <span className="absolute left-0 top-0 h-full w-1.5 bg-red-400 rounded-l-2xl" />
-                <div className="pl-3">
-                  <p className="text-xs font-bold text-red-700 uppercase tracking-wider mb-1">iPhone & iPad: use Safari</p>
-                  <p className="text-sm text-red-600 leading-relaxed">
-                    The "Add to Home Screen" option only appears in Safari. If you're in Chrome, Firefox, or another browser on iOS, switch to Safari first.
-                  </p>
+              <FadeUp>
+                <div className="relative overflow-hidden flex items-start gap-3 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 shadow-sm">
+                  <span className="absolute left-0 top-0 h-full w-1.5 bg-red-400 rounded-l-2xl" />
+                  <div className="pl-3">
+                    <p className="text-xs font-bold text-red-700 uppercase tracking-wider mb-1">iPhone &amp; iPad: use Safari</p>
+                    <p className="text-sm text-red-600 leading-relaxed">
+                      The "Add to Home Screen" option only appears in Safari. If you're in Chrome, Firefox, or another browser on iOS, switch to Safari first.
+                    </p>
+                  </div>
                 </div>
-              </motion.div>
+              </FadeUp>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {/* iOS */}
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={installInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-                  transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-                  className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6"
-                >
-                  <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-5">iPhone / iPad</p>
-                  <ol className="flex flex-col gap-4">
-                    {IOS_STEPS.map((step, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <motion.span
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={installInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                          transition={{ type: 'spring', stiffness: 300, damping: 18, delay: 0.2 + i * 0.08 }}
-                          className="w-6 h-6 rounded-full bg-jade/10 text-jade text-xs font-bold flex items-center justify-center shrink-0 mt-0.5"
-                        >
-                          {i + 1}
-                        </motion.span>
-                        <p className="text-stone-600 text-sm leading-relaxed">{step}</p>
-                      </li>
-                    ))}
-                  </ol>
-                </motion.div>
-
-                {/* Android */}
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={installInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-                  transition={{ duration: 0.5, delay: 0.2, ease: EASE }}
-                  className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6"
-                >
-                  <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-5">Android</p>
-                  <ol className="flex flex-col gap-4">
-                    {ANDROID_STEPS.map((step, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <motion.span
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={installInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                          transition={{ type: 'spring', stiffness: 300, damping: 18, delay: 0.3 + i * 0.08 }}
-                          className="w-6 h-6 rounded-full bg-jade/10 text-jade text-xs font-bold flex items-center justify-center shrink-0 mt-0.5"
-                        >
-                          {i + 1}
-                        </motion.span>
-                        <p className="text-stone-600 text-sm leading-relaxed">{step}</p>
-                      </li>
-                    ))}
-                  </ol>
-                </motion.div>
+                <FadeUp delay={0.1}>
+                  <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6">
+                    <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-5">iPhone / iPad</p>
+                    <ol className="flex flex-col gap-4">
+                      {IOS_STEPS.map((step, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="w-6 h-6 rounded-full bg-jade/10 text-jade text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                          <p className="text-stone-600 text-sm leading-relaxed">{step}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </FadeUp>
+                <FadeUp delay={0.2}>
+                  <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6">
+                    <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-5">Android</p>
+                    <ol className="flex flex-col gap-4">
+                      {ANDROID_STEPS.map((step, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="w-6 h-6 rounded-full bg-jade/10 text-jade text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                          <p className="text-stone-600 text-sm leading-relaxed">{step}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </FadeUp>
               </div>
             </div>
 
-            {/* Floating phone */}
             <div className="flex justify-center shrink-0">
               <motion.div
                 animate={{ y: [0, -10, 0] }}
@@ -952,14 +1083,9 @@ export default function LandingPage() {
                       transition={{ duration: 0.2, ease: 'easeInOut' }}
                       className="shrink-0"
                     >
-                      <Plus
-                        size={16}
-                        weight="bold"
-                        className={openFaq === i ? 'text-jade' : 'text-stone-400'}
-                      />
+                      <Plus size={16} weight="bold" className={openFaq === i ? 'text-jade' : 'text-stone-400'} />
                     </motion.div>
                   </button>
-
                   <AnimatePresence initial={false}>
                     {openFaq === i && (
                       <motion.div
@@ -981,47 +1107,27 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Final CTA ─────────────────────────────────── */}
-      <section ref={ctaSectionRef} className="px-6 py-20 lg:py-28 bg-jade text-center relative overflow-hidden">
-        <motion.div
-          style={{ y: ctaBlobY }}
-          className="absolute -left-32 -bottom-32 w-[480px] h-[480px] rounded-full bg-white/[0.05] pointer-events-none"
-        />
-        <motion.div style={{ y: ctaContentY }} className="max-w-4xl mx-auto relative">
-          <h2
-            ref={ctaHeadingRef}
-            className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6"
+      {/* ── Final CTA — background scrubs in from stone-50 → jade ── */}
+      <section
+        ref={ctaSectionRef}
+        className="px-6 py-20 lg:py-28 text-center relative overflow-hidden"
+        style={{ backgroundColor: '#fafaf9' }}
+      >
+        <div className="absolute -left-32 -bottom-32 w-[480px] h-[480px] rounded-full bg-white/[0.05] pointer-events-none" />
+        <div className="cta-content max-w-4xl mx-auto relative">
+          <SplitHeading className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6">
+            Bring your whole group together.
+          </SplitHeading>
+          <motion.button
+            onClick={goToSignup}
+            disabled={leaving}
+            whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-jade font-semibold rounded-2xl text-base hover:bg-jade-50 transition-colors shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {CTA_WORDS.map((word, i) => (
-              <span key={i} style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom', marginRight: '0.22em', paddingBottom: '0.12em', marginBottom: '-0.12em' }}>
-                <motion.span
-                  initial={{ y: '110%' }}
-                  animate={ctaInView ? { y: 0 } : { y: '110%' }}
-                  transition={{ delay: i * 0.1, duration: 0.7, ease: REVEAL_EASE }}
-                  style={{ display: 'inline-block' }}
-                >
-                  {word}
-                </motion.span>
-              </span>
-            ))}
-          </h2>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            transition={{ delay: CTA_WORDS.length * 0.09 + 0.1, duration: 0.45, ease: EASE }}
-          >
-            <motion.button
-              onClick={goToSignup}
-              disabled={leaving}
-              whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-jade font-semibold rounded-2xl text-base hover:bg-jade-50 transition-colors shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              Sign up for free <ArrowRight size={18} weight="bold" />
-            </motion.button>
-          </motion.div>
-        </motion.div>
+            Sign up for free <ArrowRight size={18} weight="bold" />
+          </motion.button>
+        </div>
       </section>
 
       {/* ── Contact ───────────────────────────────────── */}
@@ -1035,7 +1141,7 @@ export default function LandingPage() {
           <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
             Have questions?
           </SplitHeading>
-          <FadeUp delay={0.35}>
+          <FadeUp delay={0.2}>
             <p className="text-stone-400 text-sm leading-relaxed mb-6">
               Whether you're a pastor, group leader, or just curious. Reach out and I'll get back to you.
             </p>

@@ -2,14 +2,33 @@ import { StrictMode, useEffect, Component } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
+import Lenis from 'lenis'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './index.css'
 import LandingPage from './components/LandingPage.jsx'
 import PrivacyPage from './components/PrivacyPage.jsx'
 
+gsap.registerPlugin(ScrollTrigger)
+
+// Lenis smooth scroll — connects to GSAP's ticker so ScrollTrigger
+// receives accurate scroll positions without drift.
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smoothTouch: false,
+})
+
+gsap.ticker.add(time => lenis.raf(time * 1000))
+gsap.ticker.lagSmoothing(0)
+
+// Keep ScrollTrigger in sync with Lenis scroll values
+lenis.on('scroll', ScrollTrigger.update)
+
 function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
-    window.scrollTo(0, 0)
+    lenis.scrollTo(0, { immediate: true })
   }, [pathname])
   return null
 }
