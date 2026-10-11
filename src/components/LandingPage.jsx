@@ -261,7 +261,7 @@ function SplitHeading({ children, className = '', delay = 0, as: Tag = 'h2' }) {
   }, [delay])
 
   return (
-    <Tag ref={ref} className={className} style={{ overflow: 'hidden', paddingBottom: '0.15em', marginBottom: '-0.15em' }}>
+    <Tag ref={ref} className={className} style={{ overflow: 'hidden', paddingBottom: '0.15em' }}>
       {children}
     </Tag>
   )
@@ -282,7 +282,7 @@ export default function LandingPage() {
   const featureRefs      = useRef([])
   const phoneImgRefs     = useRef([])
   const stepsRef         = useRef(null)
-  const svgPathRef       = useRef(null)
+  const connectorRef     = useRef(null)
   const stepNumRefs      = useRef([])
   const ctaSectionRef    = useRef(null)
   const diffSectionRef   = useRef(null)
@@ -383,20 +383,21 @@ export default function LandingPage() {
           })
         })
 
-        // SVG path draw
-        if (svgPathRef.current) {
-          const length = svgPathRef.current.getTotalLength?.() || 300
-          gsap.set(svgPathRef.current, { strokeDasharray: length, strokeDashoffset: length })
-          gsap.to(svgPathRef.current, {
-            strokeDashoffset: 0,
-            duration: 1.2,
-            ease: 'power2.inOut',
-            scrollTrigger: {
-              trigger: stepsRef.current,
-              start: 'top 75%',
-              toggleActions: 'play none none reverse',
-            },
-          })
+        // Connector line draw
+        if (connectorRef.current) {
+          gsap.fromTo(connectorRef.current,
+            { scaleX: 0, transformOrigin: 'left center' },
+            {
+              scaleX: 1,
+              duration: 1.2,
+              ease: 'power2.inOut',
+              scrollTrigger: {
+                trigger: stepsRef.current,
+                start: 'top 75%',
+                toggleActions: 'play none none reverse',
+              },
+            }
+          )
         }
       }
 
@@ -771,26 +772,15 @@ export default function LandingPage() {
           </div>
 
           <div ref={stepsRef} className="relative grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* SVG connector line (desktop) */}
-            <svg
-              className="hidden md:block absolute top-5 left-0 w-full h-4 pointer-events-none"
-              viewBox="0 0 800 16"
-              preserveAspectRatio="none"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                ref={svgPathRef}
-                d="M 80 8 Q 280 2 400 8 Q 520 14 720 8"
-                stroke="#C4622D"
-                strokeWidth="2"
-                strokeDasharray="6 4"
-                strokeLinecap="round"
-              />
-            </svg>
+            {/* Connector line — spans circle center to circle center across all 3 columns */}
+            <div
+              ref={connectorRef}
+              className="hidden md:block absolute border-t-2 border-dashed border-ember/50 pointer-events-none"
+              style={{ top: '20px', left: 'calc(100% / 6)', right: 'calc(100% / 6)' }}
+            />
 
             {STEPS.map(({ step, title, desc }, i) => (
-              <div key={step} className="flex flex-col items-center text-center md:items-start md:text-left">
+              <div key={step} className="flex flex-col items-center text-center">
                 <div
                   ref={el => { stepNumRefs.current[i] = el }}
                   className="w-10 h-10 rounded-full bg-jade text-white font-bold text-lg flex items-center justify-center mb-4 shrink-0 relative z-10"
@@ -1074,7 +1064,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── FAQ ───────────────────────────────────────── */}
-      <section className="px-6 py-20 bg-white">
+      <section className="px-6 pt-20 pb-28 bg-white">
         <div className="max-w-2xl mx-auto">
           <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">
             Common questions.
