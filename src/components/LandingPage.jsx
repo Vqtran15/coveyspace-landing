@@ -744,9 +744,13 @@ export default function LandingPage() {
         {/* Mobile: vertical grid */}
         <div className="lg:hidden px-6 pb-20 bg-white">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {FEATURES.map(({ Icon, title, description, color }) => (
+            {FEATURES.map(({ Icon, title, description, color }, i) => (
               <motion.div
                 key={title}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.07 }}
                 whileHover={{ rotateX: -4, rotateY: 6, y: -10, scale: 1.04, boxShadow: '0 24px 48px -8px rgba(0,0,0,0.14)', transition: { type: 'spring', stiffness: 280, damping: 18 } }}
                 style={{ transformPerspective: 900 }}
                 className="rounded-2xl border border-stone-100 p-6 shadow-sm bg-white"
