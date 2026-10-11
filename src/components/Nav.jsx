@@ -6,14 +6,6 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 const LOGIN_URL  = 'https://app.coveyspace.com/login'
 const SIGNUP_URL = 'https://app.coveyspace.com/login?tab=signup'
 
-const NAV_LINKS = [
-  { label: 'About',       href: '/#about',   sectionId: 'about'   },
-  { label: 'Install App', href: '/#install', sectionId: 'install' },
-  { label: 'Contact',     href: '/#contact', sectionId: 'contact' },
-]
-
-const SECTION_IDS = NAV_LINKS.map(l => l.sectionId)
-
 const menuItemVariants = {
   open:   { opacity: 1, y: 0,  transition: { type: 'spring', stiffness: 380, damping: 28 } },
   closed: { opacity: 0, y: -6 },
@@ -24,29 +16,15 @@ const menuContainerVariants = {
 }
 
 export default function Nav() {
-  const [menuOpen, setMenuOpen]         = useState(false)
-  const [scrolled, setScrolled]         = useState(false)
-  const [activeSection, setActiveSection] = useState(null)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   const { scrollY, scrollYProgress } = useScroll()
   const progressScaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
 
-  // Transparent→frosted + active section — one listener
   useEffect(() => {
-    const check = v => {
-      setScrolled(v > 40)
-
-      const mid = v + window.innerHeight * 0.4
-      let active = null
-      for (const id of SECTION_IDS) {
-        const el = document.getElementById(id)
-        if (el && el.offsetTop <= mid) active = id
-      }
-      setActiveSection(active)
-    }
-
-    const unsub = scrollY.on('change', check)
-    check(scrollY.get()) // sync state immediately on mount
+    const unsub = scrollY.on('change', v => setScrolled(v > 40))
+    setScrolled(scrollY.get() > 40)
     return unsub
   }, [scrollY])
 
@@ -79,26 +57,6 @@ export default function Nav() {
 
           {/* Desktop links */}
           <div className="hidden sm:flex items-center gap-1">
-            {NAV_LINKS.map(({ label, href, sectionId }) => (
-              <motion.a
-                key={label}
-                href={href}
-                whileHover={{ y: -1, transition: { type: 'spring', stiffness: 500, damping: 28 } }}
-                className={`relative px-3 py-2 text-sm font-semibold rounded-xl transition-colors ${
-                  activeSection === sectionId
-                    ? 'text-stone-800'
-                    : 'text-stone-500 hover:text-stone-800 hover:bg-stone-50'
-                }`}
-              >
-                {label}
-                {activeSection === sectionId && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute bottom-0.5 left-2 right-2 h-0.5 bg-jade rounded-full"
-                  />
-                )}
-              </motion.a>
-            ))}
             <motion.button
               onClick={() => { window.location.href = LOGIN_URL }}
               whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
@@ -154,18 +112,7 @@ export default function Nav() {
                 animate="open"
                 className="flex flex-col gap-1"
               >
-                {NAV_LINKS.map(({ label, href }) => (
-                  <motion.a
-                    key={label}
-                    href={href}
-                    variants={menuItemVariants}
-                    onClick={() => setMenuOpen(false)}
-                    className="px-4 py-3 rounded-xl text-sm font-semibold text-stone-700 hover:bg-stone-50 transition-colors"
-                  >
-                    {label}
-                  </motion.a>
-                ))}
-                <motion.div variants={menuItemVariants} className="border-t border-stone-100 mt-2 pt-3 flex flex-col gap-2">
+                <motion.div variants={menuItemVariants} className="flex flex-col gap-2">
                   <button
                     onClick={() => { window.location.href = LOGIN_URL }}
                     className="w-full py-3 border border-stone-200 text-stone-700 font-semibold rounded-xl text-sm hover:bg-stone-50 transition-colors"
