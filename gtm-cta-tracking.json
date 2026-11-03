@@ -1,0 +1,118 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-07-12 10:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "Coveyspace Landing",
+      "publicId": "GTM-PMNNNG4X",
+      "usageContext": ["WEB"]
+    },
+    "builtInVariable": [
+      {"accountId": "0", "containerId": "0", "type": "CLICK_ELEMENT",  "name": "Click Element"},
+      {"accountId": "0", "containerId": "0", "type": "CLICK_CLASSES",  "name": "Click Classes"},
+      {"accountId": "0", "containerId": "0", "type": "CLICK_ID",       "name": "Click ID"},
+      {"accountId": "0", "containerId": "0", "type": "CLICK_TARGET",   "name": "Click Target"},
+      {"accountId": "0", "containerId": "0", "type": "CLICK_URL",      "name": "Click URL"},
+      {"accountId": "0", "containerId": "0", "type": "CLICK_TEXT",     "name": "Click Text"},
+      {"accountId": "0", "containerId": "0", "type": "PAGE_PATH",      "name": "Page Path"},
+      {"accountId": "0", "containerId": "0", "type": "PAGE_URL",       "name": "Page URL"},
+      {"accountId": "0", "containerId": "0", "type": "PAGE_HOSTNAME",  "name": "Page Hostname"}
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "1",
+        "name": "Click - CTA Buttons",
+        "type": "CLICK",
+        "filter": [
+          {
+            "type": "CONTAINS",
+            "parameter": [
+              {"type": "TEMPLATE", "key": "arg0", "value": "{{Page Hostname}}"},
+              {"type": "TEMPLATE", "key": "arg1", "value": "coveyspace.com"}
+            ]
+          },
+          {
+            "type": "CONTAINS",
+            "parameter": [
+              {"type": "TEMPLATE", "key": "arg0", "value": "{{Click Text}}"},
+              {"type": "TEMPLATE", "key": "arg1", "value": "Sign up"}
+            ]
+          }
+        ],
+        "parameter": [
+          {"type": "BOOLEAN", "key": "waitForTagsTimeout", "value": "2000"},
+          {"type": "BOOLEAN", "key": "checkValidation",    "value": "false"},
+          {"type": "BOOLEAN", "key": "waitForTags",        "value": "false"},
+          {"type": "BOOLEAN", "key": "uniqueTriggerId",    "value": "false"}
+        ]
+      }
+    ],
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "1",
+        "name": "GA4 Event - CTA Click",
+        "type": "gaawe",
+        "parameter": [
+          {"type": "BOOLEAN",  "key": "sendEcommerceData",      "value": "false"},
+          {"type": "TEMPLATE", "key": "eventName",              "value": "cta_click"},
+          {"type": "TEMPLATE", "key": "measurementIdOverride",  "value": "G-XXXXXXXXXX"},
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  {"type": "TEMPLATE", "key": "name",  "value": "click_text"},
+                  {"type": "TEMPLATE", "key": "value", "value": "{{Click Text}}"}
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {"type": "TEMPLATE", "key": "name",  "value": "click_url"},
+                  {"type": "TEMPLATE", "key": "value", "value": "{{Click URL}}"}
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {"type": "TEMPLATE", "key": "name",  "value": "page_path"},
+                  {"type": "TEMPLATE", "key": "value", "value": "{{Page Path}}"}
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {"type": "TEMPLATE", "key": "name",  "value": "element_id"},
+                  {"type": "TEMPLATE", "key": "value", "value": "{{Click ID}}"}
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {"type": "TEMPLATE", "key": "name",  "value": "click_classes"},
+                  {"type": "TEMPLATE", "key": "value", "value": "{{Click Classes}}"}
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["1"],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {"type": "MAP"}
+      }
+    ]
+  }
+}

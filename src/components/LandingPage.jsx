@@ -618,7 +618,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-10">
 
           <div className="flex-1 text-center lg:text-left">
-            <h1 className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-[1.05] mb-3">
+            <h1 className="font-extrabold text-5xl sm:text-6xl lg:text-7xl text-stone-900 leading-tight mb-3">
               {['One place for your', 'whole group.'].map((line, li) => (
                 <div key={li} style={{ overflow: 'hidden', paddingBottom: '0.12em', marginBottom: '-0.12em' }}>
                   <motion.span
@@ -692,7 +692,7 @@ export default function LandingPage() {
       <section id="features">
         {/* Mobile heading (hidden on desktop — desktop gets it inside the pin area) */}
         <div className="lg:hidden px-6 pt-14 pb-10 bg-white text-center">
-          <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide">
+          <SplitHeading className="font-extrabold text-3xl sm:text-4xl text-stone-800">
             Everything your group needs.
           </SplitHeading>
         </div>
@@ -705,7 +705,7 @@ export default function LandingPage() {
         >
           {/* Heading inside the pin area so it stays visible while cards scroll */}
           <div className="px-6 pb-8 text-center">
-            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide">
+            <SplitHeading className="font-extrabold text-3xl sm:text-4xl text-stone-800">
               Everything your group needs.
             </SplitHeading>
           </div>
@@ -761,7 +761,7 @@ export default function LandingPage() {
       <section className="px-6 py-20 bg-stone-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
-            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
+            <SplitHeading className="font-extrabold text-3xl sm:text-4xl text-stone-800 mb-3">
               Up and running in minutes.
             </SplitHeading>
           </div>
@@ -795,7 +795,7 @@ export default function LandingPage() {
       {/* ── App Tour ─────────────────────────────────── */}
       <section id="tour" className="bg-white">
         <div className="border-t border-stone-100 px-6 pt-14 pb-8 text-center">
-          <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-2">
+          <SplitHeading className="font-extrabold text-3xl sm:text-4xl text-stone-800 mb-2">
             Everything inside Coveyspace.
           </SplitHeading>
           <FadeUp delay={0.3} className="lg:hidden">
@@ -897,7 +897,7 @@ export default function LandingPage() {
         <div ref={diffBlobRef} className="absolute -right-40 -top-40 w-[560px] h-[560px] rounded-full bg-jade/[0.06] pointer-events-none" />
         <div className="max-w-4xl mx-auto relative">
           <div className="text-center mb-12">
-            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
+            <SplitHeading className="font-extrabold text-3xl sm:text-4xl text-stone-800 mb-3">
               What makes Coveyspace different.
             </SplitHeading>
             <FadeUp delay={0.3}>
@@ -1045,7 +1045,7 @@ export default function LandingPage() {
       {/* ── FAQ ───────────────────────────────────────── */}
       <section className="px-6 pt-20 pb-28 bg-white">
         <div className="max-w-2xl mx-auto">
-          <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide text-center mb-10">
+          <SplitHeading className="font-extrabold text-3xl sm:text-4xl text-stone-800 text-center mb-10">
             Common questions.
           </SplitHeading>
 
@@ -1095,7 +1095,7 @@ export default function LandingPage() {
       >
         <div className="absolute -left-32 -bottom-32 w-[480px] h-[480px] rounded-full bg-white/[0.05] pointer-events-none" />
         <div className="cta-content max-w-4xl mx-auto relative">
-          <SplitHeading className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6">
+          <SplitHeading className="font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
             Bring your whole group together.
           </SplitHeading>
           <motion.button
@@ -1118,7 +1118,7 @@ export default function LandingPage() {
               <EnvelopeSimple size={24} weight="fill" className="text-jade" />
             </div>
           </FadeUp>
-          <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
+          <SplitHeading className="font-extrabold text-3xl sm:text-4xl text-stone-800 mb-3">
             Have questions?
           </SplitHeading>
           <FadeUp delay={0.2}>

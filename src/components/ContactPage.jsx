@@ -67,7 +67,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.12, ease: EASE }}
-            className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-none mb-6"
+            className="font-extrabold text-5xl sm:text-6xl lg:text-7xl text-stone-900 leading-tight mb-6"
           >
             We'd love to<br />hear from you.
           </motion.h1>
@@ -120,7 +120,7 @@ export default function ContactPage() {
               >
                 <EnvelopeSimple size={28} weight="fill" className="text-white" />
               </motion.div>
-              <h2 className="font-league-gothic text-4xl sm:text-5xl text-white tracking-wide mb-3">
+              <h2 className="font-extrabold text-3xl sm:text-4xl text-white mb-3">
                 Say hello.
               </h2>
               <p className="text-white/70 text-sm mb-7 max-w-sm mx-auto">

@@ -88,7 +88,7 @@ export default function InstallPage() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: EASE }}
-            className="font-league-gothic text-5xl sm:text-6xl text-stone-900 tracking-wide mb-4"
+            className="font-extrabold text-4xl sm:text-5xl text-stone-900 mb-4"
           >
             Use it like an app.
           </motion.h1>
@@ -107,7 +107,7 @@ export default function InstallPage() {
       <section className="px-6 pt-10 pb-16 bg-white">
         <div className="max-w-4xl mx-auto">
           <FadeUp>
-            <h2 className="font-league-gothic text-3xl sm:text-4xl text-stone-800 tracking-wide text-center mb-10">
+            <h2 className="font-extrabold text-2xl sm:text-3xl text-stone-800 text-center mb-10">
               Why install it?
             </h2>
           </FadeUp>

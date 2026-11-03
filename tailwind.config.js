@@ -7,7 +7,6 @@ export default {
     extend: {
       fontFamily: {
         'sans': ['Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        'league-gothic': ['"League Gothic"', 'sans-serif'],
       },
       colors: {
         coral: {

@@ -33,7 +33,7 @@ export default function PrivacyPage() {
 
       <section className="px-6 py-16 bg-gradient-to-b from-jade-50 to-white">
         <div className="max-w-2xl mx-auto text-center">
-          <h1 className="font-league-gothic text-5xl sm:text-6xl text-stone-900 tracking-wide mb-3">
+          <h1 className="font-extrabold text-4xl sm:text-5xl text-stone-900 mb-3">
             Privacy Policy
           </h1>
           <p className="text-stone-400 text-sm">Last Updated: July 13, 2026</p>

@@ -186,7 +186,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.12, ease: EASE }}
-            className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-none mb-6"
+            className="font-extrabold text-5xl sm:text-6xl lg:text-7xl text-stone-900 leading-tight mb-6"
           >
             Built for groups who break bread around a table.
           </motion.h1>
@@ -222,7 +222,7 @@ export default function AboutPage() {
       {/* ── Section heading ── */}
       <div className="border-t border-stone-100 px-6 pt-14 pb-8 text-center">
         <FadeUp>
-          <h2 className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-2">
+          <h2 className="font-extrabold text-3xl sm:text-4xl text-stone-800 mb-2">
             Everything inside Coveyspace.
           </h2>
           <p className="lg:hidden text-stone-400 text-base">One platform for every part of your community group.</p>
@@ -346,7 +346,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto">
           <h2
             ref={ctaRef}
-            className="font-league-gothic text-5xl sm:text-6xl lg:text-7xl text-white tracking-wide mb-6"
+            className="font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white mb-6"
           >
             {CTA_WORDS.map((word, i) => (
               <motion.span
