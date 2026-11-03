@@ -30,13 +30,14 @@ export default function PrivacyPage() {
         <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />
+      <main>
 
       <section className="px-6 py-16 bg-gradient-to-b from-jade-50 to-white">
         <div className="max-w-2xl mx-auto text-center">
           <h1 className="font-extrabold text-4xl sm:text-5xl text-stone-900 mb-3">
             Privacy Policy
           </h1>
-          <p className="text-stone-400 text-sm">Last Updated: July 13, 2026</p>
+          <p className="text-stone-500 text-sm">Last Updated: July 13, 2026</p>
         </div>
       </section>
 
@@ -266,6 +267,8 @@ export default function PrivacyPage() {
 
         </div>
       </section>
+
+      </main>
 
       <Footer />
     </div>

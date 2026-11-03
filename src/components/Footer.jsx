@@ -13,7 +13,7 @@ export default function Footer() {
             <Link to="/privacy" className="text-stone-300 hover:text-white text-sm transition-colors">Privacy Policy</Link>
           </div>
         </div>
-        <p className="text-stone-600 text-xs">© {new Date().getFullYear()} Coveyspace. All rights reserved.</p>
+        <p className="text-stone-400 text-xs">© {new Date().getFullYear()} Coveyspace. All rights reserved.</p>
       </div>
     </footer>
   )

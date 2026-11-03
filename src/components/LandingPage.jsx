@@ -612,6 +612,7 @@ export default function LandingPage() {
       </Helmet>
 
       <Nav />
+      <main>
 
       {/* ── Hero ──────────────────────────────────────── */}
       <section ref={heroSectionRef} className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-10 lg:pt-28 lg:pb-24">
@@ -678,6 +679,7 @@ export default function LandingPage() {
                       muted
                       loop
                       playsInline
+                      aria-hidden="true"
                       className="w-full h-auto block"
                     />
                   </div>
@@ -799,7 +801,7 @@ export default function LandingPage() {
             Everything inside Coveyspace.
           </SplitHeading>
           <FadeUp delay={0.3} className="lg:hidden">
-            <p className="text-stone-400 text-base">One platform for every part of your community group.</p>
+            <p className="text-stone-500 text-base">One platform for every part of your community group.</p>
           </FadeUp>
         </div>
 
@@ -833,13 +835,13 @@ export default function LandingPage() {
           </div>
           <div className="flex justify-center items-center gap-2 mt-5">
             {FEATURE_TOUR.map((_, i) => (
-              <button key={i} onClick={() => setActiveSlide(i)} className={`h-2 rounded-full transition-all duration-300 ${i === activeSlide ? 'w-6 bg-jade' : 'w-2 bg-stone-300'}`} />
+              <button key={i} onClick={() => setActiveSlide(i)} aria-label={`Go to slide ${i + 1}: ${FEATURE_TOUR[i].title}`} className={`h-2 rounded-full transition-all duration-300 ${i === activeSlide ? 'w-6 bg-jade' : 'w-2 bg-stone-300'}`} />
             ))}
           </div>
           <div className="flex justify-between items-center mt-4 text-sm font-semibold">
-            <button onClick={() => setActiveSlide(s => Math.max(s - 1, 0))} disabled={activeSlide === 0} className="px-4 py-2 rounded-xl text-stone-400 disabled:opacity-0 transition-opacity">← Prev</button>
-            <span className="text-stone-300 text-xs">{activeSlide + 1} / {FEATURE_TOUR.length}</span>
-            <button onClick={() => setActiveSlide(s => Math.min(s + 1, FEATURE_TOUR.length - 1))} disabled={activeSlide === FEATURE_TOUR.length - 1} className="px-4 py-2 rounded-xl text-stone-400 disabled:opacity-0 transition-opacity">Next →</button>
+            <button onClick={() => setActiveSlide(s => Math.max(s - 1, 0))} disabled={activeSlide === 0} aria-label="Previous slide" className="px-4 py-2 rounded-xl text-stone-400 disabled:opacity-0 transition-opacity">← Prev</button>
+            <span aria-live="polite" aria-atomic="true" className="text-stone-500 text-xs">{activeSlide + 1} / {FEATURE_TOUR.length}</span>
+            <button onClick={() => setActiveSlide(s => Math.min(s + 1, FEATURE_TOUR.length - 1))} disabled={activeSlide === FEATURE_TOUR.length - 1} aria-label="Next slide" className="px-4 py-2 rounded-xl text-stone-400 disabled:opacity-0 transition-opacity">Next →</button>
           </div>
         </FadeUp>
 
@@ -894,14 +896,14 @@ export default function LandingPage() {
 
       {/* ── What makes Coveyspace different ──────────── */}
       <section ref={diffSectionRef} className="px-6 py-20 bg-stone-50 relative overflow-hidden">
-        <div ref={diffBlobRef} className="absolute -right-40 -top-40 w-[560px] h-[560px] rounded-full bg-jade/[0.06] pointer-events-none" />
+        <div ref={diffBlobRef} aria-hidden="true" className="absolute -right-40 -top-40 w-[560px] h-[560px] rounded-full bg-jade/[0.06] pointer-events-none" />
         <div className="max-w-4xl mx-auto relative">
           <div className="text-center mb-12">
             <SplitHeading className="font-extrabold text-3xl sm:text-4xl text-stone-800 mb-3">
               What makes Coveyspace different.
             </SplitHeading>
             <FadeUp delay={0.3}>
-              <p className="text-stone-400 text-sm">
+              <p className="text-stone-500 text-sm">
                 Designed specifically for small groups who share life together week after week.
               </p>
             </FadeUp>
@@ -916,7 +918,7 @@ export default function LandingPage() {
                 transition={{ type: 'spring', stiffness: 280, damping: 18 }}
                 style={{ transformPerspective: 900 }}
               >
-                <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-2">{label}</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone-500 mb-2">{label}</p>
                 <h3 className="font-semibold text-stone-800 text-base mb-2 leading-snug">{title}</h3>
                 <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
               </motion.div>
@@ -993,7 +995,7 @@ export default function LandingPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <FadeUp delay={0.1}>
                   <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6">
-                    <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-5">iPhone / iPad</p>
+                    <p className="text-xs font-semibold text-stone-500 uppercase tracking-widest mb-5">iPhone / iPad</p>
                     <ol className="flex flex-col gap-4">
                       {IOS_STEPS.map((step, i) => (
                         <li key={i} className="flex items-start gap-3">
@@ -1006,7 +1008,7 @@ export default function LandingPage() {
                 </FadeUp>
                 <FadeUp delay={0.2}>
                   <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6">
-                    <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-5">Android</p>
+                    <p className="text-xs font-semibold text-stone-500 uppercase tracking-widest mb-5">Android</p>
                     <ol className="flex flex-col gap-4">
                       {ANDROID_STEPS.map((step, i) => (
                         <li key={i} className="flex items-start gap-3">
@@ -1049,6 +1051,8 @@ export default function LandingPage() {
                 <div key={i} className="bg-white">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    aria-expanded={openFaq === i}
+                    aria-controls={`faq-answer-${i}`}
                     className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-stone-50 transition-colors"
                   >
                     <span className="font-semibold text-stone-800 text-sm leading-snug">{q}</span>
@@ -1064,6 +1068,7 @@ export default function LandingPage() {
                     {openFaq === i && (
                       <motion.div
                         key="answer"
+                        id={`faq-answer-${i}`}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -1087,7 +1092,7 @@ export default function LandingPage() {
         className="px-6 py-20 lg:py-28 text-center relative overflow-hidden"
         style={{ backgroundColor: '#fafaf9' }}
       >
-        <div className="absolute -left-32 -bottom-32 w-[480px] h-[480px] rounded-full bg-white/[0.05] pointer-events-none" />
+        <div aria-hidden="true" className="absolute -left-32 -bottom-32 w-[480px] h-[480px] rounded-full bg-white/[0.05] pointer-events-none" />
         <div className="cta-content max-w-4xl mx-auto relative">
           <SplitHeading className="font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white mb-6">
             Bring your whole group together.
@@ -1116,7 +1121,7 @@ export default function LandingPage() {
             Have questions?
           </SplitHeading>
           <FadeUp delay={0.2}>
-            <p className="text-stone-400 text-sm leading-relaxed mb-6">
+            <p className="text-stone-500 text-sm leading-relaxed mb-6">
               Whether you're a pastor, group leader, or just curious. Reach out and I'll get back to you.
             </p>
             <motion.a
@@ -1131,6 +1136,8 @@ export default function LandingPage() {
           </FadeUp>
         </div>
       </section>
+
+      </main>
 
       <Footer />
     </div>

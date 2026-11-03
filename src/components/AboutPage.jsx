@@ -178,6 +178,7 @@ export default function AboutPage() {
         <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />
+      <main>
 
       {/* ── Hero — stagger entrance ── */}
       <section className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-8 lg:pt-28 lg:pb-10 text-center">
@@ -225,7 +226,7 @@ export default function AboutPage() {
           <h2 className="font-extrabold text-3xl sm:text-4xl text-stone-800 mb-2">
             Everything inside Coveyspace.
           </h2>
-          <p className="lg:hidden text-stone-400 text-base">One platform for every part of your community group.</p>
+          <p className="lg:hidden text-stone-500 text-base">One platform for every part of your community group.</p>
         </FadeUp>
       </div>
 
@@ -268,6 +269,7 @@ export default function AboutPage() {
             <button
               key={i}
               onClick={() => setActiveSlide(i)}
+              aria-label={`Go to slide ${i + 1}: ${FEATURES[i].title}`}
               className={`h-2 rounded-full transition-all duration-300 ${
                 i === activeSlide ? 'w-6 bg-jade' : 'w-2 bg-stone-300'
               }`}
@@ -280,14 +282,16 @@ export default function AboutPage() {
           <button
             onClick={() => setActiveSlide(s => Math.max(s - 1, 0))}
             disabled={activeSlide === 0}
+            aria-label="Previous slide"
             className="px-4 py-2 rounded-xl text-stone-400 disabled:opacity-0 transition-opacity"
           >
             ← Prev
           </button>
-          <span className="text-stone-300 text-xs">{activeSlide + 1} / {FEATURES.length}</span>
+          <span aria-live="polite" aria-atomic="true" className="text-stone-500 text-xs">{activeSlide + 1} / {FEATURES.length}</span>
           <button
             onClick={() => setActiveSlide(s => Math.min(s + 1, FEATURES.length - 1))}
             disabled={activeSlide === FEATURES.length - 1}
+            aria-label="Next slide"
             className="px-4 py-2 rounded-xl text-stone-400 disabled:opacity-0 transition-opacity"
           >
             Next →
@@ -376,6 +380,8 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
+
+      </main>
 
       <Footer />
     </div>

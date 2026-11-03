@@ -80,6 +80,7 @@ export default function InstallPage() {
         <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />
+      <main>
 
       {/* ── Hero — stagger entrance ── */}
       <section className="px-6 pt-20 pb-10 bg-gradient-to-b from-jade-50 to-white">
@@ -166,7 +167,7 @@ export default function InstallPage() {
                 transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
                 className="bg-white rounded-2xl border border-stone-100 shadow-sm p-6"
               >
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-5">iPhone / iPad</p>
+                <p className="text-xs font-semibold text-stone-500 uppercase tracking-widest mb-5">iPhone / iPad</p>
                 <ol className="flex flex-col gap-4">
                   {IOS_STEPS.map((step, i) => (
                     <li key={i} className="flex items-start gap-3">
@@ -191,7 +192,7 @@ export default function InstallPage() {
                 transition={{ duration: 0.5, delay: 0.2, ease: EASE }}
                 className="bg-white rounded-2xl border border-stone-100 shadow-sm p-6"
               >
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-5">Android</p>
+                <p className="text-xs font-semibold text-stone-500 uppercase tracking-widest mb-5">Android</p>
                 <ol className="flex flex-col gap-4">
                   {ANDROID_STEPS.map((step, i) => (
                     <li key={i} className="flex items-start gap-3">
@@ -226,6 +227,8 @@ export default function InstallPage() {
           </div>
         </div>
       </section>
+
+      </main>
 
       <Footer />
     </div>

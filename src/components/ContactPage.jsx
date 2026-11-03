@@ -59,6 +59,7 @@ export default function ContactPage() {
         <meta name="twitter:image" content="https://www.coveyspace.com/og-image.png" />
       </Helmet>
       <Nav />
+      <main>
 
       {/* ── Hero — stagger entrance ── */}
       <section className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-16 lg:pt-28 lg:pb-20 text-center">
@@ -103,7 +104,7 @@ export default function ContactPage() {
                   <Icon size={22} weight="fill" />
                 </div>
                 <h3 className="font-semibold text-stone-800 mb-1.5 text-sm">{title}</h3>
-                <p className="text-stone-400 text-xs leading-relaxed">{description}</p>
+                <p className="text-stone-500 text-xs leading-relaxed">{description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -123,7 +124,7 @@ export default function ContactPage() {
               <h2 className="font-extrabold text-3xl sm:text-4xl text-white mb-3">
                 Say hello.
               </h2>
-              <p className="text-white/70 text-sm mb-7 max-w-sm mx-auto">
+              <p className="text-white/90 text-sm mb-7 max-w-sm mx-auto">
                 Drop me a line at the address below.
               </p>
               <motion.a
@@ -143,7 +144,7 @@ export default function ContactPage() {
       {/* ── CTA ── */}
       <section className="px-6 py-16 bg-stone-50 text-center">
         <FadeUp className="max-w-2xl mx-auto">
-          <p className="text-stone-400 text-sm mb-4">Ready to get started?</p>
+          <p className="text-stone-500 text-sm mb-4">Ready to get started?</p>
           <motion.a
             href={SIGNUP_URL}
             whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
@@ -154,6 +155,8 @@ export default function ContactPage() {
           </motion.a>
         </FadeUp>
       </section>
+
+      </main>
 
       <Footer />
     </div>
