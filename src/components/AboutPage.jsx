@@ -251,7 +251,7 @@ export default function AboutPage() {
                 <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-2.5 ${feature.color}`}>
                   <feature.Icon size={18} weight="fill" />
                 </div>
-                <h3 className="font-league-gothic text-2xl tracking-wide text-stone-800 mb-2">
+                <h3 className="font-semibold text-xl text-stone-800 mb-2">
                   {feature.title}
                 </h3>
                 <p className="text-stone-500 text-sm leading-relaxed max-w-xs mx-auto">
@@ -312,7 +312,7 @@ export default function AboutPage() {
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${feature.color}`}>
                   <feature.Icon size={20} weight="fill" />
                 </div>
-                <h3 className="font-league-gothic text-3xl sm:text-4xl tracking-wide text-stone-800 mb-3">
+                <h3 className="font-semibold text-2xl sm:text-3xl text-stone-800 mb-3">
                   {feature.title}
                 </h3>
                 <p className="text-stone-500 text-sm leading-relaxed">{feature.description}</p>
