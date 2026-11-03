@@ -67,7 +67,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: EASE }}
-            className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6"
+            className="inline-block text-jade text-xs font-semibold uppercase tracking-widest mb-4"
           >
             Get in touch
           </motion.div>

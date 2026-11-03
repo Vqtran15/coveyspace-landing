@@ -618,16 +618,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-10">
 
           <div className="flex-1 text-center lg:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: EASE_SPRING }}
-              className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6"
-            >
-              Gathering community made simple
-            </motion.div>
-
-            <h1 className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-[1.05] mb-6">
+            <h1 className="font-league-gothic text-6xl sm:text-7xl lg:text-8xl tracking-wide text-stone-900 leading-[1.05] mb-3">
               {['One place for your', 'whole group.'].map((line, li) => (
                 <div key={li} style={{ overflow: 'hidden', paddingBottom: '0.12em', marginBottom: '-0.12em' }}>
                   <motion.span
@@ -643,9 +634,18 @@ export default function LandingPage() {
             </h1>
 
             <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.44, ease: EASE_SPRING }}
+              className="text-stone-500 text-base max-w-xl mx-auto lg:mx-0 mb-6"
+            >
+              Gathering community made simple
+            </motion.p>
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.28, ease: EASE_SPRING }}
+              transition={{ duration: 0.55, delay: 0.60, ease: EASE_SPRING }}
               className="text-stone-500 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8"
             >
               Coveyspace brings automated meal signups, service schedules, group chat, prayer requests, and discussion guides all into one single platform. It's built for church small groups, house churches, and Bible study groups. Church admins can link multiple groups under one account and broadcast announcements across all of them at once.
@@ -654,7 +654,7 @@ export default function LandingPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.42, ease: EASE_SPRING }}
+              transition={{ duration: 0.5, delay: 0.76, ease: EASE_SPRING }}
               className="flex flex-col items-center lg:items-start gap-2"
             >
               <motion.button
@@ -938,14 +938,10 @@ export default function LandingPage() {
       <section ref={storyRef} id="about" className="px-6 py-20 bg-white">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
-            <FadeUp className="mb-6">
-              <div className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full">
-                Our Story
-              </div>
+            <FadeUp>
+              <h2 className="text-2xl font-bold text-stone-800 mb-1.5">Our Story</h2>
+              <p className="text-stone-500 text-base">Built for groups who break bread around a table.</p>
             </FadeUp>
-            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide">
-              Built for groups who break bread around a table.
-            </SplitHeading>
           </div>
 
           <div className="flex flex-col gap-5 text-stone-600 text-[1.0625rem] leading-relaxed">
@@ -969,14 +965,10 @@ export default function LandingPage() {
       <section id="install" className="px-6 py-20 bg-stone-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <FadeUp className="mb-6">
-              <div className="inline-block bg-jade/10 text-jade text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full">
-                Install App
-              </div>
+            <FadeUp className="mb-5">
+              <h2 className="text-2xl font-bold text-stone-800 mb-1.5">Install App</h2>
+              <p className="text-stone-500 text-sm">Use it like an app.</p>
             </FadeUp>
-            <SplitHeading className="font-league-gothic text-4xl sm:text-5xl text-stone-800 tracking-wide mb-3">
-              Use it like an app.
-            </SplitHeading>
             <FadeUp delay={0.2}>
               <p className="text-stone-500 text-base max-w-xl mx-auto">
                 Coveyspace is a web app with no app store required. Add it to your home screen in seconds for the full native experience.
