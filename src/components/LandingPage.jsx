@@ -955,6 +955,9 @@ export default function LandingPage() {
       <section id="install" className="px-6 py-20 bg-stone-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
+            <SplitHeading className="font-extrabold text-3xl sm:text-4xl text-stone-800 mb-4">
+              Use it like an app.
+            </SplitHeading>
             <FadeUp delay={0.2}>
               <p className="text-stone-500 text-base max-w-xl mx-auto">
                 Coveyspace is a web app with no app store required. Add it to your home screen in seconds for the full native experience.
@@ -987,18 +990,6 @@ export default function LandingPage() {
 
           <div className="flex flex-col lg:flex-row lg:items-start gap-12">
             <div className="flex-1 flex flex-col gap-6">
-              <FadeUp>
-                <div className="relative overflow-hidden flex items-start gap-3 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 shadow-sm">
-                  <span className="absolute left-0 top-0 h-full w-1.5 bg-red-400 rounded-l-2xl" />
-                  <div className="pl-3">
-                    <p className="text-xs font-bold text-red-700 uppercase tracking-wider mb-1">iPhone &amp; iPad: use Safari</p>
-                    <p className="text-sm text-red-600 leading-relaxed">
-                      The "Add to Home Screen" option only appears in Safari. If you're in Chrome, Firefox, or another browser on iOS, switch to Safari first.
-                    </p>
-                  </div>
-                </div>
-              </FadeUp>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <FadeUp delay={0.1}>
                   <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6">
