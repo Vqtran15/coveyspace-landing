@@ -617,7 +617,7 @@ export default function LandingPage() {
       <section ref={heroSectionRef} className="bg-gradient-to-b from-jade-50 to-white px-6 pt-20 pb-10 lg:pt-28 lg:pb-24">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-10">
 
-          <div className="flex-1 text-center lg:text-left">
+          <div className="flex-1 lg:flex-[3] text-center lg:text-left">
             <h1 className="font-extrabold text-5xl sm:text-6xl lg:text-7xl text-stone-900 leading-tight mb-3">
               {['One place for your', 'whole group.'].map((line, li) => (
                 <div key={li} style={{ overflow: 'hidden', paddingBottom: '0.12em', marginBottom: '-0.12em' }}>
@@ -929,6 +929,9 @@ export default function LandingPage() {
       <section ref={storyRef} id="about" className="px-6 py-20 bg-white">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
+            <SplitHeading className="font-extrabold text-3xl sm:text-4xl text-stone-800">
+              Our Story
+            </SplitHeading>
           </div>
 
           <div className="flex flex-col gap-5 text-stone-600 text-[1.0625rem] leading-relaxed">
