@@ -990,7 +990,7 @@ export default function LandingPage() {
             ))}
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-start gap-12">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-12">
             <div className="flex-1 flex flex-col gap-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <FadeUp delay={0.1}>
