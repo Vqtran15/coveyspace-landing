@@ -178,7 +178,7 @@ const STEPS = [
 const DIFF_CARDS = [
   {
     label: 'Small group focus',
-    title: 'Built for your group, not your whole church',
+    title: 'Built for your small group, not another church management tool',
     desc: 'Coveyspace is sized and priced for the group itself. Any group leader can get started for free in minutes, without church admin approval or a software subscription.',
   },
   {
@@ -475,8 +475,9 @@ export default function LandingPage() {
         })
       }
 
-      // ─ Story paragraphs: gentle parallax ───────────────
-      if (storyRef.current) {
+      // ─ Story paragraphs: gentle parallax (desktop only) ──
+      mm.add('(min-width: 1024px)', () => {
+        if (!storyRef.current) return
         const paras = storyRef.current.querySelectorAll('.story-para')
         paras.forEach((p, i) => {
           const direction = i % 2 === 0 ? 1 : -1
@@ -491,7 +492,7 @@ export default function LandingPage() {
             },
           })
         })
-      }
+      })
 
       // ─ Benefit cards: stagger on scroll ─────────────────
       if (benefitsRef.current) {
